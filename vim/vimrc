@@ -1,0 +1,24 @@
+execute pathogen#infect()
+"" Style / Powerline options
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
+colorscheme seti
+syntax on
+
+"" Having mouse support enabled probably wouldn't hurt, but I reallly hate my
+"" trackpad on my laptop sometimes
+"" set mouse=a
+filetype plugin indent on
+set autoindent
+
+"" Tab inserts spaces, ctrl-v inserts real tab
+set tabstop=4
+set expandtab
+set smarttab
+
+set showcmd
+set number
+set showmatch
+
