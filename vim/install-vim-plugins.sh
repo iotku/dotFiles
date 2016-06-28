@@ -4,6 +4,7 @@ if [ ! -f ${HOME}/.vim/autoload/pathogen.vim ]; then
    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim 
 fi
 cp "./vimrc" "${HOME}/.vimrc"
-git clone https://github.com/trusktr/seti.vim ${HOME}/.vim/bundle/seti.vim
-git clone https://github.com/bling/vim-airline.git ${HOME}/.vim/bundle/vim-airline
-git clone https://github.com/terryma/vim-multiple-cursors.git ${HOME}/.vim/bundle/vim-multiple-cursors
+git clone --depth=1 https://github.com/rust-lang/rust.vim.git ${HOME}/.vim/bundle/rust.vim
+git clone --depth=1 https://github.com/trusktr/seti.vim ${HOME}/.vim/bundle/seti.vim
+git clone --depth=1 https://github.com/bling/vim-airline.git ${HOME}/.vim/bundle/vim-airline
+git clone --depth=1 https://github.com/terryma/vim-multiple-cursors.git ${HOME}/.vim/bundle/vim-multiple-cursors

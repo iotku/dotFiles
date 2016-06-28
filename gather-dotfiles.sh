@@ -13,6 +13,6 @@ for dir in ${HOME}/.vim/bundle/* ; do
         GITNAME=$(basename $dir)
         DIRNAME='${HOME}/.vim/bundle/'
 
-        echo "git clone ${GITURL} ${DIRNAME}${GITNAME}" >> $VIMPLUGINS
+        echo "git clone --depth=1 ${GITURL} ${DIRNAME}${GITNAME}" >> $VIMPLUGINS
 done
-
+chmod +x "$VIMPLUGINS"
