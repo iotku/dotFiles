@@ -1,6 +1,6 @@
 #!/bin/bash
 VIMPLUGINS="./vim/install-vim-plugins.sh"
-cp "${HOME}/.vimrc" ./vim/vimrc
+cp "${HOME}/.vimrc" "./vim/vimrc"
 rm -f "$VIMPLUGINS"
 echo "#!/bin/bash" > $VIMPLUGINS
 echo 'if [ ! -f ${HOME}/.vim/autoload/pathogen.vim ]; then' >> $VIMPLUGINS
@@ -16,3 +16,7 @@ for dir in ${HOME}/.vim/bundle/* ; do
         echo "git clone --depth=1 ${GITURL} ${DIRNAME}${GITNAME}" >> $VIMPLUGINS
 done
 chmod +x "$VIMPLUGINS"
+
+cp "${HOME}/.config/i3/config" "./i3/config"
+cp "${HOME}/.Xresources" "./xorg/Xresources"
+cp "${HOME}/.xprofile" "./xorg/xprofile"
