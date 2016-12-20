@@ -1,4 +1,2 @@
-export GTK_IM_MODULE=xim
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=xim
-ibus-daemon -drx
+export INFINALITY_FT_BRIGHTNESS="-10"
+export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
