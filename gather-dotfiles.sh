@@ -18,5 +18,6 @@ done
 chmod +x "$VIMPLUGINS"
 
 cp "${HOME}/.config/i3/config" "./i3/config"
+cp "${HOME}/.config/i3/i3blocks.conf" "./i3/i3blocks.conf"
 cp "${HOME}/.Xresources" "./xorg/Xresources"
 cp "${HOME}/.xprofile" "./xorg/xprofile"
