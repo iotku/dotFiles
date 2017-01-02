@@ -5,7 +5,8 @@ Xft.hinting: 1
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
-
+urxvt*transparent: true
+urxvt*shading: 10
 !URxvt.inputMethod: ibus
 !URxvt.preeditType: OverTheSpot
 URxvt*font: xft:Terminus:size=12:antialiasing=true 
