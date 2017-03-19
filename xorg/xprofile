@@ -1,2 +1,3 @@
-export INFINALITY_FT_BRIGHTNESS="-10"
-export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx

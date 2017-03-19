@@ -1,51 +1,52 @@
-Xft.antialias: 1
 Xft.autohint: 0
-Xft.dpi: 96
-Xft.hinting: 1
-Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.dpi:    96
 Xft.rgba: rgb
 urxvt*transparent: true
 urxvt*shading: 10
 !URxvt.inputMethod: ibus
 !URxvt.preeditType: OverTheSpot
-URxvt*font: xft:Terminus:size=12:antialiasing=true 
+URxvt*font: xft:DejaVuSansMono:size=12:antialiasing=true, xft:unifont:style=Medium:antialias=false
 URxvt.scrollBar: False
 
 ! special
-*.foreground:   #eceff1
-*.background:   #263238
-*.cursorColor:  #eceff1
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 !
 ! ! black
-*.color0:       #263238
-*.color8:       #37474f
+*.color0:       #1d1f21
+*.color8:       #969896
 !
 ! ! red
-*.color1:       #ff9800
-*.color9:       #ffa74d
+*.color1:       #cc342b
+*.color9:       #cc342b
 !
 ! ! green
-*.color2:       #8bc34a
-*.color10:      #9ccc65
+*.color2:       #198844
+*.color10:      #198844
 !
 ! ! yellow
-*.color3:       #ffc107
-*.color11:      #ffa000
+*.color3:       #fba922
+*.color11:      #fba922
 !
 ! ! blue
-*.color4:       #03a9f4
-*.color12:      #3acbff
+*.color4:       #3971ed
+*.color12:      #3971ed
 !
 ! ! magenta
-*.color5:       #0e7aff
-*.color13:      #1a7ee2
+*.color5:       #a36ac7
+*.color13:      #a36ac7
 !
-! ! cyan
-*.color6:       #009688
-*.color14:      #26a69a
+! cyan
+*.color6:       #3971ed
+*.color14:      #3971ed
 !
 ! ! white
-*.color7:       #cfd8dc
-*.color15:      #eceff1
+*.color7:       #c5c8c6
+*.color15:      #ffffff
 !
+
