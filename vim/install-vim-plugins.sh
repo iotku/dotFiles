@@ -4,7 +4,6 @@ if [ ! -f ${HOME}/.vim/autoload/pathogen.vim ]; then
    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim 
 fi
 cp "./vimrc" "${HOME}/.vimrc"
-git clone --recursive --depth=1 https://github.com/w0rp/ale.git ${HOME}/.vim/bundle/ale
 git clone --recursive --depth=1 https://github.com/davidhalter/jedi-vim.git ${HOME}/.vim/bundle/jedi-vim
 git clone --recursive --depth=1 https://github.com/nanotech/jellybeans.vim.git ${HOME}/.vim/bundle/jellybeans.vim
 git clone --recursive --depth=1 https://github.com/rust-lang/rust.vim.git ${HOME}/.vim/bundle/rust.vim
