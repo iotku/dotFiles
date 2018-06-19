@@ -19,5 +19,6 @@ chmod +x "$VIMPLUGINS"
 
 cp "${HOME}/.config/i3/config" "./i3/config"
 cp "${HOME}/.config/i3/i3blocks.conf" "./i3/i3blocks.conf"
+cp "${HOME}/.config/termite/config" "./termite/config"
 cp "${HOME}/.Xresources" "./xorg/Xresources"
-cp "${HOME}/.xprofile" "./xorg/xprofile"
+#cp "${HOME}/.xprofile" "./xorg/xprofile"

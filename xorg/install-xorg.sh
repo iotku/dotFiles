@@ -1,3 +1,3 @@
 #!/bin/bash
 cp "./Xresources" "${HOME}/.Xresources"
-cp "xprofile" "${HOME}/.xprofile"
+#cp "xprofile" "${HOME}/.xprofile"

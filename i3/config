@@ -92,16 +92,16 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-workspace 1 output VGA1
-workspace 2 output VGA1
-workspace 3 output VGA1
-workspace 4 output VGA1
-workspace 5 output VGA1
-workspace 6 output DVI1
-workspace 7 output DVI1
-workspace 8 output DVI1
-workspace 9 output DVI1
-workspace 10 output DVI1
+workspace 1 output HDMI-1
+workspace 2 output HDMI-1
+workspace 3 output HDMI-1
+workspace 4 output HDMI-1
+workspace 5 output HDMI-1
+workspace 6 output DVI-D-1
+workspace 7 output DVI-D-1
+workspace 8 output DVI-D-1
+workspace 9 output DVI-D-1
+workspace 10 output DVI-D-1
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -194,13 +194,11 @@ client.background       #ffffff
 bindsym $mod+m bar mode toggle
 bindsym $mod+shift+x exec i3lock
 
-exec feh --bg-fill ~/Downloads/wallhaven-460704.jpg
+# setup enviroment 
+exec numlockx
+exec feh --bg-fill ~/customization/wallhaven-36224.png
 exec xrdb ~/.Xresources
 exec redshift-gtk
 exec source ~/.xprofile
-exec /home/ku/bin/run-audio-apps.sh
-exec fcitx
 exec dunst
-exec discord-ptb
-exec discord
-exec chromium
+exec compton
