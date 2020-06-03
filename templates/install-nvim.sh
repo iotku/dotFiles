@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ ! -f ${HOME}/.vim/autoload/pathogen.vim ]; then
+if [ ! -f ${HOME}/.local/share/nvim/site/autoload/pathogen.vim ]; then
    mkdir -p ~/.local/share/nvim/site/autoload/ ~/.config/nvim/bundle
    curl -LSso ~/.local/share/nvim/site/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
