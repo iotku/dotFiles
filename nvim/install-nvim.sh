@@ -9,7 +9,7 @@ cp "./init.vim" "${HOME}/.config/nvim/init.vim"
 function installGitPackage() {
     # $1 githuburl $2 path $3 fancy name
     # If directory already exists, git pull
-    if [ ! -f "$2" ]; then
+    if [ -d "$2" ]; then
         echo "Checking for updates for $3"
         (cd "$2" && git pull)
     else

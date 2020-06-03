@@ -33,3 +33,7 @@ setopt COMPLETE_IN_WORD
 # autoload -U colors
 #colors
 alias vim="nvim"
+
+# Ctrl + Arrows back/forward
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
