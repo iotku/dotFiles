@@ -4,9 +4,5 @@ function confInstall() {
     (cd "$1" && "./install-${1}.sh")
 }
 
-confInstall vim
-confInstall i3
-confInstall xorg
+confInstall nvim
 confInstall zsh
-confInstall termite
-

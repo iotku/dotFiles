@@ -1,29 +1,19 @@
 #!/bin/bash
+set -e
 # vim
-cp "${HOME}/.vimrc" "./vim/vimrc"
-VIMPLUGINS="./vim/install-vim.sh"
-cp "./templates/install-vim.sh" "$VIMPLUGINS"
-echo 'cp "./vimrc" "${HOME}/.vimrc"' >> $VIMPLUGINS
-for dir in ${HOME}/.vim/bundle/* ; do
+cp "${HOME}/.config/nvim/init.vim" "./nvim/init.vim"
+NVIMPLUGINS="./nvim/install-nvim.sh"
+cp "./templates/install-nvim.sh" "$NVIMPLUGINS"
+echo 'cp "./init.vim" "${HOME}/.config/nvim/init.vim"' >> $NVIMPLUGINS
+for dir in ${HOME}/.config/nvim/bundle/* ; do
         GITURL=$(grep url "$dir/.git/config" | cut -b 8- | head -n1)
         GITNAME=$(basename $dir)
-        DIRNAME='${HOME}/.vim/bundle/'
+        DIRNAME='${HOME}/.config/nvim/bundle/'
 
-        echo "installGitPackage ${GITURL} ${DIRNAME}${GITNAME} $GITNAME">> $VIMPLUGINS
+        echo "installGitPackage ${GITURL} ${DIRNAME}${GITNAME} $GITNAME">> $NVIMPLUGINS
 done
-chmod +x "$VIMPLUGINS"
+chmod +x "$NVIMPLUGINS"
 
-# i3
-cp "${HOME}/.config/i3/config" "./i3/config"
-cp "${HOME}/.config/i3/i3blocks.conf" "./i3/i3blocks.conf"
-
-# Termite
-cp "${HOME}/.config/termite/config" "./termite/config"
-
-# zsh (ohmyzsh)
+# zsh
 cp "${HOME}/.zshrc" "./zsh/zshrc"
-cp "${HOME}/.zprofile" "./zsh/zprofile"
 
-# Xorg
-cp "${HOME}/.Xresources" "./xorg/Xresources"
-cp "${HOME}/.xprofile" "./xorg/xprofile"

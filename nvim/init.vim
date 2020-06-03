@@ -6,9 +6,9 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set cursorline " highlight current line
 
 set background=dark
-colorscheme jellybeans
+set termguicolors
+colorscheme nightfly
 syntax on
-
 filetype plugin indent on
 set autoindent
 set nowrap

@@ -1,10 +1,10 @@
 #!/bin/bash
 if [ ! -f ${HOME}/.vim/autoload/pathogen.vim ]; then
-   mkdir -p ~/.vim/autoload ~/.vim/bundle
-   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+   mkdir -p ~/.local/share/nvim/site/autoload/ ~/.config/nvim/bundle
+   curl -LSso ~/.local/share/nvim/site/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
 
-cp "./vimrc" "${HOME}/.vimrc"
+cp "./init.vim" "${HOME}/.config/nvim/init.vim"
 
 function installGitPackage() {
     # $1 githuburl $2 path $3 fancy name
