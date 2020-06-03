@@ -20,9 +20,8 @@ function installGitPackage() {
 
 cp "./init.vim" "${HOME}/.config/nvim/init.vim"
 installGitPackage https://github.com/davidhalter/jedi-vim.git ${HOME}/.config/nvim/bundle/jedi-vim jedi-vim
-installGitPackage https://github.com/nanotech/jellybeans.vim.git ${HOME}/.config/nvim/bundle/jellybeans.vim jellybeans.vim
+installGitPackage https://github.com/itchyny/lightline.vim ${HOME}/.config/nvim/bundle/lightline.vim lightline.vim
 installGitPackage https://github.com/rust-lang/rust.vim.git ${HOME}/.config/nvim/bundle/rust.vim rust.vim
 installGitPackage https://github.com/ervandew/supertab.git ${HOME}/.config/nvim/bundle/supertab supertab
-installGitPackage https://github.com/bling/vim-airline.git ${HOME}/.config/nvim/bundle/vim-airline vim-airline
-installGitPackage https://github.com/terryma/vim-multiple-cursors.git ${HOME}/.config/nvim/bundle/vim-multiple-cursors vim-multiple-cursors
+installGitPackage https://github.com/fatih/vim-go.git ${HOME}/.config/nvim/bundle/vim-go vim-go
 installGitPackage https://github.com/bluz71/vim-nightfly-guicolors.git ${HOME}/.config/nvim/bundle/vim-nightfly-guicolors vim-nightfly-guicolors

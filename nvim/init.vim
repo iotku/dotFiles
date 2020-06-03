@@ -5,9 +5,11 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 
 set cursorline " highlight current line
 
+
 set background=dark
 set termguicolors
 colorscheme nightfly
+let g:lightline = { 'colorscheme': 'nightfly' }
 syntax on
 filetype plugin indent on
 set autoindent
@@ -24,6 +26,9 @@ set smarttab
 set showcmd
 set number
 set showmatch
+
+set number                     " Show current line number
+set relativenumber             " Show relative line numbers
 
 " disable annoying jedi docstring window
 autocmd FileType python setlocal completeopt-=preview
