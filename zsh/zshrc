@@ -6,11 +6,12 @@
 
 autoload -U compinit
 compinit
+# Case lazy tab completion
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Set ZSH Prompt
-autoload -Uz promptinit
-promptinit
-prompt zefram
+export PROMPT="%B%(?..[%?] )%b%n@%U%m%u %~> "
+export RPROMPT='%t'
 
 #allow tab completion in the middle of a word
 setopt COMPLETE_IN_WORD
