@@ -47,13 +47,13 @@ export SAVEHIST=$HISTSIZE
 alias vim="nvim"
 alias firefox="firefox-wayland"
 
-PATH=$PATH:${HOME}/go/bin:${HOME}/bin
-
+PATH=${HOME}/bin:$PATH:${HOME}/go/bin
 # Ctrl + Arrows back/forward
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# TODO: Shift+insert to paste from system clipboard?
+# Delete key
+bindkey "\e[3~" delete-char
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
