@@ -17,3 +17,5 @@ chmod +x "$NVIMPLUGINS"
 # zsh
 cp "${HOME}/.zshrc" "./zsh/zshrc"
 
+# sway
+cp "${HOME}/.config/sway/config" "./sway/config"
