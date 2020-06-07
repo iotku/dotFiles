@@ -46,7 +46,7 @@ export SAVEHIST=$HISTSIZE
 # autoload -U colors
 #colors
 alias vim="nvim"
-alias firefox="firefox-wayland"
+#alias firefox="firefox-wayland"
 
 PATH=${HOME}/bin:$PATH:${HOME}/go/bin
 # Ctrl + Arrows back/forward
@@ -102,3 +102,5 @@ zle -N down-line-or-beginning-search
 
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+
+export TERMINAL=st

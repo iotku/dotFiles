@@ -19,3 +19,6 @@ cp "${HOME}/.zshrc" "./zsh/zshrc"
 
 # sway
 cp "${HOME}/.config/sway/config" "./sway/config"
+
+# i3
+cp "${HOME}/.config/i3/config" "./i3/config"

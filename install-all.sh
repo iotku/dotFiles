@@ -6,3 +6,4 @@ function confInstall() {
 
 confInstall nvim
 confInstall zsh
+confInstall i3
