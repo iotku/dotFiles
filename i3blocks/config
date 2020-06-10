@@ -1,0 +1,16 @@
+
+[mpd]
+command=mpc current
+label=🎼 
+interval=once
+signal=1
+
+# Guess the weather hourly
+[weather]
+command=curl -Ss "https://wttr.in/$(cat ~/.config/personal/location)?0&T&Q" | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
+[time]
+command=date +"%a, %b %d %Y %R"
+interval=60
