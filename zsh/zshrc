@@ -48,7 +48,7 @@ export SAVEHIST=$HISTSIZE
 alias vim="nvim"
 #alias firefox="firefox-wayland"
 
-PATH=${HOME}/bin:$PATH:${HOME}/go/bin
+PATH=${HOME}/bin:$PATH:${HOME}/go/bin:${HOME}/.local/bin
 # Ctrl + Arrows back/forward
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -103,4 +103,4 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
-export TERMINAL=st
+export TERMINAL=urxvtc
