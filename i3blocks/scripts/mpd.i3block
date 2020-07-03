@@ -1,0 +1,22 @@
+#!/bin/bash
+function printMPD () {
+    # I could only call mpc once, but I'm not going to.
+    current=$(mpc current)
+    state=$(mpc | grep "\[" | awk '{print $1}')
+    case $state in
+        "[playing]") state=">";;
+        "[paused]") state="||";;
+    esac
+
+    if [[ "$current" != "" ]]; then
+        echo "$state $current"
+    fi
+}
+
+case $BLOCK_BUTTON in
+  1) mpc toggle > /dev/null 2>&1;;
+  5) mpc next > /dev/null 2>&1;;
+  4) mpc prev > /dev/null 2>&1;;
+esac
+
+printMPD

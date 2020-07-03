@@ -4,7 +4,7 @@ while :
 do 
     idle=$(mpc idle 2>&1)
     if [[ "$idle" == "MPD error: Connection refused" ]]; then
-        break
+        sleep 5
     fi
     pkill -SIGRTMIN+$SIGNAL i3blocks
 done

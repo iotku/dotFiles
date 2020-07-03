@@ -10,54 +10,46 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 # Load Xresources
 exec xrdb ~/.Xresources
-exec urxvtd # Start urxvtd daemon
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
+# Jack Audio Startup (w/ pulseaudio bridge)
+exec cadence-session-start --system-start
+
+# Removing cursor when inactive
+exec unclutter
+
+# Font for #window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace 8
+font pango:Terminus 11px
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 12
+# win+alt+l to lock screen
+bindsym $mod+Mod1+l exec i3lock --color 000000
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
+# Send signal to i3blocks to update on keybind press
+set $refresh_i3status-mpd pkill -RTMIN+1 i3blocks 
+set $refresh_i3status-vol pkill -RTMIN+10 i3blocks
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set "UMC202HD 192k Output" 5%+ && $refresh_i3status-vol
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set "UMC202HD 192k Output" 5%- && $refresh_i3status-vol
+bindsym XF86AudioMute exec --no-startup-id amixer set "UMC202HD 192k Output" toggle && $refresh_i3status-vol
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status pkill -RTMIN+1 i3blocks 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 # mpd control
-bindsym XF86AudioNext exec --no-startup-id mpc next
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioNext exec --no-startup-id mpc next && $refresh_i3status-mpd
+bindsym XF86AudioPrev exec --no-startup-id mpc prev && $refresh_i3status-mpd
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle && $refresh_i3status-mpd
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# Dmenu, only gets .desktop entries
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop 
 
 # change focus
 bindsym $mod+h focus left
@@ -121,15 +113,24 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-# Setup Displays, comment out if not desktop.
-#exec xrandr --output DP-3 --rotate right --pos -1080x-200 --output DP-2 --primary --pos 0x0 --mode 1920x1080 --rate 240.00 --output DP-1 --below DP-2 --output HDMI-1 --pos -2440x650
+set $ws11 "11: Bottom"
+set $ws12 "12: Horz"
+set $ws13 "13: TV"
 
 # Bind workspaces to displays
 workspace $ws1 output DP-2
-workspace $ws2 output DP-1
-workspace $ws3 output DP-0
-workspace $ws10 output HDMI-0
+workspace $ws2 output DP-2
+workspace $ws3 output DP-2
+workspace $ws4 output DP-2
+workspace $ws5 output DP-2
+workspace $ws6 output DP-2
+workspace $ws7 output DP-2
+workspace $ws8 output DP-2
+workspace $ws9 output DP-2
+workspace $ws10 output DP-2
+workspace $ws11 output DP-5
+workspace $ws12 output DP-0
+workspace $ws13 output HDMI-0
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -142,6 +143,9 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+bindsym $mod+End workspace number $ws11
+bindsym $mod+Insert workspace number $ws12
+bindsym $mod+Delete workspace number $ws13
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -154,7 +158,9 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-
+bindsym $mod+Shift+End move container to workspace number $ws11
+bindsym $mod+Shift+Insert move container to workspace number $ws12
+bindsym $mod+Shift+Delete move container to workspace number $ws13
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -189,8 +195,29 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+exec /home/ku/bin/start-mpd.sh
+# Launch i3blocks
 bar {
         status_command i3blocks
+        colors {
+            focused_workspace #38AEE6 #38AEE6 #ffffff
+            background #1D1F21
+            statusline #ffffff
+        }
 }
+
+# Set Color
+# class                 border  backgr. text    indicator child_border
+client.focused          #38AEE6 #38AEE6 #ffffff #2e9ef4   #38AEE6
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #2C2C2C #2C2C2C #B3B3B3 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #011627
+
+# Bunch of launches that I should probably put somewhere else.
+exec /home/ku/bin/start-discord.sh
+exec telegram-desktop
+exec riot-desktop
+exec /home/ku/bin/start-redshift.sh

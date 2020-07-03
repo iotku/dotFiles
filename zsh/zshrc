@@ -31,7 +31,7 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 HISTFILE=~/.zsh_history
-HISTSIZE=100
+HISTSIZE=2000
 export SAVEHIST=$HISTSIZE
 
 ## never ever beep ever
@@ -43,10 +43,11 @@ export SAVEHIST=$HISTSIZE
 ## disable mail checking
 #MAILCHECK=0
 
-# autoload -U colors
-#colors
+autoload -U colors
+colors
 alias vim="nvim"
 #alias firefox="firefox-wayland"
+alias ls="ls --color"
 
 PATH=${HOME}/bin:$PATH:${HOME}/go/bin:${HOME}/.local/bin
 # Ctrl + Arrows back/forward
@@ -103,4 +104,7 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
-export TERMINAL=urxvtc
+export TERMINAL=termite
+x11cont-run(){
+    ssh x11cont -t "DISPLAY=:0 $*"
+}

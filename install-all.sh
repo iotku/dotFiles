@@ -7,3 +7,4 @@ function confInstall() {
 confInstall nvim
 confInstall zsh
 confInstall i3
+confInstall i3blocks

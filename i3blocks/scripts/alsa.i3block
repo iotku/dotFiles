@@ -1,0 +1,13 @@
+#!/bin/bash
+OUTPUT="UMC202HD 192k Output"
+function printVol() {
+    amixer sget "$OUTPUT" | tail -n1 | awk '{print $6, $5, $7}'
+}
+
+case $BLOCK_BUTTON in
+  1) amixer set "$OUTPUT" toggle > /dev/null 2>&1;;
+  4) amixer set "$OUTPUT" 2%+ > /dev/null 2>&1;;
+  5) amixer set "$OUTPUT" 2%- > /dev/null 2>&1;;
+esac
+
+printVol

@@ -1,7 +1,6 @@
-
 [mpd]
-command=mpc current
-label=🎼 
+command=~/.config/i3blocks/scripts/mpd.i3block
+label=
 interval=once
 signal=1
 
@@ -11,6 +10,19 @@ command=curl -Ss "https://wttr.in/$(cat ~/.config/personal/location)?0&T&Q" | cu
 interval=3600
 color=#A4C2F4
 
+[mem]
+command=free -m | grep Mem | awk '{print $4, $3}'
+label=MEM 
+interval=3
+
+[volume]
+command=~/.config/i3blocks/scripts/alsa.i3block
+label=VOL 
+instance=Master
+interval=once
+signal=10
+
 [time]
 command=date +"%a, %b %d %Y %R"
 interval=60
+
