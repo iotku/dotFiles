@@ -11,7 +11,7 @@ interval=3600
 color=#A4C2F4
 
 [mem]
-command=free -m | grep Mem | awk '{print $4, $3}'
+command=free -m | grep Mem | awk '{print $7, $2}'
 label=MEM 
 interval=3
 
