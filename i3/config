@@ -103,10 +103,10 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
+set $ws1 "1: Terminal"
+set $ws2 "2: Web"
+set $ws3 "3: Email"
+set $ws4 "4: Chat"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -114,7 +114,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 set $ws11 "11: Bottom"
-set $ws12 "12: Horz"
+set $ws12 "12"
 set $ws13 "13: TV"
 
 # Bind workspaces to displays
@@ -196,7 +196,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 exec /home/ku/bin/start-mpd.sh
-# Launch i3blocks
 bar {
         status_command i3blocks
         colors {
@@ -215,9 +214,21 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #011627
-
+exec --no-startup-id ~/bin/set-i3-layout.sh
 # Bunch of launches that I should probably put somewhere else.
-exec /home/ku/bin/start-discord.sh
+exec ~/bin/start-discord.sh
 exec telegram-desktop
 exec riot-desktop
-exec /home/ku/bin/start-redshift.sh
+exec ~/bin/start-redshift.sh
+#exec picom
+exec feh --bg-fill ~/Pictures/wallpapers/1.jpg
+for_window [class="Termite"] border pixel 3
+assign [class="Riot"] $ws12
+assign [class="discord"] $ws12
+assign [class="TelegramDesktop"] $ws12
+assign [class="Thunderbird"] $ws3
+exec thunderbird
+assign [class="firefox"] $ws2
+exec firefox
+
+

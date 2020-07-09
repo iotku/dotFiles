@@ -104,7 +104,16 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
+autoload -U select-word-style
+select-word-style bash
+
 export TERMINAL=termite
 x11cont-run(){
     ssh x11cont -t "DISPLAY=:0 $*"
 }
+
+if [[ $TERM == xterm-termite ]]; then
+    echo -e "\e]0;Termite\a"
+  . /etc/profile.d/vte.sh
+  __vte_osc7
+fi
