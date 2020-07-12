@@ -29,9 +29,12 @@ bindsym $mod+Mod1+l exec i3lock --color 000000
 set $refresh_i3status-mpd pkill -RTMIN+1 i3blocks 
 set $refresh_i3status-vol pkill -RTMIN+10 i3blocks
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set "UMC202HD 192k Output" 5%+ && $refresh_i3status-vol
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set "UMC202HD 192k Output" 5%- && $refresh_i3status-vol
-bindsym XF86AudioMute exec --no-startup-id amixer set "UMC202HD 192k Output" toggle && $refresh_i3status-vol
+# Alsa Volume control
+set $alsacard 'U192k'
+set $alsaout 'UMC202HD 192k Output,0'
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 5%+ && $refresh_i3status-vol"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 5%- && $refresh_i3status-vol"
+bindsym XF86AudioMute exec --no-startup-id "amixer -c $alsacard set $alsaout toggle && $refresh_i3status-vol"
 #bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # mpd control

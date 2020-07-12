@@ -1,13 +1,14 @@
 #!/bin/bash
-OUTPUT="UMC202HD 192k Output"
+CARD="U192k"
+OUTPUT="UMC202HD 192k Output,0"
 function printVol() {
-    amixer sget "$OUTPUT" | tail -n1 | awk '{print $6, $5, $7}'
+    amixer -c "$CARD" sget "$OUTPUT" | tail -n1 | awk '{print $6, $5, $7}'
 }
 
 case $BLOCK_BUTTON in
-  1) amixer set "$OUTPUT" toggle > /dev/null 2>&1;;
-  4) amixer set "$OUTPUT" 2%+ > /dev/null 2>&1;;
-  5) amixer set "$OUTPUT" 2%- > /dev/null 2>&1;;
+  1) amixer -c "$CARD" set "$OUTPUT" toggle > /dev/null 2>&1;;
+  4) amixer -c "$CARD" set "$OUTPUT" 2%+ > /dev/null 2>&1;;
+  5) amixer -c "$CARD" set "$OUTPUT" 2%- > /dev/null 2>&1;;
 esac
 
 printVol
