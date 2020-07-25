@@ -102,7 +102,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+shift+a focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -221,12 +221,12 @@ exec --no-startup-id ~/bin/set-i3-layout.sh
 # Bunch of launches that I should probably put somewhere else.
 exec ~/bin/start-discord.sh
 exec telegram-desktop
-exec riot-desktop
+exec element-desktop
 exec ~/bin/start-redshift.sh
-#exec picom
+exec picom
 exec feh --bg-fill ~/Pictures/wallpapers/1.jpg
 for_window [class="Termite"] border pixel 3
-assign [class="Riot"] $ws12
+assign [class="Element (Riot)"] $ws12
 assign [class="discord"] $ws12
 assign [class="TelegramDesktop"] $ws12
 assign [class="Thunderbird"] $ws3
