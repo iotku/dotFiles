@@ -13,15 +13,15 @@ color=#A4C2F4
 [pwr]
 command=echo "$(pwrstat -status | grep Load | awk '{print $2}')W"
 label=Pwr 
-interval=5
+interval=30
 
 [cpu]
 command=sensors | grep Tctl | awk '{print $2}'
 label=CPU 
-interval=5
+interval=10
 
 [mem]
-command=free -m | grep Mem | awk '{print $7, $2}'
+command=free -m | grep Mem | awk '{print $7}'
 label=MEM 
 interval=3
 
@@ -33,6 +33,6 @@ interval=once
 signal=10
 
 [time]
-command=date +"%a, %b %d %Y %R"
+command=date +"%a, %b %d %R"
 interval=60
 

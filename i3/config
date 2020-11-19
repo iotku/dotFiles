@@ -46,7 +46,7 @@ bindsym XF86AudioPlay exec --no-startup-id mpc toggle && $refresh_i3status-mpd
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -108,32 +108,27 @@ bindsym $mod+shift+a focus child
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminal"
 set $ws2 "2: Web"
-set $ws3 "3: Email"
-set $ws4 "4: Chat"
+set $ws3 "3"
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-set $ws11 "11: Bottom"
-set $ws12 "12"
-set $ws13 "13: TV"
+set $ws8 "8: Chat"
+set $ws9 "9: Email"
+set $ws10 "10: Junk"
 
 # Bind workspaces to displays
-workspace $ws1 output DP-2
-workspace $ws2 output DP-2
-workspace $ws3 output DP-2
-workspace $ws4 output DP-2
-workspace $ws5 output DP-2
-workspace $ws6 output DP-2
-workspace $ws7 output DP-2
-workspace $ws8 output DP-2
-workspace $ws9 output DP-2
-workspace $ws10 output DP-2
-workspace $ws11 output DP-5
-workspace $ws12 output DP-0
-workspace $ws13 output HDMI-0
+workspace $ws1 output DP-4
+workspace $ws2 output DP-4
+workspace $ws3 output DP-4
+workspace $ws4 output DP-4
+workspace $ws5 output DP-4
+workspace $ws6 output DP-0
+workspace $ws7 output DP-0
+workspace $ws8 output DP-0
+workspace $ws9 output DP-0
+workspace $ws10 output DP-0
+
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -146,9 +141,6 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-bindsym $mod+End workspace number $ws11
-bindsym $mod+Insert workspace number $ws12
-bindsym $mod+Delete workspace number $ws13
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -161,9 +153,6 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-bindsym $mod+Shift+End move container to workspace number $ws11
-bindsym $mod+Shift+Insert move container to workspace number $ws12
-bindsym $mod+Shift+Delete move container to workspace number $ws13
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -217,7 +206,7 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #011627
-exec --no-startup-id ~/bin/set-i3-layout.sh
+
 # Bunch of launches that I should probably put somewhere else.
 exec ~/bin/start-discord.sh
 exec telegram-desktop
@@ -226,12 +215,9 @@ exec ~/bin/start-redshift.sh
 exec picom
 exec feh --bg-fill ~/Pictures/wallpapers/1.jpg
 for_window [class="Termite"] border pixel 3
-assign [class="Element (Riot)"] $ws12
-assign [class="discord"] $ws12
-assign [class="TelegramDesktop"] $ws12
-assign [class="Thunderbird"] $ws3
+assign [class="Element"] $ws8
+assign [class="discord"] $ws8
+assign [class="TelegramDesktop"] $ws8
+assign [class="Thunderbird"] $ws9
 exec thunderbird
 assign [class="firefox"] $ws2
-exec firefox
-
-

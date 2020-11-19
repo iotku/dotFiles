@@ -2,7 +2,7 @@
 CARD="U192k"
 OUTPUT="UMC202HD 192k Output,0"
 function printVol() {
-    amixer -c "$CARD" sget "$OUTPUT" | tail -n1 | awk '{print $6, $5, $7}'
+    amixer -c "$CARD" sget "$OUTPUT" | tail -n1 | awk '{print substr($6, 2, length($6) - 2), substr($5, 2, length($5) - 2), substr($7, 2, length($7) - 2)}'
 }
 
 case $BLOCK_BUTTON in
