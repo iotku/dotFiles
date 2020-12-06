@@ -26,3 +26,6 @@ cp "${HOME}/.config/i3/config" "./i3/config"
 #i3blocks
 cp "${HOME}/.config/i3blocks/config" "./i3blocks/config"
 cp -r "${HOME}/.config/i3blocks/scripts/"* "./i3blocks/scripts/"
+
+#termite
+cp "${HOME}/.config/termite/config" "./termite/config"

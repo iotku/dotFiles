@@ -46,7 +46,7 @@ bindsym XF86AudioPlay exec --no-startup-id mpc toggle && $refresh_i3status-mpd
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -187,7 +187,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec /home/ku/bin/start-mpd.sh
 bar {
         status_command i3blocks
         colors {
@@ -206,18 +205,14 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #011627
-
 # Bunch of launches that I should probably put somewhere else.
-exec ~/bin/start-discord.sh
-exec telegram-desktop
-exec element-desktop
-exec ~/bin/start-redshift.sh
-exec picom
-exec feh --bg-fill ~/Pictures/wallpapers/1.jpg
 for_window [class="Termite"] border pixel 3
 assign [class="Element"] $ws8
 assign [class="discord"] $ws8
 assign [class="TelegramDesktop"] $ws8
 assign [class="Thunderbird"] $ws9
-exec thunderbird
 assign [class="firefox"] $ws2
+exec telegram-desktop
+exec element-desktop
+exec thunderbird
+exec discord
