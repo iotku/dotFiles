@@ -1,0 +1,21 @@
+{
+    "cmd": ["javac", "$file_name","&&","java", "$file_base_name"],
+    "file_regex": "^(...?):([0-9]):?([0-9]*)",
+    "selector": "source.java",
+    "working_dir": "${file_path}",
+    "shell": true,
+
+    "variants":
+    [
+        {
+            "name": "Run Only",
+            "working_dir": "${file_path}",
+            "cmd": ["java", "$file_base_name"]
+        },
+        {
+            "name": "Build Only",
+            "working_dir": "${file_path}",
+            "cmd": ["javac", "$file_name"]
+        }
+    ]
+}
