@@ -1,21 +1,30 @@
 {
-    "cmd": ["javac", "$file_name","&&","java", "$file_base_name"],
     "file_regex": "^(...?):([0-9]):?([0-9]*)",
     "selector": "source.java",
     "working_dir": "${file_path}",
-    "shell": true,
 
     "variants":
     [
         {
             "name": "Run Only",
             "working_dir": "${file_path}",
-            "cmd": ["java", "$file_base_name"]
+            "cmd": ["java", "$file_base_name"],
+            "shell": true,
+
         },
         {
             "name": "Build Only",
             "working_dir": "${file_path}",
-            "cmd": ["javac", "$file_name"]
+            "cmd": ["javac", "$file_name"],
+            "shell": true,
+        },
+        {
+            "name": "Run in terminus",
+            "target": "terminus_exec",
+            "cancel": "terminus_cancel_build",
+            "cmd": ["pwsh.exe", "-Command", "javac", "*.java", "&&", "java", "$file_base_name"],
+            "working_dir": "${file_path}",
+            "focus": true,
         }
     ]
 }
