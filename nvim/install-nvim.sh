@@ -21,7 +21,9 @@ function installGitPackage() {
 cp "./init.vim" "${HOME}/.config/nvim/init.vim"
 installGitPackage https://github.com/davidhalter/jedi-vim.git ${HOME}/.config/nvim/bundle/jedi-vim jedi-vim
 installGitPackage https://github.com/itchyny/lightline.vim ${HOME}/.config/nvim/bundle/lightline.vim lightline.vim
+installGitPackage https://github.com/preservim/nerdtree.git ${HOME}/.config/nvim/bundle/nerdtree nerdtree
 installGitPackage https://github.com/rust-lang/rust.vim.git ${HOME}/.config/nvim/bundle/rust.vim rust.vim
 installGitPackage https://github.com/ervandew/supertab.git ${HOME}/.config/nvim/bundle/supertab supertab
+installGitPackage https://github.com/airblade/vim-gitgutter.git ${HOME}/.config/nvim/bundle/vim-gitgutter vim-gitgutter
 installGitPackage https://github.com/fatih/vim-go.git ${HOME}/.config/nvim/bundle/vim-go vim-go
 installGitPackage https://github.com/bluz71/vim-nightfly-guicolors.git ${HOME}/.config/nvim/bundle/vim-nightfly-guicolors vim-nightfly-guicolors
