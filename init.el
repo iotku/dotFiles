@@ -42,24 +42,9 @@
 (straight-use-package 'no-littering)
 (straight-use-package 'doom-themes)
 (straight-use-package 'doom-modeline)
-(straight-use-package 'all-the-icons)
+(straight-use-package 'highlight-indent-guides)
+(straight-use-package 'all-the-icons) ;; Install icons for doom-modeline (probably bloat)
 (straight-use-package 'which-key)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(wombat))
- '(custom-safe-themes
-   '("165e3571f414b5f18517431f1fe6d1c7b62a0dad26e781be02ff2b3b91d49f17" default))
- '(package-selected-packages '(evil-tutor org evil-org evil)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 ;; Turn on vim emulation
 (evil-mode 1)
 
@@ -75,6 +60,8 @@
 (global-display-line-numbers-mode)
 
 ;; Keybindings https://www.masteringemacs.org/article/mastering-key-bindings-emacs
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 ;; Use helm for file search
 ; (define-key (current-global-map) [remap find-file] 'helm-find-files)
 
@@ -86,6 +73,11 @@
 ;; Hook for dumpjump gd
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 (setq dumb-jump-force-searcher 'rg) ;; use ripgrep
+
+;; Hook for highlight indentation
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(defvar highlight-indent-guides-method 'bitmap) ;; use 'bitmap' guides
+
 ;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
@@ -101,11 +93,18 @@
 
 ;; load doom theme
 (load-theme 'doom-dracula t)
-; (doom-modeline-height 15)
+(defvar doom-modeline-height 15)
 (doom-modeline-mode 1)
 
 ;; Make frame transparency overridable
-(defvar efs/frame-transparency '(90 . 90))
+; (defvar efs/frame-transparency '(90 . 90))
 
 (which-key-mode)
 (setq which-key-idle-delay 1)
+;; S-up/down/left/right to switch between visable buffers
+(windmove-default-keybindings)
+;; Trunicate lines, don't wrap.
+(set-default 'truncate-lines t)
+(column-number-mode) ;; show line number/column in statusbar
+;; Set tabwidth to sane amount
+(setq-default tab-width 4) ;; Why would it be anything else?
