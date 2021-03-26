@@ -2,15 +2,17 @@
 ;; The default is 800 kilobytes.  Measured in bytes.
 ;; Set GC threshold for perf.
 (setq gc-cons-threshold (* 50 1000 1000))
-;; Show startup time
-(defun efs/display-startup-time ()
-  (message "Emacs loaded in %s with %d garbage collections."
-           (format "%.2f seconds"
-                   (float-time
-                     (time-subtract after-init-time before-init-time)))
-           gcs-done))
+(setq inhibit-startup-message t)
 
-(add-hook 'emacs-startup-hook #'efs/display-startup-time)
+; ;; Show startup time
+; (defun efs/display-startup-time ()
+;   (message "Emacs loaded in %s with %d garbage collections."
+;            (format "%.2f seconds"
+;                    (float-time
+;                      (time-subtract after-init-time before-init-time)))
+;            gcs-done))
+
+; (add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
 ;; Set home directory to ~
 ;; Set local HOME var on windows...
@@ -45,10 +47,10 @@
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'all-the-icons) ;; Install icons for doom-modeline (probably bloat)
 (straight-use-package 'which-key)
+
 ;; Turn on vim emulation
 (evil-mode 1)
 
-(setq inhibit-startup-message t)
 ;; Disable menubar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -62,9 +64,8 @@
 ;; Keybindings https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-;; Use helm for file search
-; (define-key (current-global-map) [remap find-file] 'helm-find-files)
 
+;; Use helm
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
@@ -108,3 +109,12 @@
 (column-number-mode) ;; show line number/column in statusbar
 ;; Set tabwidth to sane amount
 (setq-default tab-width 4) ;; Why would it be anything else?
+
+;; Ruler
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(setq-default display-fill-column-indicator-column 85)
+
+;; Run shell as powershell under windows
+(when (eq system-type 'windows-nt)
+  (setq explicit-shell-file-name "powershell.exe")
+  (setq explicit-powershell.exe-args '()))
