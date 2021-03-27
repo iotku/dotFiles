@@ -29,3 +29,6 @@ cp -r "${HOME}/.config/i3blocks/scripts/" "./i3blocks/"
 
 #termite
 cp "${HOME}/.config/termite/config" "./termite/config"
+
+#emacs
+cp "${HOME}/.emacs.d/init.el" "./emacs/init.el"

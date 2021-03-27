@@ -1,0 +1,23 @@
+#!/bin/bash
+function printMOC () {
+    info=$(mocp -i)
+    state=$(grep "State:" <<< "$info" | cut -b 8-)
+    case $state in
+        "PLAY") state=">";;
+        "PAUSE") state="||";;
+        "STOP") state="[]";;
+    esac
+    currentTitle=$(grep "SongTitle:" <<< "$info" | cut -b 12-)
+    currentArtist=$(grep "Artist:" <<< "$info" | cut -b 9-)
+    if [[ "$state" != "[]" ]]; then
+        echo "$state $currentArtist - $currentTitle"
+    fi
+}
+
+case $BLOCK_BUTTON in
+  1) mocp --toggle-pause > /dev/null 2>&1 && sleep .2 && printMOC;;
+  5) mocp --next > /dev/null 2>&1 && sleep .2 && printMOC;;
+  4) mocp --previous > /dev/null 2>&1 && sleep .2 && printMOC;;
+esac
+
+printMOC
