@@ -1,21 +1,31 @@
 ;; Largly based on https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org
 ;; The default is 800 kilobytes.  Measured in bytes.
 ;; Set GC threshold for perf.
-(setq gc-cons-threshold (* 50 1000 1000))
+(setq gc-cons-threshold (* 50 4000 4000))
+;; The default is 800 kilobytes.  Measured in bytes.
+(defun my-minibuffer-setup-hook ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun my-minibuffer-exit-hook ()
+  (setq gc-cons-threshold 800000))
+
+(add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+
 (setq inhibit-startup-message t)
 
-; ;; Show startup time
-; (defun efs/display-startup-time ()
-;   (message "Emacs loaded in %s with %d garbage collections."
-;            (format "%.2f seconds"
-;                    (float-time
-;                      (time-subtract after-init-time before-init-time)))
-;            gcs-done))
+;; Show startup time
+(defun efs/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                     (time-subtract after-init-time before-init-time)))
+           gcs-done))
 
-; (add-hook 'emacs-startup-hook #'efs/display-startup-time)
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
-;; Set home directory to ~
-;; Set local HOME var on windows...
+; Set home directory to ~
+; Set local HOME var on windows...
 (setq default-directory (concat (getenv "HOME") "/"))
 
 ;; prevent package.el loading packages prior to their init-file loading.
@@ -79,8 +89,6 @@
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (defvar highlight-indent-guides-method 'bitmap) ;; use 'bitmap' guides
 
-;; The default is 800 kilobytes.  Measured in bytes.
-(setq gc-cons-threshold (* 50 1000 1000))
 
 ;; no-littering doesn't set this by default so we must place
 ;; auto save files in the same path as it uses for sessions
