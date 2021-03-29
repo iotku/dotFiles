@@ -33,3 +33,5 @@ set relativenumber             " Show relative line numbers
 " disable annoying jedi docstring window
 autocmd FileType python setlocal completeopt-=preview
 let g:SuperTabDefaultCompletionType = "<c-n>"
+" Change leader to comma
+let mapleader=","

@@ -18,6 +18,7 @@ function installGitPackage() {
     fi
 }
 
+installGitPackage https://github.com/pechorin/any-jump.vim ${HOME}/.config/nvim/bundle/any-jump.vim any-jump.vim
 installGitPackage https://github.com/davidhalter/jedi-vim.git ${HOME}/.config/nvim/bundle/jedi-vim jedi-vim
 installGitPackage https://github.com/itchyny/lightline.vim ${HOME}/.config/nvim/bundle/lightline.vim lightline.vim
 installGitPackage https://github.com/preservim/nerdtree.git ${HOME}/.config/nvim/bundle/nerdtree nerdtree
