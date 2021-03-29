@@ -4,7 +4,7 @@ set -e
 cp "${HOME}/.config/nvim/init.vim" "./nvim/init.vim"
 NVIMPLUGINS="./nvim/install-nvim.sh"
 cp "./templates/install-nvim.sh" "$NVIMPLUGINS"
-echo 'cp "./init.vim" "${HOME}/.config/nvim/init.vim"' >> $NVIMPLUGINS
+
 for dir in ${HOME}/.config/nvim/bundle/* ; do
         GITURL=$(grep url "$dir/.git/config" | cut -b 8- | head -n1)
         GITNAME=$(basename $dir)

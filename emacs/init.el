@@ -57,14 +57,14 @@
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'all-the-icons) ;; Install icons for doom-modeline (probably bloat)
 (straight-use-package 'which-key)
-
+(straight-use-package 'sml-mode)
 ;; Turn on vim emulation
 (evil-mode 1)
 
 ;; Disable menubar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(toggle-scroll-bar -1)
+;; (toggle-scroll-bar -1) ;; breaks in nox, probably need to make conditional.
 
 ;; Hilight current line
 (global-hl-line-mode +1)

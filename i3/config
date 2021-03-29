@@ -20,7 +20,7 @@ exec unclutter
 
 # Font for #window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Terminus 11px
+font pango:DejaVu Sans Mono 10px
 
 # win+alt+l to lock screen
 bindsym $mod+Mod1+l exec i3lock --color 000000

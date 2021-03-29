@@ -46,6 +46,7 @@ export SAVEHIST=$HISTSIZE
 autoload -U colors
 colors
 alias vim="nvim"
+alias sml="smlnj"
 #alias firefox="firefox-wayland"
 alias ls="ls --color"
 
