@@ -5,6 +5,7 @@ if [ ! -f ${HOME}/.local/share/nvim/site/autoload/pathogen.vim ]; then
 fi
 
 cp "./init.vim" "${HOME}/.config/nvim/init.vim"
+cp "./ginit.vim" "${HOME}/.config/nvim/ginit.vim"
 
 function installGitPackage() {
     # $1 githuburl $2 path $3 fancy name
@@ -27,3 +28,4 @@ installGitPackage https://github.com/ervandew/supertab.git ${HOME}/.config/nvim/
 installGitPackage https://github.com/airblade/vim-gitgutter.git ${HOME}/.config/nvim/bundle/vim-gitgutter vim-gitgutter
 installGitPackage https://github.com/fatih/vim-go.git ${HOME}/.config/nvim/bundle/vim-go vim-go
 installGitPackage https://github.com/bluz71/vim-nightfly-guicolors.git ${HOME}/.config/nvim/bundle/vim-nightfly-guicolors vim-nightfly-guicolors
+installGitPackage https://github.com/mg979/vim-visual-multi ${HOME}/.config/nvim/bundle/vim-visual-multi vim-visual-multi

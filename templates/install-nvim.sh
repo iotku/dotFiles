@@ -5,6 +5,7 @@ if [ ! -f ${HOME}/.local/share/nvim/site/autoload/pathogen.vim ]; then
 fi
 
 cp "./init.vim" "${HOME}/.config/nvim/init.vim"
+cp "./ginit.vim" "${HOME}/.config/nvim/ginit.vim"
 
 function installGitPackage() {
     # $1 githuburl $2 path $3 fancy name
