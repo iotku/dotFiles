@@ -16,8 +16,7 @@ set nowrap
 
 set incsearch 
 set hlsearch
-noremap <esc> :noh<cr> " clear hl with esc
-
+nnoremap <esc> :noh<cr><esc>
 " Tab settings
 set tabstop=4
 set shiftwidth=4
