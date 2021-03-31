@@ -54,7 +54,7 @@ noremap <Leader>k :NERDTreeToggle<CR>
 " Launch terminal in split window
 noremap <leader>t :sp<CR>:te<CR>
 if has ("win32")
-  		let &shell = has('win32') ? 'powershell' : 'pwsh'
+  		set shell=pwsh
 		set shellquote= shellpipe=\| shellxquote=
 		set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
 		set shellredir=\|\ Out-File\ -Encoding\ UTF8
