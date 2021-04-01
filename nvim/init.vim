@@ -24,9 +24,6 @@ set expandtab
 set smarttab
 
 set showcmd
-set number
-set showmatch
-
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 
