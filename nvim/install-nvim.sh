@@ -29,3 +29,8 @@ installGitPackage https://github.com/airblade/vim-gitgutter.git ${HOME}/.config/
 installGitPackage https://github.com/fatih/vim-go.git ${HOME}/.config/nvim/bundle/vim-go vim-go
 installGitPackage https://github.com/bluz71/vim-nightfly-guicolors.git ${HOME}/.config/nvim/bundle/vim-nightfly-guicolors vim-nightfly-guicolors
 installGitPackage https://github.com/mg979/vim-visual-multi ${HOME}/.config/nvim/bundle/vim-visual-multi vim-visual-multi
+installGitPackage https://github.com/artur-shaik/vim-javacomplete2 ${HOME}/.config/nvim/bundle/vim-javacomplete2 vim-javacomplete2
+installGitPackage https://github.com/jiangmiao/auto-pairs ${HOME}/.config/nvim/bundle/auto-pairs auto-pairs
+installGitPackage https://github.com/tpope/vim-fugitive ${HOME}/.config/nvim/bundle/vim-fugitive vim-fugitive
+installGitPackage https://github.com/Shougo/deoplete.nvim ${HOME}/.config/nvim/bundle/deoplete.nvim deoplete.nvim
+installGitPackage https://github.com/Yggdroot/indentLine ${HOME}/.config/nvim/bundle/indentLine indentLine
