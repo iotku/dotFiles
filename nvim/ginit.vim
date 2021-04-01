@@ -13,3 +13,5 @@ inoremap <C-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>
 if has("win32")
     source $VIMRUNTIME/mswin.vim
 endif
+
+GuiPopupmenu 0 " disable ugly popup menu
