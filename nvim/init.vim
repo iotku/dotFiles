@@ -24,7 +24,8 @@ set shiftwidth=4
 set expandtab
 set smarttab
 set showcmd
-
+set spell " spell checking
+set spelllang=en_us,es
 set number                     " Show current line number
 set relativenumber             " Show relative line numbers
 
