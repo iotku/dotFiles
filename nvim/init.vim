@@ -85,3 +85,5 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 let g:indentLine_color_gui = '#1B3B55'
+" go back a word
+nnoremap <S-w> b
