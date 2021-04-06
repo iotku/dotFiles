@@ -70,8 +70,24 @@ set omnifunc=syntaxcomplete#Complete
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 set completeopt-=preview
-let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:deoplete#enable_at_startup = 1
+    " Pass a dictionary to set multiple options
+    call deoplete#custom#option({
+    \ 'auto_complete_delay': 0,
+    \ 'smart_case': v:true,
+    \ })
+
+" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#manual_complete()
+
 " Pasting for genovim
 nnoremap <S-Insert> a<C-r>+<Esc>
 inoremap <S-Insert> <C-r>+
@@ -87,3 +103,6 @@ vnoremap <S-Tab> <gv
 let g:indentLine_color_gui = '#1B3B55'
 " go back a word
 nnoremap <S-w> b
+
+" disable automatic comment continuation on single line // comments
+au FileType c,cpp,java setlocal comments-=:// comments+=f://
