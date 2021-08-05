@@ -70,12 +70,6 @@ set omnifunc=syntaxcomplete#Complete
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 set completeopt-=preview
-let g:deoplete#enable_at_startup = 1
-    " Pass a dictionary to set multiple options
-    call deoplete#custom#option({
-    \ 'auto_complete_delay': 0,
-    \ 'smart_case': v:true,
-    \ })
 
 " <TAB>: completion.
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"

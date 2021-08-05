@@ -7,16 +7,21 @@ signal=1
 [cpu]
 command=sensors | grep Tctl | awk '{print $2}'
 label=CPU 
-interval=10
+interval=2
+
+[gpu]
+command=nvidia-smi | grep % | awk '{print$3}'
+label=GPU 
+interval=2
 
 [mem]
 command=free -m | grep Mem | awk '{print $7}'
-label=MEM 
+label=RAM 
 interval=3
 
 [volume]
 command=~/.config/i3blocks/scripts/alsa.i3block
-label=VOL 
+label= 
 instance=Master
 interval=once
 signal=10
