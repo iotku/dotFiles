@@ -17,18 +17,12 @@ chmod +x "$NVIMPLUGINS"
 # zsh
 cp "${HOME}/.zshrc" "./zsh/zshrc"
 
-# sway
-#cp "${HOME}/.config/sway/config" "./sway/config"
-
 # i3
 cp "${HOME}/.config/i3/config" "./i3/config"
 
 #i3blocks
 cp "${HOME}/.config/i3blocks/config" "./i3blocks/config"
 cp -r "${HOME}/.config/i3blocks/scripts/" "./i3blocks/"
-
-#termite
-cp "${HOME}/.config/termite/config" "./termite/config"
 
 #emacs
 cp "${HOME}/.emacs.d/init.el" "./emacs/init.el"
