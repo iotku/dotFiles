@@ -41,7 +41,7 @@ export SAVEHIST=$HISTSIZE
 #LISTMAX=0
 
 ## disable mail checking
-#MAILCHECK=0
+MAILCHECK=0
 
 autoload -U colors
 colors
@@ -107,12 +107,6 @@ zle -N down-line-or-beginning-search
 
 autoload -U select-word-style
 select-word-style bash
-
-if [[ $TERM == xterm-termite ]]; then
-    echo -e "\e]0;Termite\a"
-  . /etc/profile.d/vte.sh
-  __vte_osc7
-fi
 
 XDG_CONFIG_HOME="$HOME/.config"
 XDG_CACHE_HOME="$HOME/.cache"
