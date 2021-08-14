@@ -178,6 +178,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
+    font pango:xos Terminus, Font Awesome 5 Free 11px
         status_command i3blocks
         colors {
             focused_workspace #38AEE6 #38AEE6 #ffffff

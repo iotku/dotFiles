@@ -1,3 +1,7 @@
+#[moc]
+#command=~/.config/i3blocks/scripts/moc.i3block
+#interval=3
+
 [mpd]
 command=~/.config/i3blocks/scripts/mpd.i3block
 label=
@@ -5,18 +9,18 @@ interval=once
 signal=1
 
 [cpu]
-command=sensors | grep Tctl | awk '{print $2}'
-label=CPU 
+command=sensors | grep Tctl | awk '{print $2}' 
+label= 
 interval=2
 
 [gpu]
 command=nvidia-smi | grep % | awk '{print$3}'
-label=GPU 
+label= 
 interval=2
 
 [mem]
 command=free -m | grep Mem | awk '{print $7}'
-label=RAM 
+label= 
 interval=3
 
 [volume]
