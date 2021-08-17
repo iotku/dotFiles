@@ -9,7 +9,7 @@ interval=once
 signal=1
 
 [cpu]
-command=sensors | grep Tctl | awk '{print $2}' 
+command=sensors | grep Tctl | awk '{print substr($2, 2, length($2)-5)"C"}'
 label= 
 interval=2
 
@@ -19,7 +19,7 @@ label=
 interval=2
 
 [mem]
-command=free -m | grep Mem | awk '{print $7}'
+command=free -m | grep Mem | awk '{print $7"M"}'
 label= 
 interval=3
 

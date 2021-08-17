@@ -13,7 +13,7 @@ exec unclutter
 
 # Font for #window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:xos4 Terminus 11px
+font pango:Noto Sans CJK JP 12px
 
 # Send signal to i3blocks to update on keybind press
 set $refresh_i3status-mpd pkill -RTMIN+1 i3blocks 
@@ -22,8 +22,8 @@ set $refresh_i3status-vol pkill -RTMIN+10 i3blocks
 # Alsa Volume control
 set $alsacard 'U192k'
 set $alsaout 'UMC202HD 192k Output,0'
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 5%+ && $refresh_i3status-vol"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 5%- && $refresh_i3status-vol"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%+ && $refresh_i3status-vol"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%- && $refresh_i3status-vol"
 bindsym XF86AudioMute exec --no-startup-id "amixer -c $alsacard set $alsaout toggle && $refresh_i3status-vol"
 #bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -100,7 +100,7 @@ bindsym $mod+shift+a focus child
 set $ws1 "1| "
 set $ws2 "2|  "
 set $ws3 "3|  "
-set $ws4 "4"
+set $ws4 "4| 🐸"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -178,7 +178,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-    font pango:xos Terminus, Font Awesome 5 Free 11px
+    font pango:Terminus, Font Awesome 5 Free 12px
         status_command i3blocks
         colors {
             focused_workspace #38AEE6 #38AEE6 #ffffff
