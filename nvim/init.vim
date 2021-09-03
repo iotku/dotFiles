@@ -1,18 +1,33 @@
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
+" Plug plugin system
 call plug#begin('~/.config/nvim/plugged')
-Plug 'https://github.com/Yggdroot/indentLine'
-Plug 'https://github.com/davidhalter/jedi-vim.git'
-Plug 'https://github.com/itchyny/lightline.vim'
-Plug 'https://github.com/preservim/nerdtree.git'
-Plug 'https://github.com/airblade/vim-gitgutter.git'
-Plug 'https://github.com/fatih/vim-go.git'
-Plug 'https://github.com/bluz71/vim-nightfly-guicolors.git'
+Plug 'Yggdroot/indentLine'
+Plug 'davidhalter/jedi-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+"Plug 'fatih/vim-go'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'neovim/nvim-lspconfig'
 " Initialize plugin system
 call plug#end()
+" Gopls LSP setup
+lua << EOF
+require'lspconfig'.gopls.setup{}
+EOF
 
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <silent><expr> <c-space> coc#refresh()
 syntax on " Syntax Hilighting
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -21,7 +36,7 @@ set cursorline " highlight current line
 set noswapfile
 set background=dark
 set termguicolors
-colorscheme nightfly
+silent! colorscheme nightfly
 let g:lightline = { 'colorscheme': 'nightfly' }
 filetype plugin indent on
 set autoindent
