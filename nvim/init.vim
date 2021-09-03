@@ -1,4 +1,18 @@
-execute pathogen#infect()
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.config/nvim/plugged')
+Plug 'https://github.com/Yggdroot/indentLine'
+Plug 'https://github.com/davidhalter/jedi-vim.git'
+Plug 'https://github.com/itchyny/lightline.vim'
+Plug 'https://github.com/preservim/nerdtree.git'
+Plug 'https://github.com/airblade/vim-gitgutter.git'
+Plug 'https://github.com/fatih/vim-go.git'
+Plug 'https://github.com/bluz71/vim-nightfly-guicolors.git'
+" Initialize plugin system
+call plug#end()
+
+
 syntax on " Syntax Hilighting
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -61,5 +75,5 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 let g:indentLine_color_gui = '#1B3B55'
-" go back a word
-nnoremap <S-w> b
+
+

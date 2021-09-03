@@ -104,9 +104,9 @@ set $ws4 "4|🐸"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8: Chat"
-set $ws9 "9: Email"
-set $ws10 "10: Junk"
+set $ws8 "8|Chat"
+set $ws9 "9|Email"
+set $ws10 "10|Junk"
 
 # Bind workspaces to displays
 workspace $ws1 output DP-4
@@ -178,6 +178,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
+    tray_output DP-4
     font pango:Terminus, Font Awesome 5 Free 12px
         status_command i3blocks
         colors {
@@ -198,7 +199,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #011627
 
 # Use $mod+pause to launch logout/shutdown menu
-set $Locker i3lock && sleep 1
+set $Locker "~/bin/lock-screen.sh"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -217,13 +218,21 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 
 # win+alt+l to quickly lock screen
-bindsym $mod+Mod1+l exec i3lock --color 000000
+bindsym $mod+Mod1+l exec --no-startup-id $Locker
 
 # Layout for chat clients
 assign [class="Thunderbird"] $ws9
-exec --no-startup-id i3-msg "workspace 8: Chat; append_layout ~/.config/i3/workspace8.json"
+exec --no-startup-id i3-msg "workspace 8|Chat; append_layout ~/.config/i3/workspace8.json"
 exec dunst
 
+# Start ibus
+exec ibus-daemon -drxR
+
+# Easy effects for pipewire
+exec --no-startup-id easyeffects --gapplication-service
+
+# kde-connect
+exec --no-startup-id kdeconnect-cli
 # Autostart an unhealthy amount of chat clients
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
@@ -236,8 +245,13 @@ exec element-desktop
 for_window [window_role="Dialog"] floating enable, move workspace current, move position center
 assign [class="firefox"] $ws2
 exec firefox
+# Jellyfin-mpv-shim
+exec jellyfin-mpv-shim
 # SVPManager for horrible interpolated videos
 exec SVPManager -t
 
 # Quick launch bindings
+# App finder
+bindsym $mod+Mod1+slash exec xfce4-appfinder
 bindsym $mod+Mod1+s exec subl
+

@@ -5,15 +5,6 @@ cp "${HOME}/.config/nvim/init.vim" "./nvim/init.vim"
 NVIMPLUGINS="./nvim/install-nvim.sh"
 cp "./templates/install-nvim.sh" "$NVIMPLUGINS"
 
-for dir in ${HOME}/.config/nvim/bundle/* ; do
-        GITURL=$(grep url "$dir/.git/config" | cut -b 8- | head -n1)
-        GITNAME=$(basename $dir)
-        DIRNAME='${HOME}/.config/nvim/bundle/'
-
-        echo "installGitPackage ${GITURL} ${DIRNAME}${GITNAME} $GITNAME">> $NVIMPLUGINS
-done
-chmod +x "$NVIMPLUGINS"
-
 # zsh
 cp "${HOME}/.zshrc" "./zsh/zshrc"
 
