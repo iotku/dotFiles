@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 # vim
 cp "${HOME}/.config/nvim/init.vim" "./nvim/init.vim"

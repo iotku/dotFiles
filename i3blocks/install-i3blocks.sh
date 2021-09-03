@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 CONFDIR="${HOME}/.config/i3blocks"
 if [ ! -d "$CONFDIR" ]; then
     mkdir -p "$CONFDIR"
