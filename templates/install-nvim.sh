@@ -8,5 +8,5 @@ if [ ! -f "${HOME}/.local/share/nvim/site/autoload/plug.vim" ]; then
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-cp "./init.vim" "${HOME}/.config/nvim/init.vim"
-cp "./ginit.vim" "${HOME}/.config/nvim/ginit.vim"
+cp "./init.lua" "${HOME}/.config/nvim/init.lua"
+cp "./old.vim" "${HOME}/.config/nvim/old.vim"

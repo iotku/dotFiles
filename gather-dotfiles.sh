@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -e
-# vim
-cp "${HOME}/.config/nvim/init.vim" "./nvim/init.vim"
-NVIMPLUGINS="./nvim/install-nvim.sh"
-cp "./templates/install-nvim.sh" "$NVIMPLUGINS"
+# neovim
+cp "${HOME}/.config/nvim/init.lua" "./nvim/init.lua"
+cp "${HOME}/.config/nvim/old.vim" "./nvim/old.vim"
+cp "./templates/install-nvim.sh" "./nvim/install-nvim.sh"
 
 # zsh
 cp "${HOME}/.zshrc" "./zsh/zshrc"
