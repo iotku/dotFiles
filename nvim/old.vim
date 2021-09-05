@@ -1,18 +1,3 @@
-" Plug plugin system
-call plug#begin('~/.config/nvim/plugged')
-Plug 'Yggdroot/indentLine'
-Plug 'davidhalter/jedi-vim'
-Plug 'itchyny/lightline.vim'
-Plug 'preservim/nerdtree'
-Plug 'airblade/vim-gitgutter'
-"Plug 'fatih/vim-go'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mfussenegger/nvim-dap'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/lsp-status.nvim'
-" Initialize plugin system
-call plug#end()
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1

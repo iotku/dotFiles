@@ -1,5 +1,28 @@
 vim.cmd('source ~/.config/nvim/old.vim')
 
+-- Bootstrap Packer (Package Management) -- Remember to :PackerInstall
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd 'packadd packer.nvim'
+end
+
+-- Packages
+require('packer').startup(function()
+    use 'wbthomason/packer.nvim' -- Packception
+    use {'neoclide/coc.nvim', branch = 'release'}
+    use 'lukas-reineke/indent-blankline.nvim'
+    use 'davidhalter/jedi-vim'
+    use 'itchyny/lightline.vim'
+    use 'preservim/nerdtree'
+    use 'airblade/vim-gitgutter'
+    use 'mfussenegger/nvim-dap'
+    use 'bluz71/vim-nightfly-guicolors'
+    use 'neovim/nvim-lspconfig'
+    use 'nvim-lua/lsp-status.nvim'
+end)
+
 -- Golang LSP (gopls)
 local mapper = function(mode, key, result)
     vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
