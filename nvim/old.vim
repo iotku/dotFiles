@@ -25,10 +25,8 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 inoremap <silent><expr> <c-space> coc#refresh()
-syntax on " Syntax Hilighting
 let g:lightline = { 'colorscheme': 'nightfly' }
 let g:indentLine_color_gui = '#1B3B55'
-filetype plugin indent on
 
 nnoremap <esc> :noh<cr><esc>
 set showcmd
@@ -45,8 +43,6 @@ noremap <leader>t :sp<CR>:te<CR>
 " Map shift+space/bs to just space/bs in terminal
 tnoremap <s-space> <space>
 tnoremap <s-bs> <bs>
-
-filetype plugin on
 
 " Tab/shiftTab indending/deinting
 nnoremap <Tab> >>_
