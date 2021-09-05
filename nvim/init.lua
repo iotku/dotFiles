@@ -1,7 +1,17 @@
 vim.cmd('source ~/.config/nvim/old.vim')
 
 -- Golang LSP (gopls)
-require'lspconfig'.gopls.setup{}
+local mapper = function(mode, key, result)
+    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
+end
+
+local goBind = function(client)
+    mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+end
+
+require'lspconfig'.gopls.setup({
+    on_attach = goBind
+})
 
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
@@ -27,7 +37,7 @@ vim.opt.showmode       = false  -- hide the default mode text (e.g. -- INSERT --
 vim.opt.autoindent  = true
 vim.opt.smartindent = true
 ---- Spell checking
-vim.opt.spell       = true 
+vim.opt.spell       = true
 vim.opt.spelllang   = "en_us,es"
 
 -- Tab settings
