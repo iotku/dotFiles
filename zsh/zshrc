@@ -49,7 +49,7 @@ alias vim="nvim"
 alias sml="smlnj"
 #alias firefox="firefox-wayland"
 alias ls="ls --color"
-
+alias osul="COMPlus_GCGen0MaxBudget=600000 osu-lazer"
 PATH=${HOME}/bin:$PATH:${HOME}/go/bin:${HOME}/.local/bin
 # Ctrl + Arrows back/forward
 bindkey "^[[1;5C" forward-word

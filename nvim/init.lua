@@ -6,6 +6,7 @@ end
 
 -- Keybindings
 mapper('n', '<esc>', ':noh<cr><esc>') -- Clear Highlighting
+mapper('n', '<C-p>', ':Telescope<cr>') -- Telescope
 -- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')

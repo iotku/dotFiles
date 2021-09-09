@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+function toggleDunst {
+    if [ -e "/tmp/dunst-disabled" ]; then
+        kill -SIGUSR2 $(pidof dunst)
+        rm "/tmp/dunst-disabled" 2>/dev/null
+    else
+        kill -SIGUSR1 $(pidof dunst)
+        touch "/tmp/dunst-disabled"
+    fi
+}
+
+case $BLOCK_BUTTON in
+    1) toggleDunst # Mouse Left Click
+esac
+
+# Print status
+[ -e "/tmp/dunst-disabled" ] && echo "off" || echo "on"

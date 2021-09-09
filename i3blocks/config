@@ -1,7 +1,6 @@
 #[moc]
 #command=~/.config/i3blocks/scripts/moc.i3block
 #interval=3
-
 [mpd]
 command=~/.config/i3blocks/scripts/mpd.i3block
 label=
@@ -27,6 +26,11 @@ interval=3
 [weather]
 command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
 interval=3600
+
+[dunst]
+command=~/.config/i3blocks/scripts/dunst.i3block
+label= 
+interval=once
 
 [volume]
 command=~/.config/i3blocks/scripts/alsa.i3block
