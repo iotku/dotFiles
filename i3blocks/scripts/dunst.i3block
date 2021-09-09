@@ -1,18 +1,13 @@
 #!/bin/bash
 set -e
-function toggleDunst {
-    if [ -e "/tmp/dunst-disabled" ]; then
-        kill -SIGUSR2 $(pidof dunst)
-        rm "/tmp/dunst-disabled" 2>/dev/null
-    else
-        kill -SIGUSR1 $(pidof dunst)
-        touch "/tmp/dunst-disabled"
-    fi
-}
-
 case $BLOCK_BUTTON in
-    1) toggleDunst # Mouse Left Click
+    1) dunstctl set-paused toggle;; # Left Click
+    3) dunstctl close-all;; # Right click
+    4) dunstctl history-pop;; # Scroll Up
+    5) dunstctl close;; # scroll down
 esac
 
 # Print status
-[ -e "/tmp/dunst-disabled" ] && echo "off" || echo "on"
+WAITING=$(dunstctl count waiting)
+if [[ "$WAITING" != "0" ]]; then WAITING="($WAITING) "; else WAITING="";fi
+[[ $(dunstctl is-paused) == "true" ]] && echo "${WAITING}off" || echo "on"

@@ -30,7 +30,7 @@ interval=3600
 [dunst]
 command=~/.config/i3blocks/scripts/dunst.i3block
 label= 
-interval=once
+interval=10
 
 [volume]
 command=~/.config/i3blocks/scripts/alsa.i3block
