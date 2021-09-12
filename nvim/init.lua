@@ -5,16 +5,20 @@ local mapper = function(mode, key, result) -- Helpful keybinding function
 end
 
 -- Keybindings
-mapper('n', '<esc>', ':noh<cr><esc>') -- Clear Highlighting
+vim.g.mapleader = ' '                  -- Leader
+mapper('n', '<esc>', ':noh<cr><esc>')  -- Clear Highlighting
 mapper('n', '<C-p>', ':Telescope<cr>') -- Telescope
--- Tab/shiftTab indent/unindent
+
+---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')
 mapper('v', '<Tab>', '>gv')
 mapper('v', '<S-Tab>', '<gv')
--- Terminal
+
+---- Terminal
 mapper('n', '<leader>t', ':sp<CR>:te<CR>a') -- Open terminal in horizontal split
-mapper('t', '<Esc>', '<C-Bslash><C-n>') -- Go back to normal mode
+mapper('t', '<Esc>', '<C-Bslash><C-n>')     -- Go back to normal mode
+
 -- Bootstrap Packer (Package Management) -- Remember to :PackerInstall
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -25,18 +29,20 @@ end
 -- Packages
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
+    use 'vimwiki/vimwiki'
     use {'neoclide/coc.nvim', branch = 'release'}
     use 'lukas-reineke/indent-blankline.nvim'
     use 'itchyny/lightline.vim'
-    use 'preservim/nerdtree'
+--    use 'preservim/nerdtree'
     use 'airblade/vim-gitgutter'
 --   use 'mfussenegger/nvim-dap'
     use 'bluz71/vim-nightfly-guicolors'
     use 'neovim/nvim-lspconfig'
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-lua/lsp-status.nvim'
     use 'nvim-lua/plenary.nvim' -- required by telescope
     use 'nvim-telescope/telescope.nvim'
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 end)
 
 -- Telescope Setup
@@ -54,6 +60,21 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzf') 
 
+-- treesitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+
 -- Golang LSP (gopls)
 local local_mapper = function(mode, key, result) -- Helpful keybinding function
     vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
@@ -69,6 +90,7 @@ require'lspconfig'.gopls.setup({
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
 vim.cmd('colorscheme nightfly') -- Set theme
+vim.g.lightline = {colorscheme = 'nightfly'}
 
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text

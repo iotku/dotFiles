@@ -10,12 +10,3 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 inoremap <silent><expr> <c-space> coc#refresh()
-let g:lightline = { 'colorscheme': 'nightfly' }
-let g:indentLine_color_gui = '#1B3B55'
-
-" Change leader to comma
-let mapleader=","
-
-set autochdir " Automatically cd to dir where file is.
-" Show Nerdtree
-noremap <Leader>k :NERDTreeToggle<CR>

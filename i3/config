@@ -21,7 +21,7 @@ set $refresh_i3status-vol pkill -RTMIN+10 i3blocks
 
 # Alsa Volume control
 set $alsacard 'U192k'
-set $alsaout 'UMC202HD 192k Output,0'
+set $alsaout 'UMC202HD 192k Output,1'
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%+ && $refresh_i3status-vol"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%- && $refresh_i3status-vol"
 bindsym XF86AudioMute exec --no-startup-id "amixer -c $alsacard set $alsaout toggle && $refresh_i3status-vol"
@@ -199,7 +199,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #011627
 
 # Use $mod+pause to launch logout/shutdown menu
-set $Locker i3lock
+set $Locker i3lock -c 000000 -f 
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {

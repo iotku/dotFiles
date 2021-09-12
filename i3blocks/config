@@ -23,14 +23,14 @@ label=
 interval=3
 
 # Guess the weather hourly
-[weather]
-command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
-interval=3600
+#[weather]
+#command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+#interval=3600
 
 [dunst]
 command=~/.config/i3blocks/scripts/dunst.i3block
 label= 
-interval=10
+interval=3
 
 [volume]
 command=~/.config/i3blocks/scripts/alsa.i3block
