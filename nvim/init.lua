@@ -39,6 +39,7 @@ require('packer').startup(function()
     use 'bluz71/vim-nightfly-guicolors'
     use 'neovim/nvim-lspconfig'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}
     use 'nvim-lua/lsp-status.nvim'
     use 'nvim-lua/plenary.nvim' -- required by telescope
     use 'nvim-telescope/telescope.nvim'
@@ -106,8 +107,9 @@ vim.opt.showmode       = false  -- hide the default mode text (e.g. -- INSERT --
 
 -- Editing
 vim.opt.smartindent = true
----- Spell checking
-vim.opt.spell       = true
+---- Spell checking -- Managed by spellsitter plugin
+-- vim.opt.syntax.spell = "notoplevel"
+-- vim.opt.spell       = true
 vim.opt.spelllang   = "en_us,es"
 
 -- Tab settings
