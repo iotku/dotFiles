@@ -10,4 +10,3 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 inoremap <silent><expr> <c-space> coc#refresh()
-set mouse+=a

@@ -1,8 +1,9 @@
 #!/bin/bash
 function printMPD () {
+    HOSTNAME=~/.config/mpd/socket
     # I could only call mpc once, but I'm not going to.
-    current=$(mpc current)
-    state=$(mpc | grep "\[" | awk '{print $1}')
+    current=$(mpc -h $HOSTNAME current)
+    state=$(mpc -h $HOSTNAME | grep "\[" | awk '{print $1}')
     case $state in
         "[playing]") state=">";;
         "[paused]") state="||";;
