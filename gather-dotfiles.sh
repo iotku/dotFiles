@@ -2,7 +2,6 @@
 set -e
 # neovim
 cp "${HOME}/.config/nvim/init.lua" "./nvim/init.lua"
-cp "${HOME}/.config/nvim/old.vim" "./nvim/old.vim"
 cp "./templates/install-nvim.sh" "./nvim/install-nvim.sh"
 
 # zsh

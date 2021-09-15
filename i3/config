@@ -36,8 +36,7 @@ bindsym XF86AudioPlay exec --no-startup-id mpc toggle && $refresh_i3status-mpd
 floating_modifier $mod
 
 # start a terminal
-exec urxvtd
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill

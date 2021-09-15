@@ -1,4 +1,3 @@
-vim.cmd('source ~/.config/nvim/old.vim')
 local fn = vim.fn
 local mapper = function(mode, key, result) -- Helpful keybinding function
     vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
@@ -8,6 +7,7 @@ end
 vim.g.mapleader = ' '                  -- Leader
 mapper('n', '<esc>', ':noh<cr><esc>')  -- Clear Highlighting
 mapper('n', '<C-p>', ':Telescope<cr>') -- Telescope
+mapper('n', '<leader>k', ':CHADopen<cr>')
 
 ---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
@@ -30,7 +30,10 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     use 'vimwiki/vimwiki'
-    use {'neoclide/coc.nvim', branch = 'release'}
+    use 'jiangmiao/auto-pairs'
+ --   use {'neoclide/coc.nvim', branch = 'release'}
+    use {'ms-jpq/coq_nvim', branch = 'coq'}
+    use 'ms-jpq/coq.artifacts'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'itchyny/lightline.vim'
     use 'srcery-colors/srcery-vim'
@@ -86,6 +89,9 @@ require('telescope').load_extension('fzf')
 }
 --]]
 
+vim.g.coq_settings = { auto_start = true }
+local lsp = require "lspconfig"
+local coq = require "coq" -- add this
 -- Golang LSP (gopls)
 local local_mapper = function(mode, key, result) -- Helpful keybinding function
     vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
@@ -93,8 +99,7 @@ end
 local goBind = function(client)
     local_mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 end
-
-require'lspconfig'.gopls.setup({
+lsp.gopls.setup({
     on_attach = goBind
 })
 

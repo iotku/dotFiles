@@ -4,4 +4,3 @@ if [ ! -d "${HOME}/.config/nvim" ]; then
 fi
 
 cp "./init.lua" "${HOME}/.config/nvim/init.lua"
-cp "./old.vim" "${HOME}/.config/nvim/old.vim"
