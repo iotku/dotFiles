@@ -15,4 +15,4 @@ cp "${HOME}/.config/i3blocks/config" "./i3blocks/config"
 cp -r "${HOME}/.config/i3blocks/scripts/" "./i3blocks/"
 
 #emacs
-cp "${HOME}/.emacs.d/init.el" "./emacs/init.el"
+#cp "${HOME}/.emacs.d/init.el" "./emacs/init.el"

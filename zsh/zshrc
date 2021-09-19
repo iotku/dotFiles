@@ -114,3 +114,7 @@ EDITOR=nvim
 MPD_HOST=~/.config/mpd/socket
 alias ncmpc="ncmpc -h $MPD_HOST"
 alias ncmpcpp="ncmpcpp -h $MPD_HOST"
+
+if [[ "$TERM" == "alacritty" ]]; then
+    alias ssh="TERM=xterm-256color ssh"
+fi
