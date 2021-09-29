@@ -21,16 +21,16 @@ set $refresh_i3status-vol pkill -RTMIN+10 i3blocks
 
 # Alsa Volume control
 set $alsacard 'U192k'
-set $alsaout 'UMC202HD 192k Output,1'
+set $alsaout 'UMC202HD 192k Output,0'
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%+ && $refresh_i3status-vol"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%- && $refresh_i3status-vol"
 bindsym XF86AudioMute exec --no-startup-id "amixer -c $alsacard set $alsaout toggle && $refresh_i3status-vol"
 #bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # mpd control
-bindsym XF86AudioNext exec --no-startup-id mpc next && $refresh_i3status-mpd
-bindsym XF86AudioPrev exec --no-startup-id mpc prev && $refresh_i3status-mpd
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle && $refresh_i3status-mpd
+bindsym XF86AudioNext exec --no-startup-id mpc -h ~/.config/mpd/socket next && $refresh_i3status-mpd
+bindsym XF86AudioPrev exec --no-startup-id mpc -h ~/.config/mpd/socket prev && $refresh_i3status-mpd
+bindsym XF86AudioPlay exec --no-startup-id mpc -h ~/.config/mpd/socket toggle && $refresh_i3status-mpd
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -230,8 +230,9 @@ exec ibus-daemon -drxR
 # Easy effects for pipewire
 exec --no-startup-id easyeffects --gapplication-service
 
-# kde-connect
-exec --no-startup-id kdeconnect-cli
+# Save my eyes
+exec --no-startup-id redshift-gtk -b 0.7:0.6 -t 4200k:3500k
+
 # Autostart an unhealthy amount of chat clients
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8

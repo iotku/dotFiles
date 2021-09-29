@@ -11,7 +11,7 @@ mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>')
 mapper('n', '<leader>k', '<cmd>CHADopen<cr>')
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')
 
----- Tab/shiftTab indent/unindent
+---- Tab/shiftTab indent/indent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')
 mapper('v', '<Tab>', '>gv')
@@ -33,7 +33,7 @@ require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     use 'vimwiki/vimwiki'
     use 'jiangmiao/auto-pairs'
- --   use {'neoclide/coc.nvim', branch = 'release'}
+--   use {'neoclide/coc.nvim', branch = 'release'}
     use {'ms-jpq/coq_nvim', branch = 'coq'}
     use 'ms-jpq/coq.artifacts'
     use 'lukas-reineke/indent-blankline.nvim'
