@@ -4,13 +4,13 @@ local mapper = function(mode, key, result) -- Helpful keybinding function
 end
 
 -- Keybindings
-vim.g.mapleader = ' '                                  -- Leader
-mapper('n', '<esc>', '<cmd>noh<cr><esc>')              -- Clear Highlighting
-mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')  -- Telescope
-mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>')
-mapper('n', '<leader>k', '<cmd>CHADopen<cr>')
-mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')
-
+vim.g.mapleader = ' '                                   -- Leader
+mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
+mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')   -- Telescope
+mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>') -- Toggle Spell Check
+mapper('n', '<leader>k', '<cmd>CHADopen<cr>')           -- Open File browser Sidebar
+mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Pannel
+mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
 ---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')
@@ -32,12 +32,12 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     use 'vimwiki/vimwiki'
-    use 'jiangmiao/auto-pairs'
 --   use {'neoclide/coc.nvim', branch = 'release'}
     use {'ms-jpq/coq_nvim', branch = 'coq'}
     use 'ms-jpq/coq.artifacts'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
+    use 'windwp/nvim-autopairs'
 --    use 'itchyny/lightline.vim'
     use 'ayu-theme/ayu-vim'
     use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'}
@@ -62,6 +62,50 @@ require('packer').startup(function()
         end
     }
 end)
+
+-- Signify settings
+vim.g.signify_sign_change = '~'
+vim.cmd 'set updatetime=100'
+
+-- Autopairs
+-- recommended settings when using coq with autopairs
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
+
+npairs.setup({ map_bs = false })
+
+vim.g.coq_settings = { keymap = { recommended = false } }
+
+-- these mappings are coq recommended mappings unrelated to nvim-autopairs
+remap('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
+remap('i', '<c-c>', [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], { expr = true, noremap = true })
+remap('i', '<tab>', [[pumvisible() ? "<c-n>" : "<tab>"]], { expr = true, noremap = true })
+remap('i', '<s-tab>', [[pumvisible() ? "<c-p>" : "<bs>"]], { expr = true, noremap = true })
+
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+MUtils.CR = function()
+  if vim.fn.pumvisible() ~= 0 then
+    if vim.fn.complete_info({ 'selected' }).selected ~= -1 then
+      return npairs.esc('<c-y>')
+    else
+      return npairs.esc('<c-e>') .. npairs.autopairs_cr()
+    end
+  else
+    return npairs.autopairs_cr()
+  end
+end
+remap('i', '<cr>', 'v:lua.MUtils.CR()', { expr = true, noremap = true })
+
+MUtils.BS = function()
+  if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ 'mode' }).mode == 'eval' then
+    return npairs.esc('<c-e>') .. npairs.autopairs_bs()
+  else
+    return npairs.autopairs_bs()
+  end
+end
+remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
 
 -- Statusline (windline.nvim)
 require('wlsample.evil_line')
