@@ -6,12 +6,18 @@
 
 autoload -U compinit
 compinit
+
+# Git vcs_info
+autoload -Uz vcs_info
+precmd() { vcs_info }
+setopt prompt_subst
+
 # Case lazy tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Set ZSH Prompt
-export PROMPT="%B%(?..[%?] )%b%n@%U%m%u %~> "
-export RPROMPT='%t'
+export PROMPT="%B%(?..[%?] )%b%n@%F{yellow}%U%m%u%f %F{blue}%~%f%b> "
+export RPROMPT='%F{green}${vcs_info_msg_0_}%f%b %t'
 
 #allow tab completion in the middle of a word
 setopt COMPLETE_IN_WORD
@@ -47,7 +53,6 @@ autoload -U colors
 colors
 alias vim="nvim"
 alias sml="smlnj"
-#alias firefox="firefox-wayland"
 alias ls="ls --color"
 alias osul="COMPlus_GCGen0MaxBudget=600000 osu-lazer"
 PATH=${HOME}/bin:$PATH:${HOME}/go/bin:${HOME}/.local/bin
@@ -55,8 +60,6 @@ PATH=${HOME}/bin:$PATH:${HOME}/go/bin:${HOME}/.local/bin
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# Delete key
-bindkey "\e[3~" delete-char
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
@@ -65,7 +68,7 @@ key[Home]="${terminfo[khome]}"
 key[End]="${terminfo[kend]}"
 key[Insert]="${terminfo[kich1]}"
 key[Backspace]="${terminfo[kbs]}"
-key[Delete]="${terminf[kdch1]}"
+key[Delete]="${terminfo[kdch1]}"
 key[Up]="${terminfo[kcuu1]}"
 key[Down]="${terminfo[kcud1]}"
 key[Left]="${terminfo[kcub1]}"

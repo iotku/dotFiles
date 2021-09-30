@@ -11,7 +11,7 @@ mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>')
 mapper('n', '<leader>k', '<cmd>CHADopen<cr>')
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')
 
----- Tab/shiftTab indent/indent
+---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')
 mapper('v', '<Tab>', '>gv')
@@ -37,10 +37,14 @@ require('packer').startup(function()
     use {'ms-jpq/coq_nvim', branch = 'coq'}
     use 'ms-jpq/coq.artifacts'
     use 'lukas-reineke/indent-blankline.nvim'
-    use 'itchyny/lightline.vim'
+    use 'windwp/windline.nvim'
+--    use 'itchyny/lightline.vim'
     use 'ayu-theme/ayu-vim'
     use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'}
-    use 'airblade/vim-gitgutter'
+    use 'mhinz/vim-signify'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb'
+    use 'junegunn/gv.vim'
 --    use 'mfussenegger/nvim-dap'
     use 'neovim/nvim-lspconfig'
 --    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -49,7 +53,7 @@ require('packer').startup(function()
     use 'nvim-lua/plenary.nvim' -- required by telescope
     use 'nvim-telescope/telescope.nvim'
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-
+    use 'romgrk/barbar.nvim'
     -- Trouble Toggle
     use {"folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -58,6 +62,9 @@ require('packer').startup(function()
         end
     }
 end)
+
+-- Statusline (windline.nvim)
+require('wlsample.evil_line')
 
 -- Telescope Setup
 require('telescope').setup {
