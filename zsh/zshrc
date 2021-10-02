@@ -18,7 +18,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Set ZSH Prompt
 export PROMPT="%B%(?..[%?] )%b%n@%F{yellow}%U%m%u%f %F{blue}%(5~|../%4~|%~)%f%b> "
-export RPROMPT='%F{green}${vcs_info_msg_0_}%f%b%t'
+export RPROMPT='%F{green}${vcs_info_msg_0_}%f%b %t'
 
 #allow tab completion in the middle of a word
 setopt COMPLETE_IN_WORD
@@ -38,7 +38,8 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 HISTFILE=~/.zsh_history
-export SAVEHIST=2000 # How many lines to save in history file
+HISTSIZE=2000
+export SAVEHIST=$HISTSIZE
 
 ## never ever beep ever
 #setopt NO_BEEP
