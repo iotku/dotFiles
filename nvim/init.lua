@@ -9,7 +9,7 @@ mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
 mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')   -- Telescope
 mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>') -- Toggle Spell Check
 mapper('n', '<leader>k', '<cmd>CHADopen<cr>')           -- Open File browser Sidebar
-mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Pannel
+mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
 ---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
@@ -38,8 +38,7 @@ require('packer').startup(function()
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
     use 'windwp/nvim-autopairs'
---    use 'itchyny/lightline.vim'
-    use 'ayu-theme/ayu-vim'
+    use 'ray-x/material_plus.nvim'
     use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'}
     use 'mhinz/vim-signify'
     use 'tpope/vim-fugitive'
@@ -47,8 +46,8 @@ require('packer').startup(function()
     use 'junegunn/gv.vim'
 --    use 'mfussenegger/nvim-dap'
     use 'neovim/nvim-lspconfig'
---    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
---    use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}
     use 'nvim-lua/lsp-status.nvim'
     use 'nvim-lua/plenary.nvim' -- required by telescope
     use 'nvim-telescope/telescope.nvim'
@@ -65,7 +64,7 @@ end)
 
 -- Signify settings
 vim.g.signify_sign_change = '~'
-vim.cmd 'set updatetime=100'
+vim.o.updatetime = 100
 
 -- Autopairs
 -- recommended settings when using coq with autopairs
@@ -108,7 +107,7 @@ end
 remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
 
 -- Statusline (windline.nvim)
-require('wlsample.evil_line')
+require('wlsample.bubble')
 
 -- Telescope Setup
 require('telescope').setup {
@@ -126,7 +125,7 @@ require('telescope').setup {
 require('telescope').load_extension('fzf') 
 
 -- treesitter
---[[
+--
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
@@ -140,7 +139,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
---]]
+--
 local lsp = require "lspconfig"
 -- Coq Completion
 vim.g.coq_settings = { auto_start = "shut-up" }
@@ -164,10 +163,8 @@ lsp.jdtls.setup{
 
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
-vim.cmd('colorscheme ayu') -- Set theme
-vim.g.lightline = {colorscheme = 'ayu_dark'}
-vim.g.ayucolor="dark" 
-
+vim.g.material_style = "moonlight"
+vim.cmd('colorscheme material') -- Set theme
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text
 vim.opt.cursorline     = true      -- highlight current line
