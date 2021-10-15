@@ -217,7 +217,7 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 
 # win+alt+l to quickly lock screen
-bindsym $mod+Mod1+l exec --no-startup-id $Locker
+bindsym $mod+Mod1+l exec --no-startup-id bash ~/.config/i3/lock-screen.sh
 
 # Layout for chat clients
 assign [class="Thunderbird"] $ws9

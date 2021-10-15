@@ -32,13 +32,12 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     use 'vimwiki/vimwiki'
---   use {'neoclide/coc.nvim', branch = 'release'}
     use {'ms-jpq/coq_nvim', branch = 'coq'}
     use 'ms-jpq/coq.artifacts'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
     use 'windwp/nvim-autopairs'
-    use 'ray-x/material_plus.nvim'
+    use 'navarasu/onedark.nvim'
     use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'}
     use 'mhinz/vim-signify'
     use 'tpope/vim-fugitive'
@@ -107,7 +106,7 @@ end
 remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
 
 -- Statusline (windline.nvim)
-require('wlsample.bubble')
+require('wlsample.evil_line')
 
 -- Telescope Setup
 require('telescope').setup {
@@ -140,6 +139,8 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 --
+-- LSP Stuff
+--
 local lsp = require "lspconfig"
 -- Coq Completion
 vim.g.coq_settings = { auto_start = "shut-up" }
@@ -154,7 +155,6 @@ end
 lsp.gopls.setup({
     on_attach = setLspBindings
 })
-
 -- Java LSP (jdtls)
 lsp.jdtls.setup{
     cmd = { 'jdtls' },
@@ -163,8 +163,8 @@ lsp.jdtls.setup{
 
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
-vim.g.material_style = "moonlight"
-vim.cmd('colorscheme material') -- Set theme
+vim.g.onedark_style = 'deep'
+require('onedark').setup()
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text
 vim.opt.cursorline     = true      -- highlight current line

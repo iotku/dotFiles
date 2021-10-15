@@ -5,4 +5,4 @@ if [ ! -d "$CONFDIR" ]; then
 fi
 
 cp ./config "${CONFDIR}/config"
-
+cp ./lock-screen.sh "${CONFDIR}/config"
