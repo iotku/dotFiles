@@ -42,7 +42,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Dmenu, only gets .desktop entries
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop 
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 # change focus
 bindsym $mod+h focus left
@@ -96,8 +96,8 @@ bindsym $mod+shift+a focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1|"
-set $ws2 "2|"
+set $ws1 "1|"
+set $ws2 "2|"
 set $ws3 "3|"
 set $ws4 "4|🐸"
 set $ws5 "5"
@@ -221,7 +221,7 @@ bindsym $mod+Mod1+l exec --no-startup-id bash ~/.config/i3/lock-screen.sh
 
 # Layout for chat clients
 assign [class="Thunderbird"] $ws9
-exec --no-startup-id i3-msg "workspace 8|Chat; append_layout ~/.config/i3/workspace8.json"
+#exec --no-startup-id i3-msg "workspace 8|Chat; append_layout ~/.config/i3/workspace8.json"
 exec dunst
 
 # Start ibus
@@ -237,16 +237,16 @@ exec --no-startup-id redshift-gtk -b 0.7:0.6 -t 4200k:3500k
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
 assign [class="Element"] $ws8
-exec telegram-desktop
-exec discord
-exec element-desktop
+exec ~/bin/wait-for-network.sh telegram-desktop -startintray 
+exec ~/bin/wait-for-network.sh discord --start-minimized
+exec ~/bin/wait-for-network.sh element-desktop --hidden
 
 # Move Dialog (typically firefox download dialog) to center of current workspace (regardless of firefox assignment)
 for_window [window_role="Dialog"] floating enable, move workspace current, move position center
-assign [class="firefox"] $ws2
+assign [class="firefox"] $ws1
 exec firefox
 # Jellyfin-mpv-shim
-exec jellyfin-mpv-shim
+exec ~/bin/wait-for-network.sh jellyfin-mpv-shim
 # SVPManager for horrible interpolated videos
 exec SVPManager -t
 
@@ -254,4 +254,7 @@ exec SVPManager -t
 # App finder
 bindsym $mod+Mod1+slash exec xfce4-appfinder
 bindsym $mod+Mod1+s exec subl
-
+bindsym $mod+Mod1+c exec chromium
+# Screenshots, requires maim/xdotool
+bindsym $mod+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+bindsym $mod+Shift+Print exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
