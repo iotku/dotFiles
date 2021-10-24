@@ -15,6 +15,9 @@ exec unclutter
 # is used in the bar {} block below.
 font pango:Noto Sans CJK JP 12px
 
+# enable window icons for all windows with extra horizontal padding
+for_window [all] title_window_icon padding 3px
+
 # Send signal to i3blocks to update on keybind press
 set $refresh_i3status-mpd pkill -RTMIN+1 i3blocks 
 set $refresh_i3status-vol pkill -RTMIN+10 i3blocks
@@ -244,6 +247,7 @@ exec ~/bin/wait-for-network.sh element-desktop --hidden
 # Move Dialog (typically firefox download dialog) to center of current workspace (regardless of firefox assignment)
 for_window [window_role="Dialog"] floating enable, move workspace current, move position center
 assign [class="firefox"] $ws1
+for_window [class="firefox"] layout tabbed
 exec firefox
 # Jellyfin-mpv-shim
 exec ~/bin/wait-for-network.sh jellyfin-mpv-shim
