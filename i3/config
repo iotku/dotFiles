@@ -197,15 +197,13 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #2C2C2C #2C2C2C #B3B3B3 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
 client.background       #011627
 
-# Use $mod+pause to launch logout/shutdown menu
 set $Locker i3lock -c 000000 -f 
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+# Use $mod+pause to launch logout/shutdown menu
+set $mode_system System (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend,  mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
@@ -220,11 +218,11 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 
 # win+alt+l to quickly lock screen
-bindsym $mod+Mod1+l exec --no-startup-id bash ~/.config/i3/lock-screen.sh
+bindsym --release $mod+Mod1+l exec --no-startup-id bash ~/.config/i3/lock-screen.sh
 
-# Layout for chat clients
 assign [class="Thunderbird"] $ws9
-#exec --no-startup-id i3-msg "workspace 8|Chat; append_layout ~/.config/i3/workspace8.json"
+
+# Dunst notifications
 exec dunst
 
 # Start ibus

@@ -4,13 +4,11 @@ revert() {
     xset s off -dpms
 }
 
-# Set 5s display timeout
 enable() {
-    sleep 1 # Avoid key press to lock from unlocking screen
     xset s on
     xset s blank # Make sure screen doesn't flash white
     xset dpms force standby
-    xset +dpms dpms 5 5 5
+    xset +dpms dpms 5 5 5 # Set 5s display timeout
 }
 
 trap revert HUP INT TERM 
