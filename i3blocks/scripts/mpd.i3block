@@ -3,7 +3,7 @@ HOSTNAME=~/.config/mpd/socket
 function printMPD () {
     # I could only call mpc once, but I'm not going to.
     current=$(mpc -h $HOSTNAME current)
-    state=$(mpc -h $HOSTNAME | grep "\[" | awk '{print $1}')
+    state=$(mpc -h $HOSTNAME | grep "\[" | tail -n1 | awk '{print $1}')
     case $state in
         "[playing]") state=">";;
         "[paused]") state="||";;
