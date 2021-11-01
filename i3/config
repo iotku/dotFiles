@@ -39,7 +39,7 @@ bindsym XF86AudioPlay exec --no-startup-id mpc -h ~/.config/mpd/socket toggle &&
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty --single-instance
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -256,6 +256,7 @@ exec SVPManager -t
 # App finder
 bindsym $mod+Mod1+slash exec xfce4-appfinder
 bindsym $mod+Mod1+s exec subl
+bindsym $mod+Mod1+f exec firefox
 bindsym $mod+Mod1+c exec chromium
 # Screenshots, requires maim/xdotool
 bindsym $mod+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png

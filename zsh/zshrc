@@ -116,6 +116,6 @@ XDG_CONFIG_HOME="$HOME/.config"
 XDG_CACHE_HOME="$HOME/.cache"
 EDITOR=nvim
 export MPD_HOST="$HOME/.config/mpd/socket"
-if [[ "$TERM" == "alacritty" ]]; then
+if [[ "$TERM" == "alacritty" || "$TERM" == "xterm-kitty" ]]; then
     alias ssh="TERM=xterm-256color ssh"
 fi
