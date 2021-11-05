@@ -7,6 +7,9 @@ cp "./templates/install-nvim.sh" "./nvim/install-nvim.sh"
 # zsh
 cp "${HOME}/.zshrc" "./zsh/zshrc"
 
+# kitty
+cp "${HOME}/.config/kitty/kitty.conf" ./kitty/kitty.conf
+
 # i3
 cp "${HOME}/.config/i3/config" "./i3/config"
 
