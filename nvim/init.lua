@@ -11,6 +11,7 @@ mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>') -- Toggle Spell Check
 mapper('n', '<leader>k', '<cmd>CHADopen<cr>')           -- Open File browser Sidebar
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
+
 ---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')
@@ -31,6 +32,7 @@ end
 -- Packages
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
+    use 'lervag/vimtex'
     use 'vimwiki/vimwiki'
     use {'ms-jpq/coq_nvim', branch = 'coq'}
     use 'ms-jpq/coq.artifacts'
@@ -60,6 +62,10 @@ require('packer').startup(function()
         end
     }
 end)
+-- vimtex
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtex_quickfix_mode = 0
+vim.opt.conceallevel = 2
 
 -- Signify settings
 vim.g.signify_sign_change = '~'
@@ -130,7 +136,7 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
+    disable = {"latex"},  -- list of language that will be disabled
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
