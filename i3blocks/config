@@ -7,6 +7,11 @@ label=
 interval=once
 signal=1
 
+# Guess the weather hourly
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+
 [cpu]
 command=sensors | grep Tctl | awk '{print substr($2, 2, length($2)-5)"C"}'
 label= 
@@ -21,11 +26,6 @@ interval=2
 command=free -m | grep Mem | awk '{print $7"M"}'
 label= 
 interval=3
-
-# Guess the weather hourly
-#[weather]
-#command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
-#interval=3600
 
 [dunst]
 command=~/.config/i3blocks/scripts/dunst.i3block

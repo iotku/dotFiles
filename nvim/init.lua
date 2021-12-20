@@ -11,16 +11,15 @@ mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>') -- Toggle Spell Check
 mapper('n', '<leader>k', '<cmd>CHADopen<cr>')           -- Open File browser Sidebar
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
-
+mapper('n', '<leader>c', '<cmd>TSContextToggle<cr>')    --  Toggle treesitter-context
 ---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')
 mapper('v', '<Tab>', '>gv')
 mapper('v', '<S-Tab>', '<gv')
-
 ---- Terminal
 mapper('n', '<leader>t', '<cmd>sp<CR><cmd>te<CR>a') -- Open terminal in horizontal split
-mapper('t', '<Esc>', '<C-Bslash><C-n>')     -- Go back to normal mode
+mapper('t', '<Esc>', '<C-Bslash><C-n>')             -- Go back to normal mode
 
 -- Bootstrap Packer (Package Management) -- Remember to :PackerInstall
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -32,6 +31,8 @@ end
 -- Packages
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
+    use 'github/copilot.vim' -- nice meme
+    use 'romgrk/nvim-treesitter-context'
     use 'lervag/vimtex'
     use 'vimwiki/vimwiki'
     use {'ms-jpq/coq_nvim', branch = 'coq'}
@@ -79,13 +80,12 @@ local npairs = require('nvim-autopairs')
 npairs.setup({ map_bs = false })
 
 vim.g.coq_settings = { keymap = { recommended = false } }
-
 -- these mappings are coq recommended mappings unrelated to nvim-autopairs
 remap('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
 remap('i', '<c-c>', [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], { expr = true, noremap = true })
 remap('i', '<tab>', [[pumvisible() ? "<c-n>" : "<tab>"]], { expr = true, noremap = true })
 remap('i', '<s-tab>', [[pumvisible() ? "<c-p>" : "<bs>"]], { expr = true, noremap = true })
-
+--
 -- skip it, if you use another global object
 _G.MUtils= {}
 
@@ -110,7 +110,6 @@ MUtils.BS = function()
   end
 end
 remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
-
 -- Statusline (windline.nvim)
 require('wlsample.evil_line')
 
@@ -161,6 +160,7 @@ end
 lsp.gopls.setup({
     on_attach = setLspBindings
 })
+
 -- Java LSP (jdtls)
 lsp.jdtls.setup{
     cmd = { 'jdtls' },
@@ -205,3 +205,43 @@ vim.opt.smarttab    = true
 
 -- Misc
 vim.opt.swapfile  = false
+
+-- Context
+require'treesitter-context'.setup{
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    throttle = true, -- Throttles plugin updates (may improve performance)
+    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+        -- For all filetypes
+        -- Note that setting an entry here replaces all other patterns for this entry.
+        -- By setting the 'default' entry below, you can control which nodes you want to
+        -- appear in the context window.
+        default = {
+            'class',
+            'function',
+            'method',
+            -- 'for', -- These won't appear in the context
+            -- 'while',
+            -- 'if',
+            -- 'switch',
+            -- 'case',
+        },
+        -- Example for a specific filetype.
+        -- If a pattern is missing, *open a PR* so everyone can benefit.
+        --   rust = {
+        --       'impl_item',
+        --   },
+    },
+}
+-- Experimental
+-- Possible workaround for github copilot completion
+-- See https://www.reddit.com/r/neovim/comments/r6ppfl/how_do_remap_copilotaccept_in_a_lua_function/
+local function complete()
+  return function ()
+    if cmp.visible() then
+      cmp.mapping.confirm({select = true})()
+    else
+      vim.api.nvim_feedkeys(fn['copilot#Accept'](), 'i', true)
+    end
+  end
+end

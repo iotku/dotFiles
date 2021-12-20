@@ -45,7 +45,7 @@ bindsym $mod+Return exec kitty --single-instance
 bindsym $mod+Shift+q kill
 
 # Dmenu, only gets .desktop entries
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -116,11 +116,11 @@ workspace $ws2 output DP-4
 workspace $ws3 output DP-4
 workspace $ws4 output DP-4
 workspace $ws5 output DP-4
-workspace $ws6 output DP-0
-workspace $ws7 output DP-0
-workspace $ws8 output DP-0
-workspace $ws9 output DP-0
-workspace $ws10 output DP-0
+workspace $ws6 output DP-2
+workspace $ws7 output DP-2
+workspace $ws8 output DP-2
+workspace $ws9 output DP-2
+workspace $ws10 output DP-2
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -181,23 +181,27 @@ bindsym $mod+r mode "resize"
 
 bar {
     tray_output DP-4
+    tray_padding 0
+    i3bar_command i3bar --transparency
     font pango:Terminus, Font Awesome 5 Free 12px
         status_command i3blocks
         colors {
-            focused_workspace #38AEE6 #38AEE6 #ffffff
-            background #1D1F21
-            statusline #ffffff
+                               #Border   #backgnd  #txt    
+            focused_workspace  #00000088 #00000088 #ffffff 
+            inactive_workspace #00000000 #00000000 #ffffffBB 
+            background #1D1F2100
+            statusline #ffffff80
         }
 }
 
 # Set Color
-# class                 border  backgr. text    indicator child_border
-client.focused          #38AEE6 #38AEE6 #ffffff #2e9ef4   #38AEE6
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #2C2C2C #2C2C2C #B3B3B3 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #011627
+# class                 border    backgr.   text    indicator child_border
+client.focused          #ffffff   #00000066 #ffffff #ffffffAA #ffffffAA
+client.focused_inactive #000000   #000000aa #B3B3B3 #000000   #000000
+client.unfocused        #000000BB #000000BB #B3B3B3 #000000BB #000000BB
+client.urgent           #2f343a   #900000   #ffffff #900000   #900000
+client.placeholder      #000000   #00000090 #ffffff #000000   #000000
+client.background       #F00
 
 set $Locker i3lock -c 000000 -f 
 
@@ -232,7 +236,7 @@ exec ibus-daemon -drxR
 exec --no-startup-id easyeffects --gapplication-service
 
 # Save my eyes
-exec --no-startup-id redshift-gtk -b 0.7:0.6 -t 4200k:3500k
+exec --no-startup-id redshift-gtk -b 0.8:0.7 -t 4200k:3500k
 
 # Autostart an unhealthy amount of chat clients
 assign [class="TelegramDesktop"] $ws8
@@ -248,10 +252,11 @@ assign [class="firefox"] $ws1
 for_window [class="firefox"] layout tabbed
 exec firefox
 # Jellyfin-mpv-shim
-exec ~/bin/wait-for-network.sh jellyfin-mpv-shim
+# exec ~/bin/wait-for-network.sh /var/lib/flatpak/exports/bin/com.github.iwalton3.jellyfin-mpv-shim
 # SVPManager for horrible interpolated videos
 exec SVPManager -t
-
+exec feh --bg-fill ~/Pictures/wall/wallmain.png 
+exec xcompmgr
 # Quick launch bindings
 # App finder
 bindsym $mod+Mod1+slash exec xfce4-appfinder

@@ -55,7 +55,7 @@ colors
 alias vim="nvim"
 alias sml="smlnj"
 alias ls="ls --color"
-alias osul="COMPlus_GCGen0MaxBudget=600000 osu-lazer"
+alias osul="COMPlus_GCGen0MaxBudget=600000 sh.ppy.osu"
 PATH=${HOME}/bin:$PATH:${HOME}/go/bin:${HOME}/.local/bin
 # Ctrl + Arrows back/forward
 bindkey "^[[1;5C" forward-word
@@ -115,6 +115,7 @@ select-word-style bash
 XDG_CONFIG_HOME="$HOME/.config"
 XDG_CACHE_HOME="$HOME/.cache"
 EDITOR=nvim
+BROWSER=firefox
 export MPD_HOST="$HOME/.config/mpd/socket"
 if [[ "$TERM" == "alacritty" || "$TERM" == "xterm-kitty" ]]; then
     alias ssh="TERM=xterm-256color ssh"
