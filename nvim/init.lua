@@ -169,8 +169,10 @@ lsp.jdtls.setup{
 
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
-vim.g.onedark_style = 'deep'
-require('onedark').setup()
+require('onedark').setup {
+    style = 'darker'
+}
+require('onedark').load()
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text
 vim.opt.cursorline     = true      -- highlight current line

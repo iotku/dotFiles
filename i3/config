@@ -180,11 +180,26 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-    tray_output DP-4
+    tray_output DP-2
+    output DP-4
     tray_padding 0
     i3bar_command i3bar --transparency
     font pango:Terminus, Font Awesome 5 Free 12px
         status_command i3blocks
+        colors {
+                               #Border   #backgnd  #txt    
+            focused_workspace  #00000088 #00000088 #ffffff 
+            inactive_workspace #00000000 #00000000 #ffffffBB 
+            background #1D1F2100
+            statusline #ffffff80
+        }
+}
+
+bar {
+    output DP-2
+    font pango:Terminus, Font Awesome 5 Free 12px
+    i3bar_command i3bar --transparency
+    status_command i3blocks -c ~/.config/i3blocks/minimal-config
         colors {
                                #Border   #backgnd  #txt    
             focused_workspace  #00000088 #00000088 #ffffff 
@@ -233,7 +248,7 @@ exec dunst
 exec ibus-daemon -drxR
 
 # Easy effects for pipewire
-exec --no-startup-id easyeffects --gapplication-service
+#exec --no-startup-id easyeffects --gapplication-service
 
 # Save my eyes
 exec --no-startup-id redshift-gtk -b 0.8:0.7 -t 4200k:3500k
@@ -244,6 +259,7 @@ assign [class="discord"] $ws8
 assign [class="Element"] $ws8
 exec ~/bin/wait-for-network.sh telegram-desktop -startintray 
 exec ~/bin/wait-for-network.sh discord --start-minimized
+exec ~/bin/wait-for-network.sh discord-ptb --start-minimized
 exec ~/bin/wait-for-network.sh element-desktop --hidden
 
 # Move Dialog (typically firefox download dialog) to center of current workspace (regardless of firefox assignment)

@@ -11,6 +11,7 @@ function printMPD () {
 
     if [[ "$current" != "" ]]; then
         echo "$state $current"
+        echo "$current" > ~/.now_playing_mpd
     fi
 }
 
