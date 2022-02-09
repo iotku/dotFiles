@@ -31,12 +31,14 @@ end
 -- Packages
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
-    use 'github/copilot.vim' -- nice meme
+ --   use 'github/copilot.vim' -- nice meme
     use 'romgrk/nvim-treesitter-context'
     use 'lervag/vimtex'
     use 'vimwiki/vimwiki'
-    use {'ms-jpq/coq_nvim', branch = 'coq'}
-    use 'ms-jpq/coq.artifacts'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    use 'L3MON4D3/LuaSnip' -- Snippets plugin
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
     use 'windwp/nvim-autopairs'
@@ -72,44 +74,82 @@ vim.opt.conceallevel = 2
 vim.g.signify_sign_change = '~'
 vim.o.updatetime = 100
 
--- Autopairs
--- recommended settings when using coq with autopairs
-local remap = vim.api.nvim_set_keymap
-local npairs = require('nvim-autopairs')
+-- cmp completion
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-npairs.setup({ map_bs = false })
+local lspconfig = require('lspconfig')
 
-vim.g.coq_settings = { keymap = { recommended = false } }
--- these mappings are coq recommended mappings unrelated to nvim-autopairs
-remap('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
-remap('i', '<c-c>', [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], { expr = true, noremap = true })
-remap('i', '<tab>', [[pumvisible() ? "<c-n>" : "<tab>"]], { expr = true, noremap = true })
-remap('i', '<s-tab>', [[pumvisible() ? "<c-p>" : "<bs>"]], { expr = true, noremap = true })
---
--- skip it, if you use another global object
-_G.MUtils= {}
-
-MUtils.CR = function()
-  if vim.fn.pumvisible() ~= 0 then
-    if vim.fn.complete_info({ 'selected' }).selected ~= -1 then
-      return npairs.esc('<c-y>')
-    else
-      return npairs.esc('<c-e>') .. npairs.autopairs_cr()
-    end
-  else
-    return npairs.autopairs_cr()
-  end
+local local_mapper = function(mode, key, result) -- Helpful keybinding function
+    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
 end
-remap('i', '<cr>', 'v:lua.MUtils.CR()', { expr = true, noremap = true })
 
-MUtils.BS = function()
-  if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ 'mode' }).mode == 'eval' then
-    return npairs.esc('<c-e>') .. npairs.autopairs_bs()
-  else
-    return npairs.autopairs_bs()
-  end
+local setLspBindings = function(client)
+    local_mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+    local_mapper('n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<CR>')
 end
-remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { 'gopls', 'rust_analyzer', 'jdtls' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = setLspBindings,
+    capabilities = capabilities,
+  }
+end
+
+-- luasnip setup
+local luasnip = require 'luasnip'
+
+-- nvim-cmp setup
+require('nvim-autopairs').setup{}
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end,
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
+
 -- Statusline (windline.nvim)
 require('wlsample.evil_line')
 
@@ -142,29 +182,6 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-}
---
--- LSP Stuff
---
-local lsp = require "lspconfig"
--- Coq Completion
-vim.g.coq_settings = { auto_start = "shut-up" }
-local coq = require "coq" -- add this
--- Golang LSP (gopls)
-local local_mapper = function(mode, key, result) -- Helpful keybinding function
-    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
-end
-local setLspBindings = function(client)
-    local_mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-end
-lsp.gopls.setup({
-    on_attach = setLspBindings
-})
-
--- Java LSP (jdtls)
-lsp.jdtls.setup{
-    cmd = { 'jdtls' },
-    on_attach = setLspBindings
 }
 
 -- Colorscheme Settings
@@ -229,7 +246,6 @@ require'treesitter-context'.setup{
             -- 'case',
         },
         -- Example for a specific filetype.
-        -- If a pattern is missing, *open a PR* so everyone can benefit.
         --   rust = {
         --       'impl_item',
         --   },
@@ -238,12 +254,12 @@ require'treesitter-context'.setup{
 -- Experimental
 -- Possible workaround for github copilot completion
 -- See https://www.reddit.com/r/neovim/comments/r6ppfl/how_do_remap_copilotaccept_in_a_lua_function/
-local function complete()
-  return function ()
-    if cmp.visible() then
-      cmp.mapping.confirm({select = true})()
-    else
-      vim.api.nvim_feedkeys(fn['copilot#Accept'](), 'i', true)
-    end
-  end
-end
+-- local function complete()
+--   return function ()
+--     if cmp.visible() then
+--       cmp.mapping.confirm({select = true})()
+--     else
+--       vim.api.nvim_feedkeys(fn['copilot#Accept'](), 'i', true)
+--     end
+--   end
+-- end

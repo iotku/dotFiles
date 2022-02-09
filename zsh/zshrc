@@ -53,6 +53,7 @@ MAILCHECK=0
 autoload -U colors
 colors
 alias vim="nvim"
+alias hx="helix"
 alias sml="smlnj"
 alias ls="ls --color"
 alias osul="COMPlus_GCGen0MaxBudget=600000 sh.ppy.osu"
