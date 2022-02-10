@@ -187,9 +187,12 @@ require'nvim-treesitter.configs'.setup {
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
 require('onedark').setup {
-    style = 'darker'
+    style = 'darker',
+    toggle_style_key = '<leader>st'
 }
 require('onedark').load()
+
+
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text
 vim.opt.cursorline     = true      -- highlight current line
