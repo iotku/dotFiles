@@ -8,7 +8,7 @@ vim.g.mapleader = ' '                                   -- Leader
 mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
 mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')   -- Telescope
 mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>') -- Toggle Spell Check
-mapper('n', '<leader>k', '<cmd>CHADopen<cr>')           -- Open File browser Sidebar
+mapper('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')           -- Open File browser Sidebar
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
 mapper('n', '<leader>c', '<cmd>TSContextToggle<cr>')    --  Toggle treesitter-context
@@ -41,9 +41,16 @@ require('packer').startup(function()
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
+    use "SmiteshP/nvim-gps"
     use 'windwp/nvim-autopairs'
     use 'navarasu/onedark.nvim'
-    use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'}
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+          'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
+        config = function() require'nvim-tree'.setup {} end
+    }
     use 'mhinz/vim-signify'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
@@ -151,7 +158,8 @@ cmp.setup {
 }
 
 -- Statusline (windline.nvim)
-require('wlsample.evil_line')
+require("nvim-gps").setup()
+require('iotku-evil-wl')
 
 -- Telescope Setup
 require('telescope').setup {
@@ -266,3 +274,13 @@ require'treesitter-context'.setup{
 --     end
 --   end
 -- end
+vim.g.neovide_cursor_vfx_mode = "railgun"
+vim.g.neovide_refresh_rate = 60
+vim.o.guifont = "JetBrainsMono Nerd Font:h20"
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}
+

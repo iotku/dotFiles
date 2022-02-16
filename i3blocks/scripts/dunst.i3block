@@ -1,13 +1,12 @@
 #!/bin/bash
-set -e
 case $BLOCK_BUTTON in
-    1) dunstctl set-paused toggle;; # Left Click
-    3) dunstctl close-all;; # Right click
-    4) dunstctl history-pop;; # Scroll Up
-    5) dunstctl close;; # scroll down
+    1) dunstctl set-paused toggle > /dev/null 2>&1;; # Left Click
+    3) dunstctl close-all > /dev/null 2>&1;; # Right click
+    4) dunstctl history-pop > /dev/null 2>&1;; # Scroll Up
+    5) dunstctl close > /dev/null 2>&1;; # scroll down
 esac
 
 # Print status
 WAITING=$(dunstctl count waiting)
 if [[ "$WAITING" != "0" ]]; then WAITING="($WAITING) "; else WAITING="";fi
-[[ $(dunstctl is-paused) == "true" ]] && echo "${WAITING}off" || echo "on"
+[[ $(dunstctl is-paused) == "true" ]] && echo "🔕 ${WAITING}" || echo "🔔"

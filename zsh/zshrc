@@ -53,11 +53,12 @@ MAILCHECK=0
 autoload -U colors
 colors
 alias vim="nvim"
+alias nvg="neovide --nofork"
 alias hx="helix"
 alias sml="smlnj"
 alias ls="ls --color"
 alias osul="COMPlus_GCGen0MaxBudget=600000 sh.ppy.osu"
-PATH=${HOME}/bin:$PATH:${HOME}/go/bin:${HOME}/.local/bin
+PATH=${HOME}/bin:${HOME}/go/bin:${HOME}/.local/bin:$PATH
 # Ctrl + Arrows back/forward
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
