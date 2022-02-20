@@ -78,8 +78,8 @@ basic.file = {
     text = function(_, _, width)
         if width > breakpoint_width then
             return {
-                { b_components.cache_file_size(), 'default' },
-                { ' ', '' },
+       --         { b_components.cache_file_size(), 'default' },
+       --         { ' ', '' },
                 { b_components.cache_file_name('[No Name]', 'unique'), 'magenta' },
                 { b_components.file_modified(' '), 'magenta' },
             }
@@ -187,10 +187,12 @@ basic.lsp_name = {
         if lsp_comps.check_lsp(bufnr) then
             return {
                 { lsp_comps.lsp_name(), 'magenta' },
+                { ' ', ''},
             }
         end
         return {
             { b_components.cache_file_type({icon = true}), 'magenta' },
+            { ' ', '' },
         }
     end,
 }
@@ -200,15 +202,15 @@ local default = {
     active = {
         basic.square_mode,
         basic.vi_mode,
+        { git_comps.git_branch(), { 'white', 'black' }, breakpoint_width },
+        { ' ', hl_list.Black },
         basic.file,
+ --       basic.git,
         basic.gps,
         basic.divider,
         basic.file_right,
         basic.lsp_diagnos,
         basic.lsp_name,
-        basic.git,
-        { git_comps.git_branch(), { 'magenta', 'black' }, breakpoint_width },
-        { ' ', hl_list.Black },
         basic.square_mode,
     },
     inactive = {

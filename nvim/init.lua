@@ -51,8 +51,13 @@ require('packer').startup(function()
         },
         config = function() require'nvim-tree'.setup {} end
     }
-    use 'mhinz/vim-signify'
     use 'tpope/vim-fugitive'
+    use 'mhinz/vim-signify'
+    use {'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require('gitsigns').setup()
+      end
+    }
     use 'tpope/vim-rhubarb'
     use 'junegunn/gv.vim'
 --    use 'mfussenegger/nvim-dap'
@@ -95,10 +100,11 @@ end
 local setLspBindings = function(client)
     local_mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
     local_mapper('n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    local_mapper('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 end
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'gopls', 'rust_analyzer', 'jdtls' }
+local servers = { 'gopls', 'rust_analyzer', 'jdtls', 'clangd' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = setLspBindings,
