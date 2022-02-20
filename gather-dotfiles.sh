@@ -2,7 +2,7 @@
 set -e
 # neovim
 cp -v "${HOME}/.config/nvim/init.lua" "./nvim/init.lua"
-cp -rv "${HOME}/.config/nvim/lua" "./nvim/lua"
+cp -rv "${HOME}/.config/nvim/lua/"* "./nvim/lua/"
 cp "./templates/install-nvim.sh" "./nvim/install-nvim.sh"
 
 # zsh
@@ -16,7 +16,7 @@ cp -v "${HOME}/.config/i3/config" "./i3/config"
 
 #i3blocks
 cp -v "${HOME}/.config/i3blocks/config" "./i3blocks/config"
-cp -vr "${HOME}/.config/i3blocks/scripts/" "./i3blocks/scripts"
+cp -vr "${HOME}/.config/i3blocks/scripts/"* "./i3blocks/scripts/"
 
 #emacs
 #cp "${HOME}/.emacs.d/init.el" "./emacs/init.el"
