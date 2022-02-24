@@ -1,6 +1,11 @@
 #!/bin/bash
 function printVol() {
-    pamixer --get-volume-human
+    volLevel="$(pamixer --get-volume-human)"
+    if [[ "$volLevel" != muted ]]; then
+        echo "🔊 $volLevel"
+    else
+        echo "🔇 Mute"
+    fi
 }
 
 case $BLOCK_BUTTON in

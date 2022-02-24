@@ -11,6 +11,9 @@ function printMPD () {
 
     if [[ "$current" != "" ]]; then
         echo "$state $current"
+        if [[ "$(cat ~/.now_playing_mpd)" != "$current" ]]; then
+            dunstify -r 1 "🎧 $current"
+        fi
         echo "$current" > ~/.now_playing_mpd
     fi
 }

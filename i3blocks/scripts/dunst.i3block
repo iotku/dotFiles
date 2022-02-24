@@ -9,4 +9,4 @@ esac
 # Print status
 WAITING=$(dunstctl count waiting)
 if [[ "$WAITING" != "0" ]]; then WAITING="($WAITING) "; else WAITING="";fi
-[[ $(dunstctl is-paused) == "true" ]] && echo "🔕 ${WAITING}" || echo "🔔"
+[[ $(dunstctl is-paused) == "true" ]] && echo "🔕 ${WAITING}" || echo "🔔${WAITING}"

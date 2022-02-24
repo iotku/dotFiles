@@ -8,10 +8,12 @@ vim.g.mapleader = ' '                                   -- Leader
 mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
 mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')   -- Telescope
 mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>') -- Toggle Spell Check
-mapper('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')           -- Open File browser Sidebar
+mapper('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
-mapper('n', '<leader>c', '<cmd>TSContextToggle<cr>')    --  Toggle treesitter-context
+mapper('n', '<leader>,', 'A,<esc>')                     -- add comma to end of the line
+mapper('n', '<CR>', 'o<esc>cc')
+mapper('n', '<leader>c', '<cmd>TSContextToggle<cr>')    -- Toggle treesitter-context
 ---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')
@@ -31,6 +33,7 @@ end
 -- Packages
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
+    use 'folke/tokyonight.nvim' -- Colorscheme
  --   use 'github/copilot.vim' -- nice meme
     use 'romgrk/nvim-treesitter-context'
     use 'lervag/vimtex'
@@ -43,7 +46,6 @@ require('packer').startup(function()
     use 'windwp/windline.nvim'
     use "SmiteshP/nvim-gps"
     use 'windwp/nvim-autopairs'
-    use 'navarasu/onedark.nvim'
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {
@@ -200,12 +202,7 @@ require'nvim-treesitter.configs'.setup {
 
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
-require('onedark').setup {
-    style = 'darker',
-    toggle_style_key = '<leader>st'
-}
-require('onedark').load()
-
+vim.cmd[[colorscheme tokyonight]]
 
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text
