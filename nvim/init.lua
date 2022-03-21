@@ -51,7 +51,6 @@ require('packer').startup(function()
         config = function() require'nvim-tree'.setup {} end
     }
     use 'tpope/vim-fugitive'
-    use 'mhinz/vim-signify'
     use {'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
       config = function()
         require('gitsigns').setup()
@@ -81,10 +80,6 @@ end)
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_mode = 0
 vim.opt.conceallevel = 2
-
--- Signify settings
-vim.g.signify_sign_change = '~'
-vim.o.updatetime = 100
 
 -- cmp completion
 -- Add additional capabilities supported by nvim-cmp
