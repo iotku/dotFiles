@@ -42,15 +42,12 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
+    use 'ray-x/lsp_signature.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
     use "SmiteshP/nvim-gps"
     use 'windwp/nvim-autopairs'
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-          'kyazdani42/nvim-web-devicons', -- optional, for file icon
-        },
+    use {'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' },
         config = function() require'nvim-tree'.setup {} end
     }
     use 'tpope/vim-fugitive'
@@ -62,7 +59,8 @@ require('packer').startup(function()
     }
     use 'tpope/vim-rhubarb'
     use 'junegunn/gv.vim'
---    use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-dap'
+    use 'simrat39/rust-tools.nvim'
     use 'neovim/nvim-lspconfig'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}
@@ -103,7 +101,11 @@ local setLspBindings = function(client)
     local_mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
     local_mapper('n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<CR>')
     local_mapper('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+    local_mapper('n', '<c-K>', '<cmd>lua vim.lsp.buf.hover()<CR>')
 end
+
+-- Rust Tools for enhanced Rust LSP
+require('rust-tools').setup({})
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'gopls', 'rust_analyzer', 'jdtls', 'clangd' }
@@ -212,9 +214,10 @@ vim.opt.colorcolumn    = {80, 100} -- set rulers
 vim.opt.number         = true  -- show line numbers
 vim.opt.relativenumber = true  -- line numbers are relative to current position
 ---- Tabline
-vim.opt.laststatus     = 2      -- always display the statusline in all windows
+vim.opt.laststatus     = 3      -- Display single "global" statusline
 vim.opt.showtabline    = 2      -- always display the tabline, even if there is only one tab
 vim.opt.showmode       = false  -- hide the default mode text (e.g. -- INSERT -- below the statusline)
+---- 
 
 -- Editing
 vim.opt.smartindent = true
@@ -287,3 +290,59 @@ require("indent_blankline").setup {
     show_current_context_start = true,
 }
 
+ cfg = {
+  debug = false, -- set to true to enable debug logging
+  log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
+  -- default is  ~/.cache/nvim/lsp_signature.log
+  verbose = false, -- show debug line number
+
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+               -- If you want to hook lspsaga or other signature handler, pls set to false
+  doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+                 -- set to 0 if you DO NOT want any API comments be shown
+                 -- This setting only take effect in insert mode, it does not affect signature help in normal
+                 -- mode, 10 by default
+
+  floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+
+  floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+  -- will set to true when fully tested, set to false will use whichever side has more space
+  -- this setting will be helpful if you do not want the PUM and floating win overlap
+
+  floating_window_off_x = 1, -- adjust float windows x position.
+  floating_window_off_y = 1, -- adjust float windows y position.
+
+
+  fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
+  hint_enable = false, -- virtual hint enable
+  hint_prefix = "🐼 ",  -- Panda for parameter
+  hint_scheme = "String",
+  hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
+  max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+                   -- to view the hiding contents
+  max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+  handler_opts = {
+    border = "rounded"   -- double, rounded, single, shadow, none
+  },
+
+  always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+
+  auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
+  extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+  zindex = 200, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+
+  padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
+
+  transparency = nil, -- disabled by default, allow floating win transparent value 1~100
+  shadow_blend = 36, -- if you using shadow as border use this set the opacity
+  shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+  timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
+  toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+}
+
+-- recommended:
+require'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
+
+-- You can also do this inside lsp on_attach
+-- note: on_attach deprecated
+require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key

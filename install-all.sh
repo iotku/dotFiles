@@ -6,6 +6,5 @@ function confInstall() {
 
 confInstall nvim
 confInstall zsh
-confInstall kitty
 confInstall i3
 confInstall i3blocks

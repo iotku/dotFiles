@@ -23,7 +23,7 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -74,6 +74,7 @@
   #   - SimpleFullscreen
   #startup_mode: Windowed
 
+  opacity: 0.95
   # Window title
   #title: Alacritty
 
@@ -178,6 +179,8 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
+# Base16 Solarized Dark 256 - alacritty color config
+# Ethan Schoonover (modified by aramisgithub)
 colors: 
     # Default colors
     primary:
@@ -384,11 +387,6 @@ colors:
   #
   #command: None
 
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
 
 #selection:
   # This string contains all characters that are used as separators for

@@ -14,7 +14,7 @@ local hl_list = {
 }
 local basic = {}
 
-local breakpoint_width = 90
+local breakpoint_width = 80
 basic.divider = { b_components.divider, '' }
 basic.bg = { ' ', 'StatusLine' }
 
