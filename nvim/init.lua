@@ -100,8 +100,9 @@ end
 local setLspBindings = function(client)
     local_mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
     local_mapper('n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    local_mapper('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+    local_mapper('n', 'gr', '<cmd>TroubleToggle lsp_references<cr>')
     local_mapper('n', '<c-K>', '<cmd>lua vim.lsp.buf.hover()<CR>')
+    local_mapper('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 end
 
 -- Rust Tools for enhanced Rust LSP
