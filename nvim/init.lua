@@ -47,15 +47,23 @@ require('packer').startup(function()
     use 'windwp/windline.nvim'
     use "SmiteshP/nvim-gps"
     use 'windwp/nvim-autopairs'
-    use {'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' },
-        config = function() require'nvim-tree'.setup {} end
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+          'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
+        config = function() require'nvim-tree'.setup {
+            auto_close = true,
+            actions = {
+                open_file = {
+                    quit_on_open = true,
+                    resize_window = true,
+                }
+            }
+        } end
     }
     use 'tpope/vim-fugitive'
-    use {'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
-      config = function()
-        require('gitsigns').setup()
-      end
-    }
+    use {'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }}
     use 'tpope/vim-rhubarb'
     use 'junegunn/gv.vim'
     use 'mfussenegger/nvim-dap'
@@ -104,7 +112,7 @@ end
 require('rust-tools').setup({})
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'gopls', 'rust_analyzer', 'jdtls', 'clangd' }
+local servers = { 'gopls', 'rust_analyzer', 'jdtls', 'clangd', 'bashls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = setLspBindings,
@@ -339,6 +347,14 @@ require("indent_blankline").setup {
 -- recommended:
 require'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
 
--- You can also do this inside lsp on_attach
--- note: on_attach deprecated
-require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
+-- gitsigns
+vim.opt.signcolumn = "yes:1" -- Always leave space for signcolumn to avoid reflow
+require('gitsigns').setup{
+   signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '▐', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '▐', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  }
+}
