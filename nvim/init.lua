@@ -2,7 +2,6 @@ local fn = vim.fn
 local mapper = function(mode, key, result) -- Helpful keybinding function
     vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
 end
-
 -- Keybindings
 vim.g.mapleader = ' '                                   -- Leader
 mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
@@ -39,9 +38,13 @@ require('packer').startup(function()
     use 'lervag/vimtex'
     use 'vimwiki/vimwiki'
     use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
+    use 'ray-x/go.nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
@@ -53,7 +56,6 @@ require('packer').startup(function()
           'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
         config = function() require'nvim-tree'.setup {
-            auto_close = true,
             actions = {
                 open_file = {
                     quit_on_open = true,
@@ -146,28 +148,32 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
+    -- :help ins-completion
+--    ['<Tab>'] = function(fallback)
+--      if cmp.visible() then
+--        cmp.select_next_item()
+--      elseif luasnip.expand_or_jumpable() then
+--        luasnip.expand_or_jump()
+--      else
+--        fallback()
+--      end
+--    end,
+--    ['<S-Tab>'] = function(fallback)
+--      if cmp.visible() then
+--        cmp.select_prev_item()
+--      elseif luasnip.jumpable(-1) then
+--        luasnip.jump(-1)
+--      else
+--        fallback()
+--      end
+--    end,
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = 'nvim_lsp'  },
+    { name = 'luasnip'   },
+    { name = 'nvim_lua'  },
+    { name = 'buffer', keyword_length = 5 },
+    { name = 'path'      },
   },
 }
 
@@ -358,3 +364,7 @@ require('gitsigns').setup{
     changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
   }
 }
+require('go').setup{
+ --   gofmt = 'gofmt',
+}
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
