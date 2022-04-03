@@ -17,9 +17,6 @@ local setLspBindings = function(client)
     local_mapper('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 end
 
--- Rust Tools for enhanced Rust LSP
-require('rust-tools').setup({})
-
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'gopls', 'rust_analyzer', 'jdtls', 'clangd', 'bashls' }
 for _, lsp in ipairs(servers) do

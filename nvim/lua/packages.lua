@@ -10,6 +10,7 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     use 'folke/tokyonight.nvim'  -- Colorscheme
+    use 'norcalli/nvim-colorizer.lua'
  --   use 'github/copilot.vim'   -- nice meme
     use 'romgrk/nvim-treesitter-context'
     use 'lervag/vimtex'

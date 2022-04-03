@@ -5,7 +5,8 @@ end
 vim.g.mapleader = ' '                                   -- Leader
 mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
 mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')   -- Telescope
-mapper('n', '<leader>ss', '<cmd>lua toggleSpell()<cr>') -- Toggle Spell Check
+mapper('n', '<leader>ss', '<cmd>set invspell<cr>') -- Toggle Spell Check
+mapper('n', '<leader>l',  '<cmd>set invlist<cr>')
 mapper('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line

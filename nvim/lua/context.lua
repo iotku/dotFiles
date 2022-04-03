@@ -1,3 +1,6 @@
+-- Colorscheme Settings
+vim.opt.termguicolors = true    -- True color support
+vim.cmd[[colorscheme tokyonight]]
 require("indent_blankline").setup {
     space_char_blankline = " ",
     show_current_context = true,
@@ -5,6 +8,7 @@ require("indent_blankline").setup {
 }
 
 require("nvim-gps").setup()
+require("colorizer").setup()
 -- treesitter
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
