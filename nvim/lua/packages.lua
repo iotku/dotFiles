@@ -22,7 +22,9 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp'     -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
     use 'L3MON4D3/LuaSnip'         -- Snippets plugin
+    use 'simrat39/rust-tools.nvim'
     use 'ray-x/go.nvim'
+    use 'mfussenegger/nvim-jdtls'
     use 'ray-x/lsp_signature.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/windline.nvim'
@@ -44,7 +46,6 @@ require('packer').startup(function()
     use 'tpope/vim-rhubarb'
     use 'junegunn/gv.vim'
     use 'mfussenegger/nvim-dap'
-    use 'simrat39/rust-tools.nvim'
     use 'neovim/nvim-lspconfig'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}

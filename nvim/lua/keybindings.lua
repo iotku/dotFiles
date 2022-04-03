@@ -1,12 +1,18 @@
+M = {}
 local mapper = function(mode, key, result) -- Helpful keybinding function
     vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
 end
+
+local local_mapper = function(mode, key, result) -- Helpful keybinding function
+    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
+end
+
 -- Keybindings
 vim.g.mapleader = ' '                                   -- Leader
 mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
 mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')   -- Telescope
-mapper('n', '<leader>ss', '<cmd>set invspell<cr>') -- Toggle Spell Check
-mapper('n', '<leader>l',  '<cmd>set invlist<cr>')
+mapper('n', '<leader>ss', '<cmd>set invspell<cr>')      -- Toggle Spell Check
+mapper('n', '<leader>l',  '<cmd>set invlist<cr>')       -- Toggle listchars
 mapper('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar
 mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
@@ -21,3 +27,13 @@ mapper('v', '<S-Tab>', '<gv')
 ---- Terminal
 mapper('n', '<leader>t', '<cmd>sp<CR><cmd>te<CR>a') -- Open terminal in horizontal split
 mapper('t', '<Esc>', '<C-Bslash><C-n>')             -- Go back to normal mode
+
+function M.setLspBindings()
+    local_mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+    local_mapper('n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    local_mapper('n', 'gr', '<cmd>TroubleToggle lsp_references<cr>')
+    local_mapper('n', '<c-K>', '<cmd>lua vim.lsp.buf.hover()<CR>')
+    local_mapper('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+end
+
+return M
