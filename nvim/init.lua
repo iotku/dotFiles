@@ -1,3 +1,4 @@
+vim.cmd [[let g:loaded_python3_provider = 0]] -- Disable python support as we're not using it, minor speedup
 require('packages')
 require('keybindings')
 require('completion')
