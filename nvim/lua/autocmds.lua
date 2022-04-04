@@ -17,6 +17,5 @@ vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.java" },
     callback = function()
         require('jdtls').start_or_attach(require('lang').java_config)
-        require('keybindings').setLspBindings()
     end,
 })

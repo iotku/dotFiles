@@ -22,6 +22,7 @@ M.java_config = {
     '-configuration', '/usr/share/java/jdtls/config_linux', -- NOTE: config_linux directory must be writable!!!
     '-data', os.getenv("HOME")..'/workspace'
   },
+  on_attach = require('keybindings').on_attach,
 
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
   settings = {
