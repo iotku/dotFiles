@@ -26,6 +26,12 @@ mapper('v', '<S-Tab>', '<gv')
 ---- Terminal
 mapper('n', '<leader>t', '<cmd>sp<CR><cmd>te<CR>a') -- Open terminal in horizontal split
 mapper('t', '<Esc>', '<C-Bslash><C-n>')             -- Go back to normal mode
+-- DAP
+mapper('n', '<F5>', '<cmd>lua require"dap".continue()<CR>')
+mapper('n', '<F10>', '<cmd>lua require"dap".stop_over()<CR>')
+mapper('n', '<F11>', '<cmd>lua require"dap".step_into()<CR>')
+mapper('n', '<F12>', '<cmd>lua require"dap".step_out()<CR>')
+mapper('n', '<leader>b', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
 
 local opts = { noremap=true, silent=true }
 function M.on_attach(client, bufnr)

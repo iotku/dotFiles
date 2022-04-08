@@ -5,6 +5,7 @@ require('completion')
 require('context')
 require('lang')
 require('lsp')
+require('debugging')
 require('gui-settings')
 require('iotku-evil-wl') -- Statusline (windline.nvim)
 require('autocmds')
@@ -19,7 +20,6 @@ vim.opt.relativenumber = true  -- line numbers are relative to current position
 vim.opt.laststatus     = 3      -- Display single "global" statusline
 vim.opt.showtabline    = 2      -- always display the tabline, even if there is only one tab
 vim.opt.showmode       = false  -- hide the default mode text (e.g. -- INSERT -- below the statusline)
-vim.opt.listchars = { tab = '  →', trail = '•' } -- Listchars for set list (toggled by <leader>l)
 -- Editing
 vim.opt.smartindent = true
 ---- Spell checking
@@ -33,7 +33,7 @@ vim.opt.softtabstop = indent
 vim.opt.shiftwidth  = indent
 vim.opt.expandtab   = true
 vim.opt.smarttab    = true
-
+vim.opt.listchars = { tab = '  →', trail = '•' } -- Listchars for set list (toggled by <leader>l)
 -- Misc
 vim.opt.swapfile  = false
 
