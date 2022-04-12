@@ -128,3 +128,4 @@ require('telescope').setup {
   }
 }
 require('telescope').load_extension('fzf') 
+require("telescope").load_extension("ui-select") -- implement vim.ui.select with telescope-ui-select.nvim

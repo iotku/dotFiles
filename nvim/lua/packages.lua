@@ -64,6 +64,7 @@ require('packer').startup(function()
     use 'nvim-lua/plenary.nvim' -- required by telescope
     use 'nvim-telescope/telescope.nvim'
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use {'nvim-telescope/telescope-ui-select.nvim' }
     use {"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons",
         config = function() 
             require("trouble").setup {} 
