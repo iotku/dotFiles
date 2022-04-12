@@ -56,3 +56,34 @@ require("dapui").setup({
 })
 
 require('dap-go').setup()
+local dap = require('dap')
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode', -- adjust as needed
+  name = "lldb"
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    runInTerminal = false,
+
+    -- If you use `runInTerminal = true` and resize the terminal window,
+    -- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
+    -- To avoid that uncomment the following option
+    -- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
+    -- postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
+  },
+}
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp

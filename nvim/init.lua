@@ -35,8 +35,11 @@ vim.opt.expandtab   = true
 vim.opt.smarttab    = true
 vim.opt.listchars = { tab = '  →', trail = '•' } -- Listchars for set list (toggled by <leader>l)
 -- Misc
-vim.opt.swapfile  = false
-
+vim.opt.swapfile   = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr   = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevelstart = 99
+vim.opt.foldnestmax = 1
 -- vimtex
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_mode = 0
