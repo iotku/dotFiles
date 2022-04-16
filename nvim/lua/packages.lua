@@ -10,11 +10,10 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     -- Appearance/Bars
-    use 'folke/tokyonight.nvim'  -- Colorscheme
-    use 'romgrk/barbar.nvim'
+    use 'folke/tokyonight.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/nvim-autopairs'
-    use 'windwp/windline.nvim'
+    use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
     use 'norcalli/nvim-colorizer.lua'
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -38,21 +37,21 @@ require('packer').startup(function()
     use "SmiteshP/nvim-gps"
     -- Notetaking / Wiki
     use 'lervag/vimtex'
-    use 'vimwiki/vimwiki'
-        use { 'kyazdani42/nvim-tree.lua', 
-        requires = { 'kyazdani42/nvim-web-devicons', },
-        config = function() require'nvim-tree'.setup {
-            actions = {
-                open_file = {
-                    quit_on_open = true,
-                    resize_window = true,
-                }
+    --use 'vimwiki/vimwiki'
+    use { 'kyazdani42/nvim-tree.lua', 
+    requires = { 'kyazdani42/nvim-web-devicons', },
+    config = function() require'nvim-tree'.setup {
+        actions = {
+            open_file = {
+                quit_on_open = true,
+                resize_window = true,
             }
-        } end
+        }
+    } end
     }
     -- Git
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
+ --   use 'tpope/vim-fugitive'
+ --   use 'tpope/vim-rhubarb'
     use 'junegunn/gv.vim'
     use {'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }}
     -- DAP (Debug Adapter Protocol)

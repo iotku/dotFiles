@@ -1,4 +1,6 @@
-vim.cmd [[let g:loaded_python3_provider = 0]] -- Disable python support as we're not using it, minor speedup
+vim.g.loaded_python3_provider = 0 -- Disable python support as we're not using it, minor speedup
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
 require('packages')
 require('keybindings')
 require('completion')
@@ -7,7 +9,6 @@ require('lang')
 require('lsp')
 require('debugging')
 require('gui-settings')
-require('iotku-evil-wl') -- Statusline (windline.nvim)
 require('autocmds')
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text
