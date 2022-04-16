@@ -25,7 +25,7 @@ require'nvim-treesitter.configs'.setup {
 }
 -- Context
 require'treesitter-context'.setup{
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
     throttle = true, -- Throttles plugin updates (may improve performance)
     max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
     patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
@@ -98,7 +98,7 @@ cfg = {
   shadow_blend = 36, -- if you using shadow as border use this set the opacity
   shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
   timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
-  toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+  toggle_key = '<M-x>' -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 }
 
 require'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key

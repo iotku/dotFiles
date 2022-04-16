@@ -18,10 +18,10 @@ M.java_config = {
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    '-jar', '/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-    '-configuration', '/usr/share/java/jdtls/config_linux', -- NOTE: config_linux directory must be writable!!!
+    '-jar', os.getenv("HOME")..'/.local/share/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+    '-configuration', os.getenv("HOME")..'/.local/share/jdtls/config_linux', -- NOTE: config_linux directory must be writable!!!
     '-data', os.getenv("HOME")..'/workspace'
-  },
+  }, -- ~/.local/share/jdtls
   on_attach = require('keybindings').on_attach,
 
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
