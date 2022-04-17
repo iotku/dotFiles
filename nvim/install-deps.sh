@@ -38,22 +38,36 @@ function main {
     fi
 
     # gopls
-    _header "Installing gopls"
+    _header "Installing Latest gopls"
     go install golang.org/x/tools/gopls@latest && installSuccess "gopls" || installFail "gopls"
+    ln -vs ~/go/bin/gopls ~/.local/bin 2>/dev/null || echo "[NOTE] Symlink already exists."
 
-    _header "Installing delve"
+    _header "Installing Latest delve"
     go install github.com/go-delve/delve/cmd/dlv@latest && installSuccess "delve" || installFail "delve"
+    ln -vs ~/go/bin/dlv ~/.local/bin 2>/dev/null || echo "[NOTE] Symlink already exists."
+
     # rust-analyzer
-    _header "Installing rust-analyzer"
+    _header "Installing Latest rust-analyzer"
     curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | 
         gunzip -c - > ~/.local/bin/rust-analyzer && chmod +x ~/.local/bin/rust-analyzer && installSuccess "rust-analyzer" || installFail "rust-analyzer"
 
     # jdtls
     _header "Installing jdtls"
-    mkdir -p ~/.local/share/jdtls
+    mkdir -p ~/.local/share/jdtls/
     curl https://download.eclipse.org/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz > ~/.local/share/jdtls/jdt-language-server-1.9.0-202203031534.tar.gz &&
     pushd ~/.local/share/jdtls/ 1>/dev/null && tar xf jdt-language-server-1.9.0-202203031534.tar.gz
-    rm jdt-language-server-1.9.0-202203031534.tar.gz && popd 1>/dev/null || installFail "jdtls"
+    rm jdt-language-server-1.9.0-202203031534.tar.gz && popd 1>/dev/null && installSuccess "jdtls" || 
+        installFail "jdtls"
+
+    # lua-language-server
+    _header "Installing lua-language-server"
+    mkdir -p ~/.local/share/lua-language-server/
+    curl -L https://github.com/sumneko/lua-language-server/releases/download/3.0.2/lua-language-server-3.0.2-linux-x64.tar.gz > ~/.local/share/lua-language-server/lua-language-server-3.0.2-linux-x64.tar.gz &&
+        pushd ~/.local/share/lua-language-server/ 1>/dev/null && 
+        tar xf lua-language-server-3.0.2-linux-x64.tar.gz && popd 1>/dev/null || 
+        installFail "lua-language-server"
+    ln -s ~/.local/share/lua-language-server/bin/lua-language-server ~/.local/bin 2>/dev/null || echo "[NOTE] Symlink already exists."
+
 }
 
 function depNotFound {
