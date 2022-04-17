@@ -8,7 +8,7 @@ function main {
         pacman -Q gcc 1> /dev/null
         if [[ $? == 0 ]]; then
             depFound "gcc"
-        else     
+        else
             echo "Installing gcc for treesitter"
             sudo pacman -S gcc
         fi
@@ -73,6 +73,7 @@ function fedoraInstallPkg {
     declare -A fedoraNames
     fedoraNames[java]="java-latest-openjdk"
     fedoraNames[rustc]="rust"
+    fedoraNames[go]="golang"
 
     if [[ fedoraNames["$1"] != "" ]]; then
         sudo dnf install "${fedoraNames[$1]}"
