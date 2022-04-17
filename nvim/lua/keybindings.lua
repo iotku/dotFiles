@@ -9,7 +9,9 @@ end
 -- Keybindings
 vim.g.mapleader = ' '                                   -- Leader
 mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
-mapper('n', '<C-p>', '<cmd>Telescope find_files<cr>')   -- Telescope
+mapper('n', '<leader>f', '<cmd>Telescope find_files<cr>')   -- Telescope
+mapper('n', '<C-p>', '<cmd>Telescope buffers<cr>')
+mapper('n', '<C-s>', '<cmd>Telescope lsp_document_symbols<cr>')
 mapper('n', '<leader>ss', '<cmd>set invspell<cr>')      -- Toggle Spell Check
 mapper('n', '<leader>l',  '<cmd>set invlist<cr>')       -- Toggle listchars
 mapper('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar

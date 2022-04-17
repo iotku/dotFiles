@@ -10,6 +10,7 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     -- Appearance/Bars
+    use 'tweekmonster/startuptime.vim'
     use 'folke/tokyonight.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/nvim-autopairs'
