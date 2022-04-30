@@ -57,7 +57,7 @@ alias nvg="neovide --nofork"
 alias hx="helix"
 alias sml="smlnj"
 alias ls="ls --color"
-alias osul="COMPlus_GCGen0MaxBudget=600000 sh.ppy.osu"
+alias osul="COMPlus_GCGen0MaxBudget=600000 ~/Applications/osu.AppImage"
 PATH=${HOME}/bin:${HOME}/go/bin:${HOME}/.local/bin:$PATH
 # Ctrl + Arrows back/forward
 bindkey "^[[1;5C" forward-word

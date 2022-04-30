@@ -28,7 +28,7 @@ function main {
         checkDep "$v"
     done
 
-    which rustup 1>/dev/null && _header "Syncing Rustup" && rustup update || echo "[NOTE] rustup not installed. Assuming system rust."
+    which rustup 1>/dev/null && _header "Syncing Rustup" && rustup update stable || echo "[NOTE] rustup not installed. Assuming system rust."
     echo -e "\n[PASS] Runtimes are installed.\n"
 
     if [ ! -d "${HOME}/.local/bin" ]; then
@@ -38,36 +38,39 @@ function main {
     fi
 
     # gopls
-    _header "Installing Latest gopls"
-    go install golang.org/x/tools/gopls@latest && installSuccess "gopls" || installFail "gopls"
-    ln -vs ~/go/bin/gopls ~/.local/bin 2>/dev/null || echo "[NOTE] Symlink already exists."
+    function _goInstall {
+        echo "[START]: go install $1"
+        go install "$1" && installSuccess "$1" || installFail "$1"
+    }
+    _header "Installing go tools"
+    _goInstall "golang.org/x/tools/...@latest"
+    _goInstall "github.com/koron/iferr@latest"
+    _goInstall "github.com/josharian/impl@v1.1.0"
+    _goInstall "golang.org/x/tools/gopls@latest"
+    _goInstall "mvdan.cc/gofumpt@latest"
+    _goInstall "github.com/fatih/gomodifytags@v1.16.0"
+    _goInstall "github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2"
+    _goInstall "github.com/segmentio/golines@latest"
+    _goInstall "github.com/davidrjenni/reftools/cmd/fixplurals@latest"
+    _goInstall "github.com/davidrjenni/reftools/cmd/fillswitch@latest"
+    _goInstall "github.com/davidrjenni/reftools/cmd/fillstruct@latest"
+    _goInstall "github.com/onsi/ginkgo/v2/ginkgo@latest"
+    _goInstall "github.com/cweill/gotests/gotests@latest"
+    _goInstall "github.com/kyoh86/richgo@latest"
 
-    _header "Installing Latest delve"
+    _header "Installing delve"
     go install github.com/go-delve/delve/cmd/dlv@latest && installSuccess "delve" || installFail "delve"
-    ln -vs ~/go/bin/dlv ~/.local/bin 2>/dev/null || echo "[NOTE] Symlink already exists."
-
     # rust-analyzer
-    _header "Installing Latest rust-analyzer"
+    _header "Installing rust-analyzer"
     curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | 
         gunzip -c - > ~/.local/bin/rust-analyzer && chmod +x ~/.local/bin/rust-analyzer && installSuccess "rust-analyzer" || installFail "rust-analyzer"
 
     # jdtls
     _header "Installing jdtls"
-    mkdir -p ~/.local/share/jdtls/
+    mkdir -p ~/.local/share/jdtls
     curl https://download.eclipse.org/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz > ~/.local/share/jdtls/jdt-language-server-1.9.0-202203031534.tar.gz &&
     pushd ~/.local/share/jdtls/ 1>/dev/null && tar xf jdt-language-server-1.9.0-202203031534.tar.gz
-    rm jdt-language-server-1.9.0-202203031534.tar.gz && popd 1>/dev/null && installSuccess "jdtls" || 
-        installFail "jdtls"
-
-    # lua-language-server
-    _header "Installing lua-language-server"
-    mkdir -p ~/.local/share/lua-language-server/
-    curl -L https://github.com/sumneko/lua-language-server/releases/download/3.0.2/lua-language-server-3.0.2-linux-x64.tar.gz > ~/.local/share/lua-language-server/lua-language-server-3.0.2-linux-x64.tar.gz &&
-        pushd ~/.local/share/lua-language-server/ 1>/dev/null && 
-        tar xf lua-language-server-3.0.2-linux-x64.tar.gz && popd 1>/dev/null || 
-        installFail "lua-language-server"
-    ln -s ~/.local/share/lua-language-server/bin/lua-language-server ~/.local/bin 2>/dev/null || echo "[NOTE] Symlink already exists."
-
+    rm jdt-language-server-1.9.0-202203031534.tar.gz && popd 1>/dev/null || installFail "jdtls"
 }
 
 function depNotFound {
