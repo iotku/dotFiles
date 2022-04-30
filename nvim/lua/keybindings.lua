@@ -19,7 +19,6 @@ mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle P
 mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
 mapper('n', '<leader>,', 'A,<esc>')                     -- add comma to end of the line
 mapper('n', '<CR>', 'o<esc>cc')
-mapper('n', '<leader>c', '<cmd>TSContextToggle<cr>')    -- Toggle treesitter-context
 ---- Tab/shiftTab indent/unindent
 mapper('n', '<Tab>', '>>_')
 mapper('n', '<S-Tab>', '<<_')

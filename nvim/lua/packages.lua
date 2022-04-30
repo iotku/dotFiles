@@ -19,7 +19,6 @@ require('packer').startup(function()
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}
-    use 'romgrk/nvim-treesitter-context'
     -- Completion
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lua'
@@ -39,7 +38,7 @@ require('packer').startup(function()
     -- Notetaking / Wiki
     use 'lervag/vimtex'
     --use 'vimwiki/vimwiki'
-    use { 'kyazdani42/nvim-tree.lua', 
+    use { 'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', },
     config = function() require'nvim-tree'.setup {
         actions = {
@@ -66,8 +65,8 @@ require('packer').startup(function()
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
     use {'nvim-telescope/telescope-ui-select.nvim' }
     use {"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons",
-        config = function() 
-            require("trouble").setup {} 
+        config = function()
+            require("trouble").setup {}
         end
     }
  --   use 'github/copilot.vim'   -- nice meme

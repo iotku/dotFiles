@@ -9,7 +9,7 @@ for _, lsp in ipairs(servers) do
     on_attach = require('keybindings').on_attach,
     capabilities = capabilities,
   }
-end
+  end
 
 require'lspconfig'.sumneko_lua.setup {
     on_attach = require('keybindings').on_attach,
@@ -24,7 +24,7 @@ require'lspconfig'.sumneko_lua.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = {'vim', 'use'},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
