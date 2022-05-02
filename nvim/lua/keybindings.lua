@@ -1,38 +1,30 @@
 M = {}
-local mapper = function(mode, key, result) -- Helpful keybinding function
-    vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
-end
-
-local local_mapper = function(buffer, mode, key, result) -- Helpful keybinding function
-    vim.api.nvim_buf_set_keymap(buffer, mode, key, result, {noremap = true, silent = true})
-end
 -- Keybindings
-vim.g.mapleader = ' '                                   -- Leader
-mapper('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
-mapper('n', '<leader>f', '<cmd>Telescope find_files<cr>')   -- Telescope
-mapper('n', '<C-p>', '<cmd>Telescope buffers<cr>')
-mapper('n', '<C-s>', '<cmd>Telescope lsp_document_symbols<cr>')
-mapper('n', '<leader>ss', '<cmd>set invspell<cr>')      -- Toggle Spell Check
-mapper('n', '<leader>l',  '<cmd>set invlist<cr>')       -- Toggle listchars
-mapper('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar
-mapper('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
-mapper('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
-mapper('n', '<leader>,', 'A,<esc>')                     -- add comma to end of the line
-mapper('n', '<CR>', 'o<esc>cc')
+vim.keymap.set('n', '<esc>', '<cmd>noh<cr><esc>')               -- Clear Highlighting
+vim.keymap.set('n', '<leader>f', '<cmd>Telescope find_files<cr>')   -- Telescope
+vim.keymap.set('n', '<C-p>', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<C-s>', '<cmd>Telescope lsp_document_symbols<cr>')
+vim.keymap.set('n', '<leader>ss', '<cmd>set invspell<cr>')      -- Toggle Spell Check
+vim.keymap.set('n', '<leader>l',  '<cmd>set invlist<cr>')       -- Toggle listchars
+vim.keymap.set('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar
+vim.keymap.set('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
+vim.keymap.set('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
+vim.keymap.set('n', '<leader>,', 'A,<esc>')                     -- add comma to end of the line
+vim.keymap.set('n', '<CR>', 'o<esc>cc')
 ---- Tab/shiftTab indent/unindent
-mapper('n', '<Tab>', '>>_')
-mapper('n', '<S-Tab>', '<<_')
-mapper('v', '<Tab>', '>gv')
-mapper('v', '<S-Tab>', '<gv')
+vim.keymap.set('n', '<Tab>', '>>_')
+vim.keymap.set('n', '<S-Tab>', '<<_')
+vim.keymap.set('v', '<Tab>', '>gv')
+vim.keymap.set('v', '<S-Tab>', '<gv')
 ---- Terminal
-mapper('n', '<leader>t', '<cmd>sp<CR><cmd>te<CR>a') -- Open terminal in horizontal split
-mapper('t', '<Esc>', '<C-Bslash><C-n>')             -- Go back to normal mode
+vim.keymap.set('n', '<leader>t', '<cmd>sp<CR><cmd>te<CR>a') -- Open terminal in horizontal split
+vim.keymap.set('t', '<Esc>', '<C-Bslash><C-n>')             -- Go back to normal mode
 -- DAP
-mapper('n', '<F5>', '<cmd>lua require"dap".continue()<CR>')
-mapper('n', '<F10>', '<cmd>lua require"dap".stop_over()<CR>')
-mapper('n', '<F11>', '<cmd>lua require"dap".step_into()<CR>')
-mapper('n', '<F12>', '<cmd>lua require"dap".step_out()<CR>')
-mapper('n', '<leader>b', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
+vim.keymap.set('n', '<F5>', '<cmd>lua require"dap".continue()<CR>')
+vim.keymap.set('n', '<F10>', '<cmd>lua require"dap".stop_over()<CR>')
+vim.keymap.set('n', '<F11>', '<cmd>lua require"dap".step_into()<CR>')
+vim.keymap.set('n', '<F12>', '<cmd>lua require"dap".step_out()<CR>')
+vim.keymap.set('n', '<leader>b', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
 
 local opts = { noremap=true, silent=true }
 function M.on_attach(client, bufnr)

@@ -10,12 +10,12 @@ end
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     -- Appearance/Bars
-    use 'tweekmonster/startuptime.vim'
     use 'folke/tokyonight.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/nvim-autopairs'
     use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
     use 'norcalli/nvim-colorizer.lua'
+    use 'ntpeters/vim-better-whitespace'
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}
@@ -36,7 +36,7 @@ require('packer').startup(function()
     use 'mfussenegger/nvim-jdtls'
     use "SmiteshP/nvim-gps"
     -- Notetaking / Wiki
-    use 'lervag/vimtex'
+ --   use 'lervag/vimtex'
     --use 'vimwiki/vimwiki'
     use { 'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', },
