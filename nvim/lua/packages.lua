@@ -11,11 +11,17 @@ require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Packception
     -- Appearance/Bars
     use 'folke/tokyonight.nvim'
+    use 'xiyaowong/nvim-transparent'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/nvim-autopairs'
     use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
     use 'norcalli/nvim-colorizer.lua'
     use 'ntpeters/vim-better-whitespace'
+    use {"folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = function()
+        require("todo-comments").setup {} end}
+    use { "folke/which-key.nvim", config = function() require("which-key").setup{} end }
+    use 'kosayoda/nvim-lightbulb'
+    use {'j-hui/fidget.nvim', config = function() require("fidget").setup{} end}
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use {'lewis6991/spellsitter.nvim',  config = function() require('spellsitter').setup() end}
@@ -26,6 +32,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp'     -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     use 'L3MON4D3/LuaSnip'         -- Snippets plugin
     -- Language/LSP Support
     use 'neovim/nvim-lspconfig'
@@ -69,6 +76,6 @@ require('packer').startup(function()
             require("trouble").setup {}
         end
     }
- --   use 'github/copilot.vim'   -- nice meme
+    -- use 'github/copilot.vim'   -- nice meme
 end)
 

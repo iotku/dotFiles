@@ -11,11 +11,11 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end } },
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {'branch', 'diff', 'diagnostics' },
     lualine_c = {'filename', { gps.get_location, cond = gps.is_available }},
-    lualine_x = {{'fileformat', symbols = { 
-	    unix = 'unix', 
-        dos = 'dos', 
+    lualine_x = {{'fileformat', symbols = {
+	    unix = 'unix',
+        dos = 'dos',
         mac = 'mac',}, 'filetype'}, 'encoding'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -38,3 +38,19 @@ require('lualine').setup {
   },
   extensions = {}
 }
+
+require("transparent").setup({
+  enable = true, -- boolean: enable transparent
+  extra_groups = { -- table/string: additional groups that should be cleared
+    -- In particular, when you set it to 'all', that means all available groups
+
+    -- example of akinsho/nvim-bufferline.lua
+    "BufferLineTabClose",
+    "BufferlineBufferSelected",
+    "BufferLineFill",
+    "BufferLineBackground",
+    "BufferLineSeparator",
+    "BufferLineIndicatorSelected",
+  },
+  exclude = {}, -- table: groups you don't want to clear
+})

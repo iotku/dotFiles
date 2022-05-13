@@ -46,6 +46,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp'  },
+    { name = 'cmp_tabnine' },
     { name = 'luasnip'   },
     { name = 'nvim_lua'  },
     { name = 'buffer', keyword_length = 5 },

@@ -48,7 +48,10 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr   = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 1
+vim.opt.timeoutlen = 500
 -- vimtex
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_mode = 0
 vim.opt.conceallevel = 2
+
+vim.g.transparent_enabled = false

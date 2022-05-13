@@ -1,14 +1,14 @@
 M = {} -- Return table
 -- Rust Tools for enhanced Rust LSP
 require('rust-tools').setup({})
--- Go additional functionality 
+-- Go additional functionality
 require('go').setup{}
 
 -- jdtls setup --> see autocmds.lua
 M.java_config = {
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
-    'java', 
+    'java',
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
