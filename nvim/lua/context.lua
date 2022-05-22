@@ -99,3 +99,18 @@ require('telescope').setup {
 }
 require('telescope').load_extension('fzf')
 require("telescope").load_extension("ui-select") -- implement vim.ui.select with telescope-ui-select.nvim
+
+local wilder = require('wilder')
+wilder.setup({modes = {':', '/', '?'},})
+-- wilder.set_option('renderer', wilder.popupmenu_renderer(
+--   wilder.popupmenu_border_theme({
+--     highlighter = wilder.basic_highlighter(),
+--     min_width = '100%', -- minimum height of the popupmenu, can also be a number
+--     min_height = '0%', -- to set a fixed height, set max_height to the same value
+--   })
+-- ))
+wilder.set_option('renderer', wilder.popupmenu_renderer({
+  highlighter = wilder.basic_highlighter(),
+  left = {' ', wilder.popupmenu_devicons()},
+  right = {' ', wilder.popupmenu_scrollbar()},
+}))

@@ -13,10 +13,7 @@ require('lualine').setup {
     lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end } },
     lualine_b = {'branch', 'diff', 'diagnostics' },
     lualine_c = {'filename', { gps.get_location, cond = gps.is_available }},
-    lualine_x = {{'fileformat', symbols = {
-	    unix = 'unix',
-        dos = 'dos',
-        mac = 'mac',}, 'filetype'}, 'encoding'},
+    lualine_x = {{'fileformat', symbols = {unix = 'unix', dos = 'dos',  mac = 'mac'}}, 'encoding', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
@@ -30,7 +27,7 @@ require('lualine').setup {
   },
   tabline = {
     lualine_a = {'hostname'},
-    lualine_b = {{'buffers', mode = 3}},
+    lualine_b = {{'buffers', mode = 4}},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
