@@ -29,7 +29,7 @@ interval=3
 
 [dunst]
 command=~/.config/i3blocks/scripts/dunst.i3block
-label= 
+label=
 interval=3
 
 [volume]

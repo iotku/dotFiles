@@ -84,6 +84,7 @@ function depNotFound {
             ;;
     esac
     which "$1" 1>/dev/null || echo -e "\033[0;31m[FATAL] Cannot find $1: ensure $1 is installed\033[0m"
+    exit
 }
 
 function fedoraInstallPkg {
@@ -117,6 +118,7 @@ function depFound {
 
 function installFail {
     echo -e "\033[0;31mFailed to install $1"
+    exit
 }
 
 function checkDep {

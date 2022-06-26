@@ -39,7 +39,7 @@ bindsym XF86AudioPlay exec --no-startup-id mpc -h ~/.config/mpd/socket toggle &&
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty --single-instance
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -245,10 +245,10 @@ assign [class="Thunderbird"] $ws9
 exec dunst
 
 # Start ibus
-exec ibus-daemon -drxR
+#exec ibus-daemon -drxR
 
 # Easy effects for pipewire
-#exec --no-startup-id easyeffects --gapplication-service
+exec --no-startup-id easyeffects --gapplication-service
 
 # Save my eyes
 exec --no-startup-id redshift-gtk -b 0.8:0.7 -t 4200k:3500k
@@ -257,7 +257,7 @@ exec --no-startup-id redshift-gtk -b 0.8:0.7 -t 4200k:3500k
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
 assign [class="Element"] $ws8
-exec ~/bin/wait-for-network.sh telegram-desktop -startintray 
+exec telegram-desktop -startintray 
 exec ~/bin/wait-for-network.sh discord --start-minimized
 exec ~/bin/wait-for-network.sh discord-ptb --start-minimized
 exec ~/bin/wait-for-network.sh element-desktop --hidden
@@ -270,9 +270,12 @@ exec firefox
 # Jellyfin-mpv-shim
 # exec ~/bin/wait-for-network.sh /var/lib/flatpak/exports/bin/com.github.iwalton3.jellyfin-mpv-shim
 # SVPManager for horrible interpolated videos
-exec SVPManager -t
+#exec SVPManager -t
 exec feh --bg-fill ~/Pictures/wall/wallmain.png 
-exec xcompmgr
+exec picom
+exec pipewire
+exec pipewire-pulse
+exec --no-startup-id /usr/libexec/gsd-xsettings
 # Quick launch bindings
 # App finder
 bindsym $mod+Mod1+slash exec xfce4-appfinder
