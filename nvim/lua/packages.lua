@@ -33,7 +33,6 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp'     -- LSP source for nvim-cmp
     use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     use 'L3MON4D3/LuaSnip'         -- Snippets plugin
     -- Language/LSP Support
     use 'neovim/nvim-lspconfig'
