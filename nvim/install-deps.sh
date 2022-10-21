@@ -65,11 +65,18 @@ function main {
     curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | 
         gunzip -c - > ~/.local/bin/rust-analyzer && chmod +x ~/.local/bin/rust-analyzer && installSuccess "rust-analyzer" || installFail "rust-analyzer"
 
+    _header "Installing lua-language-server"
+    mkdir -p ~/.local/share/lua-language-server
+    curl -L "https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz" > ~/.local/share/lua-language-server/lua-language-server.tar.gz &&
+        pushd ~/.local/share/lua-language-server 1>/dev/null && tar xf lua-language-server.tar.gz &&
+        ln -s "${HOME}/.local/share/lua-language-server/bin/lua-language-server" "${HOME}/.local/bin" &&
+    rm lua-language-server.tar.gz && popd 1>/dev/null && installSuccess "lua-language-server" || installFail "lua-language-server"
+
     # jdtls
     _header "Installing jdtls"
     mkdir -p ~/.local/share/jdtls
     curl https://download.eclipse.org/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz > ~/.local/share/jdtls/jdt-language-server-1.9.0-202203031534.tar.gz &&
-    pushd ~/.local/share/jdtls/ 1>/dev/null && tar xf jdt-language-server-1.9.0-202203031534.tar.gz
+    pushd ~/.local/share/jdtls/ 1>/dev/null && tar xf jdt-language-server-1.9.0-202203031534.tar.gz &&
     rm jdt-language-server-1.9.0-202203031534.tar.gz && popd 1>/dev/null || installFail "jdtls"
 }
 
