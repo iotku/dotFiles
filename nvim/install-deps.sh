@@ -65,19 +65,21 @@ function main {
     curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | 
         gunzip -c - > ~/.local/bin/rust-analyzer && chmod +x ~/.local/bin/rust-analyzer && installSuccess "rust-analyzer" || installFail "rust-analyzer"
 
-    _header "Installing lua-language-server"
-    mkdir -p ~/.local/share/lua-language-server
-    curl -L "https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz" > ~/.local/share/lua-language-server/lua-language-server.tar.gz &&
-        pushd ~/.local/share/lua-language-server 1>/dev/null && tar xf lua-language-server.tar.gz &&
-        ln -s "${HOME}/.local/share/lua-language-server/bin/lua-language-server" "${HOME}/.local/bin" &&
-    rm lua-language-server.tar.gz && popd 1>/dev/null && installSuccess "lua-language-server" || installFail "lua-language-server"
+# TODO: lua_ls
+#    _header "Installing lua-language-server"
+#    mkdir -p ~/.local/share/lua-language-server
+#    curl -L "https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz" > ~/.local/share/lua-language-server/lua-language-server.tar.gz &&
+#        pushd ~/.local/share/lua-language-server 1>/dev/null && tar xf lua-language-server.tar.gz &&
+#        ln -s "${HOME}/.local/share/lua-language-server/bin/lua-language-server" "${HOME}/.local/bin" &&
+#    rm lua-language-server.tar.gz && popd 1>/dev/null && installSuccess "lua-language-server" || installFail "lua-language-server"
 
     # jdtls
     _header "Installing jdtls"
     mkdir -p ~/.local/share/jdtls
-    curl https://download.eclipse.org/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz > ~/.local/share/jdtls/jdt-language-server-1.9.0-202203031534.tar.gz &&
-    pushd ~/.local/share/jdtls/ 1>/dev/null && tar xf jdt-language-server-1.9.0-202203031534.tar.gz &&
-    rm jdt-language-server-1.9.0-202203031534.tar.gz && popd 1>/dev/null || installFail "jdtls"
+    JDTLS="jdt-language-server-1.21.0-202303161431.tar.gz"
+    curl "https://download.eclipse.org/jdtls/milestones/1.21.0/$JDTLS" > ~/.local/share/jdtls/$JDTLS &&
+    pushd ~/.local/share/jdtls/ 1>/dev/null && tar xf "$JDTLS" &&
+    rm "$JDTLS" && popd 1>/dev/null || installFail "jdtls"
 }
 
 function depNotFound {
@@ -90,8 +92,10 @@ function depNotFound {
             fedoraInstallPkg "$1"
             ;;
     esac
-    which "$1" 1>/dev/null || echo -e "\033[0;31m[FATAL] Cannot find $1: ensure $1 is installed\033[0m"
+    if ! command -v $1 &> /dev/null; then
+	echo -e "\033[0;31m[FATAL] Cannot find $1: ensure $1 is installed\033[0m"
     exit
+    fi
 }
 
 function fedoraInstallPkg {
@@ -102,7 +106,7 @@ function fedoraInstallPkg {
 
     if [[ fedoraNames["$1"] != "" ]]; then
         sudo dnf install "${fedoraNames[$1]}"
-    else 
+    else
         sudo dnf install "$1"
     fi
 }
