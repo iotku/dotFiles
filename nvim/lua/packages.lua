@@ -14,7 +14,9 @@ require('packer').startup(function()
     use 'xiyaowong/nvim-transparent'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'windwp/nvim-autopairs'
-    use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
+    use 'nvim-tree/nvim-tree.lua'
+    use 'nvim-tree/nvim-web-devicons'
+    use {'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true }}
     use 'norcalli/nvim-colorizer.lua'
     use 'ntpeters/vim-better-whitespace'
     use {"folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = function()
@@ -45,17 +47,6 @@ require('packer').startup(function()
     -- Notetaking / Wiki
  --   use 'lervag/vimtex'
     --use 'vimwiki/vimwiki'
-    use { 'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', },
-    config = function() require'nvim-tree'.setup {
-        actions = {
-            open_file = {
-                quit_on_open = true,
-                resize_window = true,
-            }
-        }
-    } end
-    }
     -- Git
  --   use 'tpope/vim-fugitive'
  --   use 'tpope/vim-rhubarb'

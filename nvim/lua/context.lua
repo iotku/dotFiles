@@ -10,6 +10,9 @@ require("indent_blankline").setup {
     show_current_context_start = true,
 }
 
+-- nvim-tree
+require("nvim-tree").setup()
+
 -- treesitter
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all", -- "all" or a list of languages
