@@ -2,7 +2,6 @@
 vim.opt.termguicolors = true    -- True color support
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme tokyonight]])
-require("nvim-gps").setup()
 require("colorizer").setup()
 require("indent_blankline").setup {
     space_char_blankline = " ",

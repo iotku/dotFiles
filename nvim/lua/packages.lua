@@ -43,7 +43,7 @@ require('packer').startup(function()
     use 'ray-x/go.nvim'
     use 'simrat39/rust-tools.nvim'
     use 'mfussenegger/nvim-jdtls'
-    use "SmiteshP/nvim-gps"
+    use {"SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig"}
     -- Notetaking / Wiki
  --   use 'lervag/vimtex'
     --use 'vimwiki/vimwiki'
