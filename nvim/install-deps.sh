@@ -2,28 +2,8 @@
 set -eo pipefail
 DISTRO=$(cat /etc/os-release | grep "ID=" | head -n1)
 function main {
-    _header "Checking/Installing treesitter dependencies"
-
-    if [[ "$DISTRO" == "ID=arch" ]]; then
-        pacman -Q gcc 1> /dev/null
-        if [[ $? == 0 ]]; then
-            depFound "gcc"
-        else
-            echo "Installing gcc for treesitter"
-            sudo pacman -S gcc
-        fi
-    elif [[ "$DISTRO" == "ID=fedora" ]]; then
-        if [[ "$(rpm -qa gcc-c++)" != "" ]] && [[ "$(rpm -qa libstdc++-static)" != "" ]]; then
-            depFound "gcc"
-        else
-            echo "Installing gcc and libstdc++-static for treesitter" &&
-            sudo dnf install gcc-c++ libstdc++-static
-        fi
-    fi
-
-
     _header "Checking Dependencies"
-    DEPS=("curl" "tar" "go" "rustc" "java" "lua")
+    DEPS=("gcc" "curl" "tar" "go" "rustc" "java" "lua")
     for v in "${DEPS[@]}"; do
         checkDep "$v"
     done

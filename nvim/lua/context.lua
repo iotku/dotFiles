@@ -3,11 +3,7 @@ vim.opt.termguicolors = true    -- True color support
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme tokyonight]])
 require("colorizer").setup()
-require("indent_blankline").setup {
-    space_char_blankline = " ",
-    show_current_context = true,
-    show_current_context_start = true,
-}
+require("ibl").setup()
 
 -- nvim-tree
 require("nvim-tree").setup()
