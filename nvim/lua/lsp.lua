@@ -5,7 +5,7 @@ local navic = require("nvim-navic")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local servers = { 'gopls', 'rust_analyzer', 'clangd', 'denols' }
+local servers = { 'gopls', 'rust_analyzer', 'clangd', 'denols' , 'erlangls'}
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = function(client, bufnr)
