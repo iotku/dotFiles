@@ -122,3 +122,10 @@ export MPD_HOST="$HOME/.config/mpd/socket"
 if [[ "$TERM" == "alacritty" || "$TERM" == "xterm-kitty" ]]; then
     alias ssh="TERM=xterm-256color ssh"
 fi
+
+# For pyenv
+#export PYENV_ROOT="$HOME/.pyenv"
+#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+
