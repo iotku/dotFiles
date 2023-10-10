@@ -14,7 +14,7 @@ require('lualine').setup {
   sections = {
     lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end } },
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename', 'navic'},
+    lualine_c = {'filename', 'navic', require('lsp-progress').progress},
     lualine_x = {{'fileformat', symbols = {unix = 'unix', dos = 'dos',  mac = 'mac'}}, 'encoding', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}

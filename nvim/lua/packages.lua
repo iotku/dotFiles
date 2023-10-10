@@ -32,7 +32,11 @@ require("lazy").setup({
     "windwp/nvim-autopairs",
     "nvim-tree/nvim-tree.lua",
     "nvim-tree/nvim-web-devicons",
-    "nvim-lualine/lualine.nvim",
+    {"nvim-lualine/lualine.nvim",
+          dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'linrongbin16/lsp-progress.nvim',
+        }},
     "gelguy/wilder.nvim", -- Does this actually init correctly without the config block?
 
     -- Completion
@@ -53,10 +57,11 @@ require("lazy").setup({
     "mfussenegger/nvim-jdtls",
     "SmiteshP/nvim-navic",
     "kosayoda/nvim-lightbulb",
-    {"j-hui/fidget.nvim",
-        tag = "legacy",
-        event = "LspAttach",
-        opts = {}},
+    {"linrongbin16/lsp-progress.nvim",
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      config = function()
+        require('lsp-progress').setup()
+      end},
     "folke/neodev.nvim",
     "folke/todo-comments.nvim",
     "folke/trouble.nvim",
