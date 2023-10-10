@@ -23,7 +23,7 @@ require('packer').startup(function()
         require("todo-comments").setup {} end}
     use { "folke/which-key.nvim", config = function() require("which-key").setup{} end }
     use 'kosayoda/nvim-lightbulb'
-    use {'j-hui/fidget.nvim', config = function() require("fidget").setup{} end}
+    use {'j-hui/fidget.nvim', tag='legacy', config = function() require("fidget").setup{} end}
     use { 'gelguy/wilder.nvim', config = function()  end, }
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
