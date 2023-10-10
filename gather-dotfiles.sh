@@ -6,7 +6,7 @@ cp -rv "${HOME}/.config/nvim/lua/"* "./nvim/lua/"
 cp "./templates/install-nvim.sh" "./nvim/install-nvim.sh"
 
 # zsh
-cp -v "${HOME}/.zshrc" "./zsh/zshrc"
+#cp -v "${HOME}/.zshrc" "./zsh/zshrc"
 
 # i3
 cp -v "${HOME}/.config/i3/config" "./i3/config"
