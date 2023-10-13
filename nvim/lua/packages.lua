@@ -75,7 +75,7 @@ require("lazy").setup({
     -- TS
     "nvim-treesitter/nvim-treesitter",
     "norcalli/nvim-colorizer.lua",
-    "nvim-lua/plenary.nvim", -- required by telescope
+    "nvim-lua/plenary.nvim", 
     -- git
     "lewis6991/gitsigns.nvim",
     "tpope/vim-fugitive",
@@ -83,10 +83,10 @@ require("lazy").setup({
     "junegunn/gv.vim",
 
     -- Fuzzy Finding
-    "nvim-telescope/telescope.nvim",
+    { "nvim-telescope/telescope.nvim", tag = '0.1.3', dependencies = { 'nvim-lua/plenary.nvim' }},
     "nvim-telescope/telescope-fzf-native.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     -- Notetaking / Wiki
-    "lervag/vimtex",
-    "vimwiki/vimwiki",
+    --"lervag/vimtex",
+    --"vimwiki/vimwiki",
 })
