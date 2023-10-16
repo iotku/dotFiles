@@ -63,7 +63,10 @@ require("lazy").setup({
         require('lsp-progress').setup()
       end},
     "folke/neodev.nvim",
-    "folke/todo-comments.nvim",
+
+    {"folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {}},
     "folke/trouble.nvim",
 
     -- DAP (Debug Adapter Protocol)
