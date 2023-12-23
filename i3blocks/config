@@ -1,6 +1,13 @@
 #[moc]
 #command=~/.config/i3blocks/scripts/moc.i3block
 #interval=3
+#
+
+[window-title]
+label=[]= 
+command=~/.config/i3blocks/scripts/window-title.i3block
+interval=persist
+
 [mpd]
 command=~/.config/i3blocks/scripts/mpd.i3block
 label=
