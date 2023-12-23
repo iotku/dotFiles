@@ -246,6 +246,7 @@ exec dunst
 
 # Desktop wallpaper and compositor
 exec feh --bg-fill ~/Pictures/wall/wallhaven-1pg7wg.jpg
+exec /usr/libexec/gsd-xsettings
 exec picom
 
 # Start ibus
@@ -272,7 +273,7 @@ for_window [class="firefox"] layout tabbed
 # These windows have their own custom titlebar areas
 for_window [class="firefox"] border pixel 1
 for_window [class="jetbrains-idea"] border pixel 1
-
+for_window [class="Alacritty"] border pixel 1
 
 # Quick launch bindings
 bindsym $mod+Mod1+f exec flatpak run org.mozilla.firefox
