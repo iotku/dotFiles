@@ -45,7 +45,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Dmenu, only gets .desktop entries
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # change focus
 bindsym $mod+h focus left
@@ -184,26 +184,26 @@ bar {
     output DP-4
     tray_padding 0
     i3bar_command i3bar --transparency
-    font pango:Terminus, Font Awesome 5 Free 12px
+    font pango:Terminus, Font Awesome 6 Free 12px
         status_command i3blocks
         colors {
-                               #Border   #backgnd  #txt    
-            focused_workspace  #00000088 #00000088 #ffffff 
-            inactive_workspace #00000000 #00000000 #ffffffBB 
-            background #1D1F2100
-            statusline #ffffff80
+                               #Border   #backgnd  #txt
+            focused_workspace  #111111ff #111111ff #ffffff
+            inactive_workspace #00000000 #00000000 #ffffffBB
+            background #00000070
+            statusline #ffffffff
         }
 }
 
 bar {
     output DP-2
-    font pango:Terminus, Font Awesome 5 Free 12px
+    font pango:Terminus, Font Awesome 6 Free 12px
     i3bar_command i3bar --transparency
     status_command i3blocks -c ~/.config/i3blocks/minimal-config
         colors {
-                               #Border   #backgnd  #txt    
-            focused_workspace  #00000088 #00000088 #ffffff 
-            inactive_workspace #00000000 #00000000 #ffffffBB 
+                               #Border   #backgnd  #txt
+            focused_workspace  #00000088 #00000088 #ffffff
+            inactive_workspace #00000000 #00000000 #ffffffBB
             background #1D1F2100
             statusline #ffffff80
         }
@@ -211,14 +211,14 @@ bar {
 
 # Set Color
 # class                 border    backgr.   text    indicator child_border
-client.focused          #ffffff   #00000066 #ffffff #ffffffAA #ffffffAA
+client.focused          #ffffff70 #00000066 #ffffff #ffffffAA #ffffff70
 client.focused_inactive #000000   #000000aa #B3B3B3 #000000   #000000
 client.unfocused        #000000BB #000000BB #B3B3B3 #000000BB #000000BB
 client.urgent           #2f343a   #900000   #ffffff #900000   #900000
 client.placeholder      #000000   #00000090 #ffffff #000000   #000000
 client.background       #F00
 
-set $Locker i3lock -c 000000 -f 
+set $Locker i3lock -c 000000 -f
 
 # Use $mod+pause to launch logout/shutdown menu
 set $mode_system System (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -227,7 +227,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend,  mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -244,11 +244,15 @@ assign [class="Thunderbird"] $ws9
 # Dunst notifications
 exec dunst
 
+# Desktop wallpaper and compositor
+exec feh --bg-fill ~/Pictures/wall/wallhaven-1pg7wg.jpg
+exec picom
+
 # Start ibus
-#exec ibus-daemon -drxR
+exec ibus-daemon -drxR
 
 # Easy effects for pipewire
-exec --no-startup-id easyeffects --gapplication-service
+#exec --no-startup-id easyeffects --gapplication-service
 
 # Save my eyes
 exec --no-startup-id redshift-gtk -b 0.8:0.7 -t 4200k:3500k
@@ -257,31 +261,25 @@ exec --no-startup-id redshift-gtk -b 0.8:0.7 -t 4200k:3500k
 assign [class="TelegramDesktop"] $ws8
 assign [class="discord"] $ws8
 assign [class="Element"] $ws8
-exec telegram-desktop -startintray 
-exec ~/bin/wait-for-network.sh discord --start-minimized
-exec ~/bin/wait-for-network.sh discord-ptb --start-minimized
-exec ~/bin/wait-for-network.sh element-desktop --hidden
+exec flatpak run org.telegram.desktop -startintray
+exec flatpak run com.discordapp.Discord --start-minimized
 
 # Move Dialog (typically firefox download dialog) to center of current workspace (regardless of firefox assignment)
 for_window [window_role="Dialog"] floating enable, move workspace current, move position center
 assign [class="firefox"] $ws1
 for_window [class="firefox"] layout tabbed
-exec firefox
-# Jellyfin-mpv-shim
-# exec ~/bin/wait-for-network.sh /var/lib/flatpak/exports/bin/com.github.iwalton3.jellyfin-mpv-shim
-# SVPManager for horrible interpolated videos
-#exec SVPManager -t
-exec feh --bg-fill ~/Pictures/wall/wallmain.png 
-exec picom
-exec pipewire
-exec pipewire-pulse
-exec --no-startup-id /usr/libexec/gsd-xsettings
+
+# These windows have their own custom titlebar areas
+for_window [class="firefox"] border pixel 1
+for_window [class="jetbrains-idea"] border pixel 1
+
+
 # Quick launch bindings
-# App finder
-bindsym $mod+Mod1+slash exec xfce4-appfinder
-bindsym $mod+Mod1+s exec subl
-bindsym $mod+Mod1+f exec firefox
-bindsym $mod+Mod1+c exec chromium
-# Screenshots, requires maim/xdotool
+bindsym $mod+Mod1+f exec flatpak run org.mozilla.firefox
+
+# Screenshots, requires maim/xdotool/xclip
 bindsym $mod+Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+Shift+Print exec --no-startup-id maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+
+# Startup applications (non-minimized)
+exec flatpak run org.mozilla.firefox
