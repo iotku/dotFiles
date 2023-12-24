@@ -249,8 +249,8 @@ exec feh --bg-fill ~/Pictures/wall/wallhaven-1pg7wg.jpg
 exec /usr/libexec/gsd-xsettings
 exec picom
 
-# Start ibus
-exec ibus-daemon -drxR
+# Start IME
+exec --no-startup-id fcitx5
 
 # Easy effects for pipewire
 #exec --no-startup-id easyeffects --gapplication-service
