@@ -19,16 +19,13 @@ font pango:Noto Sans CJK JP 12px
 for_window [all] title_window_icon padding 3px
 
 # Send signal to i3blocks to update on keybind press
-set $refresh_i3status-mpd pkill -RTMIN+1 i3blocks 
+set $refresh_i3status-mpd pkill -RTMIN+1 i3blocks
 set $refresh_i3status-vol pkill -RTMIN+10 i3blocks
 
-# Alsa Volume control
-set $alsacard 'U192k'
-set $alsaout 'UMC202HD 192k Output,0'
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%+ && $refresh_i3status-vol"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c $alsacard set $alsaout 2%- && $refresh_i3status-vol"
-bindsym XF86AudioMute exec --no-startup-id "amixer -c $alsacard set $alsaout toggle && $refresh_i3status-vol"
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Volume control via pamixer (pulse/pipewire)
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pamixer -i 2 && $refresh_i3status-vol"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pamixer -d 2 && $refresh_i3status-vol"
+bindsym XF86AudioMute exec --no-startup-id "pamixer -5 && $refresh_i3status-vol"
 
 # mpd control
 bindsym XF86AudioNext exec --no-startup-id mpc -h ~/.config/mpd/socket next && $refresh_i3status-mpd
@@ -240,7 +237,6 @@ bindsym $mod+Pause mode "$mode_system"
 bindsym --release $mod+Mod1+l exec --no-startup-id bash ~/.config/i3/lock-screen.sh
 
 assign [class="Thunderbird"] $ws9
-
 # Dunst notifications
 exec dunst
 
