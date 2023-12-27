@@ -5,4 +5,5 @@ if [ ! -d "$CONFDIR" ]; then
 fi
 
 cp ./config "${CONFDIR}/config"
+cp ./minimal-config "${CONFDIR}/minimal-config"
 cp -r ./scripts "${CONFDIR}/scripts"

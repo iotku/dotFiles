@@ -13,6 +13,7 @@ cp -v "${HOME}/.config/i3/config" "./i3/config"
 
 #i3blocks
 cp -v "${HOME}/.config/i3blocks/config" "./i3blocks/config"
+cp -v "${HOME}/.config/i3blocks/minimal-config" "./i3blocks/minimal-config"
 cp -vr "${HOME}/.config/i3blocks/scripts/"* "./i3blocks/scripts/"
 
 #emacs

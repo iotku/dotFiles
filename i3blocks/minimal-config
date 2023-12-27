@@ -3,21 +3,6 @@
 #interval=3
 #
 
-[window-title]
-label=[]= 
-command=~/.config/i3blocks/scripts/window-title.i3block
-interval=persist
-
-[mpd]
-command=~/.config/i3blocks/scripts/mpd.i3block
-label=
-interval=once
-signal=1
-
-# Guess the weather hourly
-[weather]
-command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
-interval=3600
 
 [cpu]
 command=bc <<< "$(cat /sys/class/hwmon/hwmon2/temp1_input)/1000"
