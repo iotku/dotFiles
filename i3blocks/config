@@ -37,7 +37,8 @@ interval=3
 [dunst]
 command=~/.config/i3blocks/scripts/dunst.i3block
 label=
-interval=3
+interval=5
+signal=5
 
 [volume]
 command=~/.config/i3blocks/scripts/pipewire.i3block

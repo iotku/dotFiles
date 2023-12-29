@@ -1,6 +1,6 @@
 #!/bin/bash
 case $BLOCK_BUTTON in
-    1) dunstctl set-paused toggle > /dev/null 2>&1;; # Left Click
+    1) dunstctl set-paused toggle > /dev/null 2>&1 && pkill -RTMIN+5 i3blocks;; # Left Click
     3) dunstctl close-all > /dev/null 2>&1;; # Right click
     4) dunstctl history-pop > /dev/null 2>&1;; # Scroll Up
     5) dunstctl close > /dev/null 2>&1;; # scroll down

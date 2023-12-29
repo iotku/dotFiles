@@ -260,7 +260,7 @@ exec --no-startup-id fcitx5
 #exec --no-startup-id easyeffects --gapplication-service
 
 # Save my eyes
-exec --no-startup-id redshift-gtk -b 0.8:0.7 -t 4200k:3500k
+exec --no-startup-id redshift-gtk -t 4200k:3500k
 
 # Autostart an unhealthy amount of chat clients
 assign [class="TelegramDesktop"] $ws8
