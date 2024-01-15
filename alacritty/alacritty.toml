@@ -24,8 +24,6 @@ foreground = "0xa9b1d6"
 
 [font]
 size = 13
-x = 2
-y = 15
 
 [font.bold]
 family = "Hack Nerd Font Mono"
