@@ -92,6 +92,6 @@ require("lazy").setup({
     "nvim-telescope/telescope-fzf-native.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     -- Notetaking / Wiki
-    --"lervag/vimtex",
+    "lervag/vimtex",
     --"vimwiki/vimwiki",
 })
