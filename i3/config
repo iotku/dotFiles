@@ -1,6 +1,10 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# Restore environment after VM
+exec --no-startup-id systemctl --user restart pipewire
+exec --no-startup-id distrobox-stop --all -Y
+exec --no-startup-id nvidia-modprobe --unified-memory -f 0
 
 # Load Xresources
 exec xrdb ~/.Xresources
@@ -116,16 +120,16 @@ set $ws9 "9|Email"
 set $ws10 "10|Junk"
 
 # Bind workspaces to displays
-workspace $ws1 output DP-4
-workspace $ws2 output DP-4
-workspace $ws3 output DP-4
-workspace $ws4 output DP-4
-workspace $ws5 output DP-4
-workspace $ws6 output DP-2
-workspace $ws7 output DP-2
-workspace $ws8 output DP-2
-workspace $ws9 output DP-2
-workspace $ws10 output DP-2
+workspace $ws1 output DP-2
+workspace $ws2 output DP-2
+workspace $ws3 output DP-2
+workspace $ws4 output DP-2
+workspace $ws5 output DP-2
+workspace $ws6 output DP-4
+workspace $ws7 output DP-4
+workspace $ws8 output DP-4
+workspace $ws9 output DP-4
+workspace $ws10 output DP-4
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -185,39 +189,40 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-    tray_output DP-2
-    output DP-4
-    tray_padding 0
-    i3bar_command i3bar --transparency
+    tray_output DP-4
+    output DP-2
+    position top
+    i3bar_command i3bar
     font pango:Terminus, Font Awesome 6 Free 12px
         status_command i3blocks
         colors {
                                #Border   #backgnd  #txt
-            focused_workspace  #111111ff #111111ff #ffffff
-            inactive_workspace #00000000 #00000000 #ffffffBB
-            background #00000070
-            statusline #ffffffff
+            focused_workspace  #252738  #252738 #BABABA
+            inactive_workspace #1e2336  #1e2336 #3a4264
+            background #1e2336
+            statusline #BBB
         }
 }
 
 bar {
-    output DP-2
+    output DP-4
+    tray_output DP-4
     font pango:Terminus, Font Awesome 6 Free 12px
-    i3bar_command i3bar --transparency
+    i3bar_command i3bar
     status_command i3blocks -c ~/.config/i3blocks/minimal-config
         colors {
                                #Border   #backgnd  #txt
-            focused_workspace  #00000088 #00000088 #ffffff
-            inactive_workspace #00000000 #00000000 #ffffffBB
-            background #1D1F2100
-            statusline #ffffff80
+            focused_workspace  #252738  #252738 #BABABA
+            inactive_workspace #1e2336  #1e2336 #3a4264
+            background #1e2336
+            statusline #BBB
         }
 }
 
 # Set Color
 # class                 border    backgr.   text    indicator child_border
-client.focused          #ffffff70 #00000066 #ffffff #ffffffAA #ffffff70
-client.focused_inactive #000000   #000000aa #B3B3B3 #000000   #000000
+client.focused          #bb9af5   #1d202f   #ffffff #ffffffAA #bb9af5
+client.focused_inactive #336ae1   #000000aa #B3B3B3 #000000   #000000
 client.unfocused        #000000BB #000000BB #B3B3B3 #000000BB #000000BB
 client.urgent           #2f343a   #900000   #ffffff #900000   #900000
 client.placeholder      #000000   #00000090 #ffffff #000000   #000000
@@ -243,7 +248,6 @@ bindsym $mod+Pause mode "$mode_system"
 
 # win+alt+l to quickly lock screen
 bindsym --release $mod+Mod1+l exec --no-startup-id bash ~/.config/i3/lock-screen.sh
-
 assign [class="Thunderbird"] $ws9
 # Dunst notifications
 exec dunst
@@ -271,7 +275,9 @@ exec flatpak run com.discordapp.Discord --start-minimized
 
 # Move Dialog (typically firefox download dialog) to center of current workspace (regardless of firefox assignment)
 for_window [window_role="Dialog"] floating enable, move workspace current, move position center
+for_window [class="gnome-calculator"] floating enable, move workspace current, move position right
 assign [class="firefox"] $ws1
+assign [class="thunderbird"] $ws9
 for_window [class="firefox"] layout tabbed
 
 # These windows have their own custom titlebar areas
@@ -288,3 +294,4 @@ bindsym $mod+Shift+Print exec --no-startup-id maim -i $(xdotool getactivewindow)
 
 # Startup applications (non-minimized)
 exec flatpak run org.mozilla.firefox
+exec flatpak run org.mozilla.Thunderbird
