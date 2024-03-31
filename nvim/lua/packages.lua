@@ -71,14 +71,16 @@ require("lazy").setup({
 
     -- DAP (Debug Adapter Protocol)
     "mfussenegger/nvim-dap",
-    "rcarriga/nvim-dap-ui",
+    {"rcarriga/nvim-dap-ui",
+    	dependencies = { "nvim-neotest/nvim-nio"},
+	opts = {}},
     "theHamsta/nvim-dap-virtual-text",
     "leoluz/nvim-dap-go",
 
     -- TS
     "nvim-treesitter/nvim-treesitter",
     "norcalli/nvim-colorizer.lua",
-    "nvim-lua/plenary.nvim", 
+    "nvim-lua/plenary.nvim",
     -- git
     "lewis6991/gitsigns.nvim",
     "tpope/vim-fugitive",
