@@ -24,7 +24,7 @@ function main {
     }
     _header "Installing go tools"
     _goInstall "golang.org/x/tools/...@latest"
-    _goInstall "github.com/koron/iferr@latest"
+ #   _goInstall "github.com/koron/iferr@latest"
     _goInstall "github.com/josharian/impl@v1.1.0"
     _goInstall "golang.org/x/tools/gopls@latest"
     _goInstall "mvdan.cc/gofumpt@latest"
