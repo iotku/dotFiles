@@ -191,7 +191,7 @@ bindsym $mod+r mode "resize"
 bar {
     tray_output DP-4
     output DP-2
-    position top
+    position bottom
     i3bar_command i3bar
     font pango:Terminus, Font Awesome 6 Free 12px
         status_command i3blocks
