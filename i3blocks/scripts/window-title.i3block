@@ -4,7 +4,7 @@
 XPID_FILE="/tmp/xpid_file.$$"
 
 function spyWMNAME() {
-    xprop -spy -root -id "$1" WM_NAME &
+    xprop -spy -root -id "$1" -len 150 WM_NAME &
     echo "$!" > "$XPID_FILE"  # Save the PID to a file
     wait "$!"  # Wait for the background process to finish
     rm "$XPID_FILE"

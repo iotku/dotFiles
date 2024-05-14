@@ -3,9 +3,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 # Restore environment after VM
 exec --no-startup-id systemctl --user restart pipewire
-exec --no-startup-id distrobox-stop --all -Y
-exec --no-startup-id nvidia-modprobe --unified-memory -f 0
-
+exec --no-startup-id podman restart my-distrobox
 # Load Xresources
 exec xrdb ~/.Xresources
 
