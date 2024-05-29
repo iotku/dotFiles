@@ -1,8 +1,9 @@
 #!/bin/bash
 SIGNAL=10
+AUDIOID="@DEFAULT_AUDIO_SINK@"
 function printVol() {
-    volLevel="$(pamixer --get-volume-human)"
-    if [[ "$volLevel" != "muted" ]]; then
+    volLevel="$(wpctl get-volume "$AUDIOID" | awk '{ print $2*100"%"$3 }')"
+    if [[ "$volLevel" != *MUTED* ]]; then
         echo "🔊 $volLevel"
     else
         echo "🔇 Mute"
@@ -10,9 +11,10 @@ function printVol() {
 }
 
 case $BLOCK_BUTTON in
-  1) pamixer -t > /dev/null 2>&1 && pkill -RTMIN+$SIGNAL i3blocks;;
-  4) pamixer -i 2 > /dev/null 2>&1 && pkill -RTMIN+$SIGNAL i3blocks;;
-  5) pamixer -d 2 > /dev/null 2>&1 && pkill -RTMIN+$SIGNAL i3blocks;;
+  1) wpctl set-mute "$AUDIOID" toggle > /dev/null 2>&1 && pkill -RTMIN+$SIGNAL i3blocks;;
+  3) pavucontrol;;
+  4) wpctl set-volume "$AUDIOID" 2%+ > /dev/null 2>&1 && pkill -RTMIN+$SIGNAL i3blocks;;
+  5) wpctl set-volume "$AUDIOID" 2%- > /dev/null 2>&1 && pkill -RTMIN+$SIGNAL i3blocks;;
 esac
 
 printVol

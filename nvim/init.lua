@@ -34,7 +34,7 @@ vim.opt.showmode       = false  -- hide the default mode text (e.g. -- INSERT --
 vim.opt.smartindent = true
 ---- Spell checking
 vim.opt.spell       = false
-vim.opt.spelllang   = "en_us,es"
+vim.opt.spelllang   = "en_us"
 
 -- Tab settings
 local indent = 4 -- How much to indent on tabs

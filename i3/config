@@ -47,13 +47,13 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec alacritty
-
+bindsym $mod+Shift+t exec alacritty --option 'shell.program="/usr/bin/zsh"'
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # Dmenu, only gets .desktop entries
 bindsym $mod+d exec --no-startup-id rofi -show drun
-
+bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -251,7 +251,7 @@ assign [class="Thunderbird"] $ws9
 exec dunst
 
 # Desktop wallpaper and compositor
-exec feh --bg-fill ~/Pictures/wall/wallhaven-1pg7wg.jpg
+exec feh --bg-fill ~/Pictures/wall/wallhaven-g82q1l.jpg
 exec /usr/libexec/gsd-xsettings
 exec picom
 
