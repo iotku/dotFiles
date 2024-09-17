@@ -29,7 +29,7 @@ function main {
     _goInstall "golang.org/x/tools/gopls@latest"
     _goInstall "mvdan.cc/gofumpt@latest"
     _goInstall "github.com/fatih/gomodifytags@v1.16.0"
-    _goInstall "github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2"
+    _goInstall "github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0"
     _goInstall "github.com/segmentio/golines@latest"
     _goInstall "github.com/davidrjenni/reftools/cmd/fixplurals@latest"
     _goInstall "github.com/davidrjenni/reftools/cmd/fillswitch@latest"
