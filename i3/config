@@ -2,11 +2,12 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 # Restore environment after VM
-exec --no-startup-id systemctl --user restart pipewire
-exec --no-startup-id podman restart my-distrobox
+# Yes really.
+set $rightmon DP-4
+set $leftmon DP-2.8
+
 # Load Xresources
 exec xrdb ~/.Xresources
-exec xset dpms 0 0 0
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
@@ -118,17 +119,18 @@ set $ws8 "8|Chat"
 set $ws9 "9|Email"
 set $ws10 "10|Junk"
 
+
 # Bind workspaces to displays
-workspace $ws1 output DP-2
-workspace $ws2 output DP-2
-workspace $ws3 output DP-2
-workspace $ws4 output DP-2
-workspace $ws5 output DP-2
-workspace $ws6 output DP-4
-workspace $ws7 output DP-4
-workspace $ws8 output DP-4
-workspace $ws9 output DP-4
-workspace $ws10 output DP-4
+workspace $ws1 output $rightmon
+workspace $ws2 output $rightmon
+workspace $ws3 output $rightmon
+workspace $ws4 output $rightmon
+workspace $ws5 output $rightmon
+workspace $ws6 output $leftmon
+workspace $ws7 output $leftmon
+workspace $ws8 output $leftmon
+workspace $ws9 output $leftmon
+workspace $ws10 output $leftmon
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -188,33 +190,31 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-    tray_output DP-4
-    output DP-2
+    tray_output $leftmon
+    output $rightmon
     position bottom
-    i3bar_command i3bar
     font pango:Terminus, Font Awesome 6 Free 12px
-        status_command i3blocks
+    status_command i3blocks
         colors {
                                #Border   #backgnd  #txt
             focused_workspace  #252738  #252738 #BABABA
             inactive_workspace #1e2336  #1e2336 #3a4264
             background #1e2336
-            statusline #BBB
+            statusline #BBBBBB
         }
 }
 
 bar {
-    output DP-4
-    tray_output DP-4
+    output $leftmon
+    tray_output $leftmon
     font pango:Terminus, Font Awesome 6 Free 12px
-    i3bar_command i3bar
     status_command i3blocks -c ~/.config/i3blocks/minimal-config
         colors {
                                #Border   #backgnd  #txt
             focused_workspace  #252738  #252738 #BABABA
             inactive_workspace #1e2336  #1e2336 #3a4264
             background #1e2336
-            statusline #BBB
+            statusline #BBBBBB
         }
 }
 
@@ -259,9 +259,6 @@ exec picom
 # Start IME
 exec --no-startup-id fcitx5
 
-# Easy effects for pipewire
-#exec --no-startup-id easyeffects --gapplication-service
-
 # Save my eyes
 exec --no-startup-id redshift-gtk -t 4200k:3500k
 
@@ -293,4 +290,3 @@ bindsym $mod+Shift+Print exec --no-startup-id maim -i $(xdotool getactivewindow)
 
 # Startup applications (non-minimized)
 exec flatpak run org.mozilla.firefox
-exec flatpak run org.mozilla.Thunderbird
