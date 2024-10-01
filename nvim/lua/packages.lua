@@ -88,7 +88,7 @@ require("lazy").setup({
     "junegunn/gv.vim",
 
     -- Fuzzy Finding
-    { "nvim-telescope/telescope.nvim", tag = '0.1.3', dependencies = { 'nvim-lua/plenary.nvim' }},
+    { "nvim-telescope/telescope.nvim", dependencies = { 'nvim-lua/plenary.nvim' }},
     "nvim-telescope/telescope-fzf-native.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     -- Notetaking / Wiki
