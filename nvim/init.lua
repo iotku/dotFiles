@@ -36,6 +36,8 @@ vim.opt.smartindent = true
 vim.opt.spell       = false
 vim.opt.spelllang   = "en_us"
 
+-- System Clipboard
+vim.api.nvim_set_option("clipboard","unnamed")
 -- Tab settings
 local indent = 4 -- How much to indent on tabs
 vim.opt.tabstop     = indent
