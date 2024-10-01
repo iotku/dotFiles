@@ -35,7 +35,6 @@ vim.opt.smartindent = true
 ---- Spell checking
 vim.opt.spell       = false
 vim.opt.spelllang   = "en_us"
-
 -- System Clipboard
 vim.api.nvim_set_option("clipboard","unnamed")
 -- Tab settings
@@ -46,6 +45,7 @@ vim.opt.shiftwidth  = indent
 vim.opt.expandtab   = true
 vim.opt.smarttab    = true
 vim.opt.listchars = { tab = '  →', trail = '•' } -- Listchars for set list (toggled by <leader>l)
+vim.opt.list = true
 -- Misc
 vim.opt.swapfile   = false
 vim.opt.foldmethod = "expr"
