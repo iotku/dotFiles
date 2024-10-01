@@ -23,7 +23,7 @@ require("lazy").setup({
           end,
       opts = {}},
     { "folke/neoconf.nvim", cmd = "Neoconf" },
-
+    "williamboman/mason.nvim",
     -- Appearance/Bars
     "folke/tokyonight.nvim",
     -- "xiyaowong/nvim-transparent",
