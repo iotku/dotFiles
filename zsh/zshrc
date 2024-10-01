@@ -3,6 +3,11 @@
 # It should contain commands to set up aliases,
 # functions, options, key bindings, etc.
 #
+# Antidote plugin manager
+source /home/linuxbrew/.linuxbrew/opt/antidote/share/antidote/antidote.zsh
+
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
 
 autoload -U compinit
 compinit
@@ -57,8 +62,7 @@ alias nvg="neovide --nofork"
 alias hx="helix"
 alias sml="smlnj"
 alias ls="ls --color"
-alias osul="COMPlus_GCGen0MaxBudget=600000 ~/Applications/osu.AppImage"
-PATH=${HOME}/bin:${HOME}/go/bin:${HOME}/.local/bin:$PATH
+PATH=${HOME}/bin:${HOME}/go/bin:${HOME}/.local/bin:${HOME}/Applications:$PATH
 # Ctrl + Arrows back/forward
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -123,9 +127,9 @@ if [[ "$TERM" == "alacritty" || "$TERM" == "xterm-kitty" ]]; then
     alias ssh="TERM=xterm-256color ssh"
 fi
 
-# For pyenv
-#export PYENV_ROOT="$HOME/.pyenv"
-#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+alias estimate-battery-time='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E time | awk "{print $4 $5}"'
 
+export NVM_DIR="$HOME/.config/nvm"
+export NVM_LAZY_LOAD=true
+# Or do nvm use node...
+PATH=${HOME}/.config/nvm/versions/node/v20.17.0/bin:$PATH
