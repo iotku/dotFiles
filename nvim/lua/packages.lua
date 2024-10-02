@@ -23,7 +23,6 @@ require("lazy").setup({
           end,
       opts = {}},
     { "folke/neoconf.nvim", cmd = "Neoconf" },
-    "williamboman/mason.nvim",
     -- Appearance/Bars
     "folke/tokyonight.nvim",
     -- "xiyaowong/nvim-transparent",
@@ -49,6 +48,8 @@ require("lazy").setup({
     "L3MON4D3/LuaSnip",         -- Snippets plugin
 
     -- Language/LSP Support
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     "ray-x/lsp_signature.nvim",
     "nvim-lua/lsp-status.nvim",

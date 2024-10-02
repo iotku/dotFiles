@@ -1,12 +1,4 @@
--- navic for context
-local navic = require("nvim-navic")
-
--- Mason to download LSPs
-require("mason").setup()
--- cmp completion
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local servers = { 'gopls', 'rust_analyzer', 'clangd', 'ts_ls', 'erlangls', 'pylsp', 'lua_ls'}
 
 -- LSP Specific settings.
 local lsp_settings = {
@@ -19,9 +11,20 @@ local lsp_settings = {
       }
     }
   },
+  -- add another server here...
 }
 
-local servers = { 'gopls', 'rust_analyzer', 'clangd', 'denols', 'ts_ls', 'erlangls', 'pylsp', 'lua_ls'}
+-- Mason to download LSPs
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+-- cmp completion
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- navic for context
+local navic = require("nvim-navic")
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = function(client, bufnr)
