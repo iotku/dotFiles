@@ -1,4 +1,4 @@
-local servers = { 'gopls', 'rust_analyzer', 'clangd', 'ts_ls', 'erlangls', 'pylsp', 'lua_ls'}
+local servers = { 'gopls', 'rust_analyzer', 'clangd', 'ts_ls', 'pylsp', 'lua_ls'}
 
 -- LSP Specific settings.
 local lsp_settings = {
@@ -16,7 +16,9 @@ local lsp_settings = {
 
 -- Mason to download LSPs
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = servers,
+}
 
 -- cmp completion
 -- Add additional capabilities supported by nvim-cmp
