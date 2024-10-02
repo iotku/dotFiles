@@ -4,4 +4,5 @@ sudo apt install neovim python3-venv golang npm rustup openjdk-21-jdk lua5.4
 echo "Installing various golang tools"
 ./install-go-tools.sh
 echo "Launching Neovim"
+./install-nvim.sh
 nvim
