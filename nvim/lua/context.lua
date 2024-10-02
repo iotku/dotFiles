@@ -9,10 +9,10 @@ require("ibl").setup()
 require("nvim-tree").setup()
 
 -- treesitter
+require("nvim-treesitter.install").prefer_git = true -- hopefuly download better
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all", -- "all" or a list of languages
   ignore_install = {"wing"},      -- List of parsers to ignore installing
-  prefer_git = true,
   highlight = {
     enable = true,          -- false will disable the whole extension
     disable = {"latex"},    -- list of language that will be disabled
