@@ -8,7 +8,20 @@ require("mason").setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local servers = { 'gopls', 'rust_analyzer', 'clangd', 'denols', 'ts_ls', 'erlangls', 'pylsp'}
+-- LSP Specific settings.
+local lsp_settings = {
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim' }
+        }
+      }
+    }
+  },
+}
+
+local servers = { 'gopls', 'rust_analyzer', 'clangd', 'denols', 'ts_ls', 'erlangls', 'pylsp', 'lua_ls'}
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = function(client, bufnr)
@@ -16,11 +29,14 @@ for _, lsp in ipairs(servers) do
 	    navic.attach(client, bufnr)
     end,
     capabilities = capabilities,
+    settings = lsp_settings[lsp] and lsp_settings[lsp].settings or nil -- Apply settings if available
   }
 end
--- TODO: Add lua_ls
+
 vim.g.markdown_fenced_languages = {
   "ts=typescript"
 }
 
+-- This is separate because we probably don't want to add the main keybindings
+-- if all this is doing is linting, but maybe this should move elsewhere.
 require'lspconfig'.eslint.setup{}
