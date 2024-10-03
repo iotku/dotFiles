@@ -7,7 +7,6 @@ vim.keymap.set('n', '<C-s>', '<cmd>Telescope lsp_document_symbols<cr>')
 vim.keymap.set('n', '<leader>ss', '<cmd>set invspell<cr>')      -- Toggle Spell Check
 vim.keymap.set('n', '<leader>l',  '<cmd>set invlist<cr>')       -- Toggle listchars
 vim.keymap.set('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar
-vim.keymap.set('n', '<leader>?', '<cmd>TroubleToggle<cr>')      -- Open Trouble Toggle Panel
 vim.keymap.set('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
 vim.keymap.set('n', '<leader>,', 'A,<esc>')                     -- add comma to end of the line
 vim.keymap.set('n', '<CR>', 'o<esc>cc')
@@ -43,7 +42,6 @@ function M.on_attach(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>TroubleToggle lsp_references<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
