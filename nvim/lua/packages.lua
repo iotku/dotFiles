@@ -36,7 +36,7 @@ require("lazy").setup({
             'nvim-tree/nvim-web-devicons',
             'linrongbin16/lsp-progress.nvim',
         }},
-    "gelguy/wilder.nvim", -- Does this actually init correctly without the config block?
+    "gelguy/wilder.nvim",
 
     -- Completion
     "hrsh7th/nvim-cmp",
