@@ -6,7 +6,7 @@ vim.g.loaded_perl_provider = 0
 -- disable netrw (recommended by nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
+vim.g.mapleader = ' '
 require('packages')
 require('keybindings')
 require('statusline')
@@ -16,7 +16,6 @@ require('lsp')
 require('gui-settings')
 require('autocmds')
 
-vim.g.mapleader = ' '
 -- Appearance
 vim.opt.wrap           = false     -- wrap long lines of text
 vim.opt.cursorline     = true      -- highlight current line
