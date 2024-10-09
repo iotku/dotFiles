@@ -1,7 +1,6 @@
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
 vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme tokyonight]])
 require("colorizer").setup()
 require("ibl").setup()
 

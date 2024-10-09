@@ -18,12 +18,6 @@ vim.keymap.set('v', '<S-Tab>', '<gv')
 ---- Terminal
 vim.keymap.set('n', '<leader>t', '<cmd>sp<CR><cmd>te<CR>a') -- Open terminal in horizontal split
 vim.keymap.set('t', '<Esc>', '<C-Bslash><C-n>')             -- Go back to normal mode
--- DAP
-vim.keymap.set('n', '<F5>', '<cmd>lua require"dap".continue()<CR>')
-vim.keymap.set('n', '<F10>', '<cmd>lua require"dap".stop_over()<CR>')
-vim.keymap.set('n', '<F11>', '<cmd>lua require"dap".step_into()<CR>')
-vim.keymap.set('n', '<F12>', '<cmd>lua require"dap".step_out()<CR>')
-vim.keymap.set('n', '<leader>b', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
 
 local opts = { noremap=true, silent=true }
 function M.on_attach(client, bufnr)

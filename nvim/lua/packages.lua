@@ -15,7 +15,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-      {"folke/which-key.nvim",
+    {
+        "folke/tokyonight.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function()
+          -- load the colorscheme here
+          vim.cmd([[colorscheme tokyonight]])
+        end,
+    },
+
+    {"folke/which-key.nvim",
           event = "VeryLazy",
           init = function()
             vim.o.timeout = true
@@ -24,8 +34,7 @@ require("lazy").setup({
       opts = {}},
     { "folke/neoconf.nvim", cmd = "Neoconf" },
     -- Appearance/Bars
-    "folke/tokyonight.nvim",
-    -- "xiyaowong/nvim-transparent",
+        -- "xiyaowong/nvim-transparent",
     "ntpeters/vim-better-whitespace",
     "lukas-reineke/indent-blankline.nvim",
     "windwp/nvim-autopairs",
@@ -39,18 +48,29 @@ require("lazy").setup({
     "gelguy/wilder.nvim",
 
     -- Completion
-    "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-nvim-lua",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lsp",     -- LSP source for nvim-cm
-    "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-    "L3MON4D3/LuaSnip",         -- Snippets plugin
+    {
+        "hrsh7th/nvim-cmp",
+        -- load cmp on InsertEnter
+        event = "InsertEnter",
+        -- these dependencies will only be loaded when cmp loads
+        -- dependencies are always lazy-loaded unless specified otherwise
+        dependencies = {
+          "hrsh7th/cmp-nvim-lsp",
+          "hrsh7th/cmp-buffer",
+          "hrsh7th/cmp-path",
+          "hrsh7th/cmp-nvim-lua",
+          "L3MON4D3/LuaSnip",         -- Snippets plugin
+          "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
+        },
+        config = function()
+            require('completion')
+        end,
+    },
 
     -- Language/LSP Support
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
+    {"neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" }},
     "ray-x/lsp_signature.nvim",
     "nvim-lua/lsp-status.nvim",
     "ray-x/go.nvim",
@@ -105,12 +125,24 @@ require("lazy").setup({
       },
     },
     -- DAP (Debug Adapter Protocol)
-    "mfussenegger/nvim-dap",
     {"rcarriga/nvim-dap-ui",
-    	dependencies = { "nvim-neotest/nvim-nio"},
+    	dependencies = {
+            "nvim-neotest/nvim-nio",
+            "mfussenegger/nvim-dap",
+            "theHamsta/nvim-dap-virtual-text",
+            "leoluz/nvim-dap-go",
+        },
+        keys = {
+                {'<F5>', '<cmd>lua require"dap".continue()<CR>'},
+                {'<F10>', '<cmd>lua require"dap".stop_over()<CR>'},
+                {'<F11>', '<cmd>lua require"dap".step_into()<CR>'},
+                {'<F12>', '<cmd>lua require"dap".step_out()<CR>'},
+                {'<leader>b', '<cmd>lua require"dap".toggle_breakpoint()<CR>'}
+        },
+        config = function()
+            require('debugging')
+        end,
 	opts = {}},
-    "theHamsta/nvim-dap-virtual-text",
-    "leoluz/nvim-dap-go",
 
     -- TS
     "nvim-treesitter/nvim-treesitter",

@@ -1,4 +1,4 @@
-local servers = { 'gopls', 'rust_analyzer', 'clangd', 'ts_ls', 'pylsp', 'lua_ls', 'jdtls'}
+local servers = { 'gopls', 'rust_analyzer', 'clangd', 'ts_ls', 'pylsp', 'lua_ls', 'jdtls', 'html'}
 
 -- LSP Specific settings.
 local lsp_settings = {
