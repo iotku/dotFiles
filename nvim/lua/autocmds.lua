@@ -20,12 +20,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end,
 })
 
-vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
-    pattern = "*",
-    callback = function()
-        require('nvim-lightbulb').update_lightbulb()
-    end,
-})
+-- vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
+--     pattern = "*",
+--     callback = function()
+--         require('nvim-lightbulb').update_lightbulb()
+--     end,
+-- })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
