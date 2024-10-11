@@ -1,5 +1,4 @@
 --local fn = vim.fn --needed still after upgrading from packer?
-
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -68,7 +67,7 @@ require("lazy").setup({
     "simrat39/rust-tools.nvim",
     {"mfussenegger/nvim-jdtls", lazy = true},
     "SmiteshP/nvim-navic",
-    "kosayoda/nvim-lightbulb",
+--  "kosayoda/nvim-lightbulb", -- consier replacing with lspsaga.nvim
     {"linrongbin16/lsp-progress.nvim",
       dependencies = { 'nvim-tree/nvim-web-devicons' },
       event = "VeryLazy",
