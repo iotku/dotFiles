@@ -83,7 +83,6 @@ require("lazy").setup({
       config = function()
         require('lsp-progress').setup()
       end},
-    "folke/neodev.nvim",
 
     {"folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -153,7 +152,6 @@ require("lazy").setup({
     "lewis6991/gitsigns.nvim",
     "tpope/vim-fugitive",
     "tpope/vim-rhubarb",
-    "junegunn/gv.vim",
 
     -- Fuzzy Finding
     { "nvim-telescope/telescope.nvim", dependencies = { 'nvim-lua/plenary.nvim' }},
