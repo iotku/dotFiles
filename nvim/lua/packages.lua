@@ -15,16 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    {
-        "folke/tokyonight.nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-          -- load the colorscheme here
-          vim.cmd([[colorscheme tokyonight]])
-        end,
-    },
-
+    "folke/tokyonight.nvim", -- Colorscheme
     {"folke/which-key.nvim",
           event = "VeryLazy",
           init = function()
@@ -35,7 +26,7 @@ require("lazy").setup({
     { "folke/neoconf.nvim", cmd = "Neoconf" },
     -- Appearance/Bars
         -- "xiyaowong/nvim-transparent",
-    "ntpeters/vim-better-whitespace",
+    {"ntpeters/vim-better-whitespace", event = "VeryLazy"},
     "lukas-reineke/indent-blankline.nvim",
     "windwp/nvim-autopairs",
     "nvim-tree/nvim-tree.lua",
@@ -43,7 +34,7 @@ require("lazy").setup({
     {"nvim-lualine/lualine.nvim",
           dependencies = {
             'nvim-tree/nvim-web-devicons',
-            'linrongbin16/lsp-progress.nvim',
+          --  'linrongbin16/lsp-progress.nvim',
         }},
     "gelguy/wilder.nvim",
 
@@ -73,13 +64,14 @@ require("lazy").setup({
     {"neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" }},
     "ray-x/lsp_signature.nvim",
     "nvim-lua/lsp-status.nvim",
-    "ray-x/go.nvim",
+    {"ray-x/go.nvim", ft="go"},
     "simrat39/rust-tools.nvim",
-    "mfussenegger/nvim-jdtls",
+    {"mfussenegger/nvim-jdtls", lazy = true},
     "SmiteshP/nvim-navic",
     "kosayoda/nvim-lightbulb",
     {"linrongbin16/lsp-progress.nvim",
       dependencies = { 'nvim-tree/nvim-web-devicons' },
+      event = "VeryLazy",
       config = function()
         require('lsp-progress').setup()
       end},
@@ -158,6 +150,6 @@ require("lazy").setup({
     "nvim-telescope/telescope-fzf-native.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     -- Notetaking / Wiki
-    "lervag/vimtex",
+    {"lervag/vimtex", ft="tex"},
     --"vimwiki/vimwiki",
 })

@@ -17,6 +17,7 @@ require('gui-settings')
 require('autocmds')
 
 -- Appearance
+vim.cmd([[colorscheme tokyonight]])
 vim.opt.wrap           = false     -- wrap long lines of text
 vim.opt.cursorline     = true      -- highlight current line
 vim.opt.colorcolumn    = {80, 100} -- set rulers
