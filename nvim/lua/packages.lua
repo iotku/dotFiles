@@ -64,7 +64,7 @@ require("lazy").setup({
     "ray-x/lsp_signature.nvim",
     "nvim-lua/lsp-status.nvim",
     {"ray-x/go.nvim", ft="go"},
-    "simrat39/rust-tools.nvim",
+    {"simrat39/rust-tools.nvim", ft="rust"},
     {"mfussenegger/nvim-jdtls", lazy = true},
     "SmiteshP/nvim-navic",
 --  "kosayoda/nvim-lightbulb", -- consier replacing with lspsaga.nvim
