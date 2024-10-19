@@ -22,10 +22,9 @@ require("lazy").setup({
             vim.o.timeoutlen = 300
           end,
       opts = {}},
-    { "folke/neoconf.nvim", cmd = "Neoconf" },
     -- Appearance/Bars
         -- "xiyaowong/nvim-transparent",
-    {"ntpeters/vim-better-whitespace", event = "VeryLazy"},
+    "ntpeters/vim-better-whitespace",
     "lukas-reineke/indent-blankline.nvim",
     "windwp/nvim-autopairs",
     "nvim-tree/nvim-tree.lua",
@@ -35,6 +34,25 @@ require("lazy").setup({
             'nvim-tree/nvim-web-devicons',
         }},
     "gelguy/wilder.nvim",
+
+    "folke/neoconf.nvim",
+    -- Language/LSP Support
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    {"neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" }},
+    "ray-x/lsp_signature.nvim",
+    "nvim-lua/lsp-status.nvim",
+    {"ray-x/go.nvim", ft="go"},
+    {"simrat39/rust-tools.nvim", ft="rust"},
+    {"mfussenegger/nvim-jdtls", lazy = true},
+    "SmiteshP/nvim-navic",
+--  "kosayoda/nvim-lightbulb", -- consier replacing with lspsaga.nvim
+    {"linrongbin16/lsp-progress.nvim",
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      event = "VeryLazy",
+      config = function()
+        require('lsp-progress').setup()
+      end},
 
     -- Completion
     {
@@ -55,24 +73,6 @@ require("lazy").setup({
             require('completion')
         end,
     },
-
-    -- Language/LSP Support
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    {"neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" }},
-    "ray-x/lsp_signature.nvim",
-    "nvim-lua/lsp-status.nvim",
-    {"ray-x/go.nvim", ft="go"},
-    {"simrat39/rust-tools.nvim", ft="rust"},
-    {"mfussenegger/nvim-jdtls", lazy = true},
-    "SmiteshP/nvim-navic",
---  "kosayoda/nvim-lightbulb", -- consier replacing with lspsaga.nvim
-    {"linrongbin16/lsp-progress.nvim",
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
-      event = "VeryLazy",
-      config = function()
-        require('lsp-progress').setup()
-      end},
 
     {"folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },

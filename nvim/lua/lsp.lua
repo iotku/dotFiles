@@ -14,6 +14,16 @@ local lsp_settings = {
   -- add another server here...
 }
 
+-- We need to setup Neoconf before any LSPs (!)
+require("neoconf").setup({
+  -- override any of the default settings here
+})
+
+-- Rust Tools for enhanced Rust LSP
+require('rust-tools').setup({})
+-- Go additional functionality
+require('go').setup{}
+
 -- Mason to download LSPs
 require("mason").setup()
 require("mason-lspconfig").setup {

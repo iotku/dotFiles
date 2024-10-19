@@ -1,9 +1,4 @@
 M = {} -- Return table
--- Rust Tools for enhanced Rust LSP
-require('rust-tools').setup({})
--- Go additional functionality
-require('go').setup{}
-
 -- jdtls setup --> see autocmds.lua
 -- Here we get the jdtls bin throguh Mason (jdtls)
 -- -- this may conflict eventually but I never got it working anyways...
