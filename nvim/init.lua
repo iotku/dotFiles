@@ -1,12 +1,7 @@
--- Disable unused plugin providers
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
 -- disable netrw (recommended by nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.g.mapleader = ' '
+vim.g.mapleader = ' ' -- Set the leader prior to seting up keybindings
 require('packages')
 require('keybindings')
 require('statusline')
@@ -55,5 +50,3 @@ vim.opt.timeoutlen = 500
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_mode = 0
 vim.opt.conceallevel = 2
-
-vim.g.transparent_enabled = false
