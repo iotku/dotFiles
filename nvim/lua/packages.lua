@@ -33,7 +33,6 @@ require("lazy").setup({
           dependencies = {
             'nvim-tree/nvim-web-devicons',
         }},
-    "gelguy/wilder.nvim",
 
     "folke/neoconf.nvim",
     -- Language/LSP Support
