@@ -76,7 +76,11 @@ require("lazy").setup({
     {"folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         event = { "BufReadPre", "BufNewFile" },
-        opts = {}},
+        opts = {
+            highlight = {
+                exclude = { "java" },
+	    }
+        }},
     {"folke/trouble.nvim",
       opts = {}, -- for default options, refer to the configuration section for custom setup.
       cmd = "Trouble",
