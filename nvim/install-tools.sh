@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 DISTRO=$(cat /etc/os-release | grep "ID=" | head -n1)
+goPKGS=()
 function main {
     _header "Checking Dependencies"
     DEPS=("gcc" "curl" "tar" "go" "rustup" "java" "lua")
@@ -12,12 +13,11 @@ function main {
     echo -e "\n[PASS] Runtimes are installed.\n"
 
     function _goInstall {
-        echo "[START]: go install $1"
-        go install "$1" && installSuccess "$1" || installFail "$1"
+        goPKGS+=("$1")
     }
     _header "Installing go tools"
     _goInstall "golang.org/x/tools/...@latest"
- #   _goInstall "github.com/koron/iferr@latest"
+    _goInstall "github.com/koron/iferr@latest"
     _goInstall "github.com/josharian/impl@v1.1.0"
     _goInstall "golang.org/x/tools/gopls@latest"
     _goInstall "mvdan.cc/gofumpt@latest"
@@ -30,9 +30,8 @@ function main {
     _goInstall "github.com/onsi/ginkgo/v2/ginkgo@latest"
     _goInstall "github.com/cweill/gotests/gotests@latest"
     _goInstall "github.com/kyoh86/richgo@latest"
-
-    _header "Installing delve"
-    go install github.com/go-delve/delve/cmd/dlv@latest && installSuccess "delve" || installFail "delve"
+    _goInstall "github.com/go-delve/delve/cmd/dlv@latest"
+    printf "%s\n" "${goPKGS[@]}" | xargs -P$(nproc) -I {} bash -c 'echo "[START]: go install {}"; go install "{}" && echo "[END]: {}" || echo "[ERROR]: {}"'
 }
 
 function depNotFound {
