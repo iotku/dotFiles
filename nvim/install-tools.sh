@@ -1,6 +1,5 @@
 #!/bin/bash
 set -eo pipefail
-DISTRO=$(cat /etc/os-release | grep "ID=" | head -n1)
 goPKGS=()
 function main {
     _header "Checking Dependencies"
@@ -11,27 +10,6 @@ function main {
 
     which rustup 1>/dev/null && _header "Syncing Rustup" && rustup update stable || installFail "rustup"
     echo -e "\n[PASS] Runtimes are installed.\n"
-
-    function _goInstall {
-        goPKGS+=("$1")
-    }
-    _header "Installing go tools"
-    _goInstall "golang.org/x/tools/...@latest"
-    _goInstall "github.com/koron/iferr@latest"
-    _goInstall "github.com/josharian/impl@v1.1.0"
-    _goInstall "golang.org/x/tools/gopls@latest"
-    _goInstall "mvdan.cc/gofumpt@latest"
-    _goInstall "github.com/fatih/gomodifytags@v1.16.0"
-    _goInstall "github.com/golangci/golangci-lint/cmd/golangci-lint@v1.61.0"
-    _goInstall "github.com/segmentio/golines@latest"
-    _goInstall "github.com/davidrjenni/reftools/cmd/fixplurals@latest"
-    _goInstall "github.com/davidrjenni/reftools/cmd/fillswitch@latest"
-    _goInstall "github.com/davidrjenni/reftools/cmd/fillstruct@latest"
-    _goInstall "github.com/onsi/ginkgo/v2/ginkgo@latest"
-    _goInstall "github.com/cweill/gotests/gotests@latest"
-    _goInstall "github.com/kyoh86/richgo@latest"
-    _goInstall "github.com/go-delve/delve/cmd/dlv@latest"
-    printf "%s\n" "${goPKGS[@]}" | xargs -P$(nproc) -I {} bash -c 'echo "[START]: go install {}"; go install "{}" && echo "[END]: {}" || echo "[ERROR]: {}"'
 }
 
 function depNotFound {

@@ -1,8 +1,7 @@
 #!/bin/env bash
 echo "Installing neovim and dependencies...."
 sudo apt install unzip curl neovim ripgrep fd-find fzf python3-venv golang npm rustup openjdk-21-jdk lua5.4
-echo "Syncing rustup and installing various golang tools"
+./install-nvim.sh
 ./install-tools.sh
 echo "Launching Neovim"
-./install-nvim.sh
 nvim
