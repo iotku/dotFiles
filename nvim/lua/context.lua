@@ -10,7 +10,11 @@ require("nvim-tree").setup()
 -- treesitter
 require("nvim-treesitter.install").prefer_git = true -- hopefuly download better
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "bash", "c", "dockerfile", "go", "lua", "python", "rust", "vim", "vimdoc", "query", "erlang", "elixir", "heex", "java", "kotlin", "javascript", "typescript", "html", "css" },
+  ensure_installed = { "bash", "c", "dockerfile", "lua", "python", "rust",
+                        "vim", "vimdoc", "comment", "query", "sql",
+                        "erlang", "elixir", "heex", "java", "kotlin",
+                        "json",  "javascript", "typescript", "html", "css",
+                        "go", "gowork", "gomod", "gosum", "gotmpl" },
   ignore_install = {"wing"},      -- List of parsers to ignore installing
   highlight = {
     enable = true,          -- false will disable the whole extension
