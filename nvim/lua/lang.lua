@@ -10,11 +10,6 @@ M.java_config = {
 
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
   settings = {
-    java = {
-        compiler = {
-            taskTags = "";
-        }
-    }
   },
 }
 return M
