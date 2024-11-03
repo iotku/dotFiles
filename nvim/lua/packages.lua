@@ -25,7 +25,7 @@ require("lazy").setup({
     -- Appearance/Bars
         -- "xiyaowong/nvim-transparent",
     "ntpeters/vim-better-whitespace",
-    "lukas-reineke/indent-blankline.nvim",
+ --   "lukas-reineke/indent-blankline.nvim",
     "windwp/nvim-autopairs",
     "nvim-tree/nvim-tree.lua",
     "nvim-tree/nvim-web-devicons",
