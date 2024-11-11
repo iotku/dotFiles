@@ -27,8 +27,6 @@ require("lazy").setup({
     "ntpeters/vim-better-whitespace",
  --   "lukas-reineke/indent-blankline.nvim",
     "windwp/nvim-autopairs",
-    "nvim-tree/nvim-tree.lua",
-    "nvim-tree/nvim-web-devicons",
     {"nvim-lualine/lualine.nvim",
           dependencies = {
             'nvim-tree/nvim-web-devicons',
@@ -140,7 +138,6 @@ require("lazy").setup({
 
     -- TS
     "nvim-treesitter/nvim-treesitter",
-    "norcalli/nvim-colorizer.lua",
     "nvim-lua/plenary.nvim",
     -- git
     "lewis6991/gitsigns.nvim",
