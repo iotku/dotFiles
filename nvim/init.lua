@@ -24,7 +24,8 @@ vim.opt.laststatus     = 3      -- Display single "global" statusline
 vim.opt.showtabline    = 2      -- always display the tabline, even if there is only one tab
 vim.opt.showmode       = false  -- hide the default mode text (e.g. -- INSERT -- below the statusline)
 -- Editing
-vim.opt.smartindent = true
+vim.opt.smartindent = false -- use treesitter indent
+vim.api.nvim_command('filetype indent off')
 ---- Spell checking
 vim.opt.spell       = false
 vim.opt.spelllang   = "en_us"
