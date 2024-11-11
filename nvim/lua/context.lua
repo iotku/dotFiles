@@ -1,12 +1,6 @@
 -- Colorscheme Settings
 vim.opt.termguicolors = true    -- True color support
 vim.o.background = "dark" -- or "light" for light mode
-require("colorizer").setup()
--- require("ibl").setup() // ident-blankline.nvim
-
--- nvim-tree
-require("nvim-tree").setup()
-
 -- treesitter
 require("nvim-treesitter.install").prefer_git = true -- hopefully download better
 require'nvim-treesitter.configs'.setup {
