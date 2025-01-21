@@ -24,6 +24,8 @@ foreground = "0xa9b1d6"
 
 [font]
 size = 13
+#size = 22.5
+#size = 27
 
 [font.bold]
 family = "Hack Nerd Font Mono"
@@ -37,8 +39,10 @@ style = "Italic"
 family = "Hack Nerd Font Mono"
 style = "Regular"
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/zsh"
 
 [window]
 opacity = 0.85
+
+[terminal]
