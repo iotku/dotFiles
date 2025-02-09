@@ -16,7 +16,7 @@ output * bg /usr/share/backgrounds/default.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output $rightmon mode 1920x1080@240hz position 1080,420
+output $rightmon mode 1920x1080@240hz position 1080,420 adaptive_sync on
 output $leftmon mode 1920x1080@60hz position 0,0 transform 90
 ### Idle configuration
 #
@@ -298,8 +298,8 @@ assign [app_id="org.telegram.desktop"] $ws8
 assign [app_id="com.discordapp.Discord"] $ws8
 assign [app_id="com.discordapp.DiscordCanary"] $ws8
 exec flatpak run org.telegram.desktop -startintray
-exec flatpak run com.discordapp.Discord --start-minimized
-exec flatpak run com.discordapp.DiscordCanary --start-minimized
+exec flatpak run com.discordapp.Discord --start-minimized --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-version=3
+exec flatpak run com.discordapp.DiscordCanary --start-minimized --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --wayland-text-input-version=3
 
 for_window [app_id="org.gnome.Calculator"] floating enable, move workspace current, move position right
 assign [app_id="org.mozilla.firefox"] $ws1
@@ -307,7 +307,7 @@ assign [class="thunderbird"] $ws9
 for_window [app_id="org.mozilla.firefox"] layout tabbed
 
 # Move firefox download dialog to center of current workspace (We move right then center to avoid going under window....)
-for_window [title="^Opening .*" app_id="org.mozilla.firefox"] floating enable, move workspace current, move position right, move position center
+for_window [title="^Opening .*" app_id="org.mozilla.firefox"] floating enable, move workspace current, urgent enable, move position right, move position left, move position center
 
 # These windows have their own custom titlebar areas
 for_window [app_id="org.mozilla.firefox"] border pixel 1
@@ -315,7 +315,10 @@ for_window [class="jetbrains-idea"] border pixel 1
 for_window [app_id="Alacritty"] border pixel 1
 
 # Quick launch bindings
-bindsym $mod+Mod1+f exec flatpak run org.mozilla.firefox
+bindsym $mod+Shift+f exec flatpak run org.mozilla.firefox
 
 # Startup applications (non-minimized)
 exec flatpak run org.mozilla.firefox
+
+# Fix wayland portal...
+exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
