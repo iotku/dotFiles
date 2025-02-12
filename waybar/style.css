@@ -1,9 +1,13 @@
 @import url("./colors.css");
+@define-color inactive_module_color #a9a9a9;
 * {
     border: none;
     border-radius: 0;
     min-height: 0;
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 12px;
 }
+
 window#waybar {
     opacity: 1.0;
     background: @background-darker;
@@ -11,7 +15,7 @@ window#waybar {
     border-bottom: 2px solid @background;
 }
 #workspaces button {
-    padding: 0 10px;
+    padding: 0 5px;
     background: @background;
     color: @foreground;
 }
@@ -41,12 +45,6 @@ window#waybar {
     padding: 0 4px;
     background: @background;
 }
-* {
-    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
-    font-size: 11px;
-}
-
-@define-color inactive_module_color #a9a9a9;
 
 window#waybar {
     background-color: rgba(3, 3, 3, 0.85);
@@ -73,10 +71,10 @@ button {
     /* reset all builtin/theme styles */
     all: unset;
     /* Restore some properties */
-    min-height: 24px;
+    min-height: 14px;
     min-width: 16px;
     padding: 0 10px;
-    transition: all 200ms ease-out;
+    transition: all 100ms ease-out;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -147,10 +145,6 @@ window#waybar #window {
 #workspaces button {
     background-color: transparent;
     color: #ffffff;
-}
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.focused {
