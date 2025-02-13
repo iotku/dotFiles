@@ -16,22 +16,35 @@
     ],
     "modules-right": [
         "idle_inhibitor",
-        "pulseaudio",
-        "network",
+        // "network",
         "power-profiles-daemon",
         "cpu",
         "memory",
         "temperature",
         "backlight",
         "battery",
-        "clock",
-        "tray"
+        "pulseaudio",
+        "tray",
+        "clock"
     ],
     // Modules configuration
     "hyprland/submap": {
         "format": "<span style=\"italic\">{}</span>"
     },
     "hyprland/workspaces" : {
+    "format": "{name}{icon}",
+    	"format-icons": {
+		"1": ": ",
+		"2": ": ",
+		"3": ": ",
+		"4": ": ",
+		"5": "",
+        "6": "",
+        "7": "",
+        "8": ": ",
+        "9": ": E-Mail",
+        "10": ": "
+	},
         "on-scroll-up": "hyprctl dispatch workspace e-1",
         "on-scroll-down": "hyprctl dispatch workspace e+1",
     },
@@ -55,9 +68,10 @@
         "spacing": 5
     },
     "clock": {
+        "format": "{:%H:%M %m/%d}",
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d %H:%M}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -123,7 +137,7 @@
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
