@@ -14,13 +14,28 @@ local lsp_settings = {
   -- add another server here...
 }
 
--- We need to setup Neoconf before any LSPs (!)
-require("neoconf").setup({
-  -- override any of the default settings here
-})
+-- cmp completion
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Rust Tools for enhanced Rust LSP
-require('rust-tools').setup({})
+-- navic for context
+local navic = require("nvim-navic")
+
+for _, server in ipairs(servers) do
+  vim.lsp.config(server, {
+    on_attach = function(client, bufnr)
+	    require('keybindings').on_attach(client,bufnr)
+	    navic.attach(client, bufnr)
+    end,
+    capabilities = capabilities,
+    settings = lsp_settings[server] and lsp_settings[server].settings or nil -- Apply settings if available
+  })
+end
+
+-- --> Actually enable the LSPs here <--
+vim.lsp.enable(servers)
+
 -- Go additional functionality
 require('go').setup{}
 
@@ -30,28 +45,10 @@ require("mason-lspconfig").setup {
     ensure_installed = servers,
 }
 
--- cmp completion
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- navic for context
-local navic = require("nvim-navic")
-for _, lsp in ipairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = function(client, bufnr)
-	    require('keybindings').on_attach(client,bufnr)
-	    navic.attach(client, bufnr)
-    end,
-    capabilities = capabilities,
-    settings = lsp_settings[lsp] and lsp_settings[lsp].settings or nil -- Apply settings if available
-  }
-end
-
 vim.g.markdown_fenced_languages = {
   "ts=typescript"
 }
 
 -- This is separate because we probably don't want to add the main keybindings
 -- if all this is doing is linting, but maybe this should move elsewhere.
-require'lspconfig'.eslint.setup{}
+-- require'lspconfig'.eslint.setup{} -- TODO: Update to new syntax

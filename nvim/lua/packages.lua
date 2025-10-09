@@ -32,7 +32,7 @@ require("lazy").setup({
             'nvim-tree/nvim-web-devicons',
         }},
 
-    "folke/neoconf.nvim",
+ --   "folke/neoconf.nvim",
     -- Language/LSP Support
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -41,7 +41,7 @@ require("lazy").setup({
     "nvim-lua/lsp-status.nvim",
     {"ray-x/go.nvim", ft="go",
         build = ':lua require("go.install").update_all_sync()'},
-    {"simrat39/rust-tools.nvim", ft="rust"},
+ --   {"simrat39/rust-tools.nvim", ft="rust"}, -- Depreciated
     {"mfussenegger/nvim-jdtls", lazy = true},
     "SmiteshP/nvim-navic",
 --  "kosayoda/nvim-lightbulb", -- consier replacing with lspsaga.nvim
