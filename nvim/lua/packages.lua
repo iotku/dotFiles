@@ -41,7 +41,7 @@ require("lazy").setup({
     "nvim-lua/lsp-status.nvim",
     {"ray-x/go.nvim", ft="go",
         build = ':lua require("go.install").update_all_sync()'},
- --   {"simrat39/rust-tools.nvim", ft="rust"}, -- Depreciated
+    {'mrcjkb/rustaceanvim', version = '^6',  lazy = false }, -- This plugin is already lazy
     {"mfussenegger/nvim-jdtls", lazy = true},
     "SmiteshP/nvim-navic",
 --  "kosayoda/nvim-lightbulb", -- consier replacing with lspsaga.nvim

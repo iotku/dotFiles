@@ -33,7 +33,7 @@ for _, server in ipairs(servers) do
   })
 end
 
--- --> Actually enable the LSPs here <--
+--> Actually enable the LSPs here <--
 vim.lsp.enable(servers)
 
 -- Go additional functionality
