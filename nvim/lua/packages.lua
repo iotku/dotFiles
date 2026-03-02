@@ -151,4 +151,8 @@ require("lazy").setup({
     -- Notetaking / Wiki
     {"lervag/vimtex", ft="tex"},
     --"vimwiki/vimwiki",
+}, {
+  rocks = {
+    enabled = false, -- Disable LuaRocks
+  },
 })
