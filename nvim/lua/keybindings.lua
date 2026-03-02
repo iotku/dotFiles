@@ -9,7 +9,6 @@ vim.keymap.set('n', '<leader>l',  '<cmd>set invlist<cr>')       -- Toggle listch
 vim.keymap.set('n', '<leader>k', '<cmd>NvimTreeToggle<cr>')     -- Open File browser Sidebar
 vim.keymap.set('n', '<leader>;', 'A;<esc>')                     -- add semicolon to end of line
 vim.keymap.set('n', '<leader>,', 'A,<esc>')                     -- add comma to end of the line
-vim.keymap.set('n', '<CR>', 'o<esc>cc')
 ---- Tab/shiftTab indent/unindent
 vim.keymap.set('n', '<Tab>', '>>_')
 vim.keymap.set('n', '<S-Tab>', '<<_')
