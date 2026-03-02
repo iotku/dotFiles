@@ -3,7 +3,7 @@ set -eo pipefail
 goPKGS=()
 function main {
     _header "Checking Dependencies"
-    DEPS=("gcc" "curl" "tar" "go" "rustup" "java" "lua")
+    DEPS=("gcc" "curl" "tar" "go" "rustup-init" "java" "lua")
     for v in "${DEPS[@]}"; do
         checkDep "$v"
     done
