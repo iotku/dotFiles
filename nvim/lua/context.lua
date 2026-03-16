@@ -3,7 +3,7 @@ vim.opt.termguicolors = true    -- True color support
 vim.o.background = "dark" -- or "light" for light mode
 -- treesitter
 require("nvim-treesitter.install").prefer_git = true -- hopefully download better
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.config'.setup {
   ensure_installed = { "bash", "c", "dockerfile", "lua", "python", "rust",
                         "vim", "vimdoc", "comment", "query", "sql",
                         "erlang", "elixir", "heex", "java", "kotlin",
